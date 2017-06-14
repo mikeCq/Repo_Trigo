@@ -8,8 +8,8 @@ Public Class ReporteBoletasSalidas
         Dim RptBoletasSalidas As New ReporteBoletaSalida
         RptBoletasSalidas.SetDatabaseLogon(VarGlob.UserDB, VarGlob.PasswordDB, VarGlob.ServerDB, VarGlob.DataBase)
         RptBoletasSalidas.SetParameterValue("@idsalida", ControlSalidas.codigoSalida)
-        RptBoletasSalidas.SetParameterValue("@MaizAmarillo", ControlSalidas.MaizAmarillo)
-        RptBoletasSalidas.SetParameterValue("@MaizBlanco", ControlSalidas.MaizBlanco)
+        RptBoletasSalidas.SetParameterValue("@MaizAmarillo", ControlSalidas.Cachanilla)
+        RptBoletasSalidas.SetParameterValue("@MaizBlanco", ControlSalidas.Cristalino)
 
         CrBoletaSalida.ReportSource = RptBoletasSalidas
     End Sub

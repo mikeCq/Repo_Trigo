@@ -34,7 +34,7 @@ Public Class ControlSalidas
         End Set
     End Property
     Private _cristalino As String
-    Public Property MaizBlanco() As String
+    Public Property Cristalino() As String
         Get
             Return _cristalino
         End Get

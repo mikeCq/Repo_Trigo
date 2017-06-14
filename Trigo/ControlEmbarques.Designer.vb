@@ -43,6 +43,14 @@ Partial Class ControlEmbarques
         Me.CBAnalista = New System.Windows.Forms.ComboBox()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.GbCalidad = New System.Windows.Forms.GroupBox()
+        Me.TxPorcentajePB = New System.Windows.Forms.TextBox()
+        Me.Label30 = New System.Windows.Forms.Label()
+        Me.TxPuntaNegra = New System.Windows.Forms.TextBox()
+        Me.Label28 = New System.Windows.Forms.Label()
+        Me.TxGranoQuebrado = New System.Windows.Forms.TextBox()
+        Me.Label29 = New System.Windows.Forms.Label()
+        Me.TxGranoContraste = New System.Windows.Forms.TextBox()
+        Me.Label24 = New System.Windows.Forms.Label()
         Me.TxPesoEsp = New System.Windows.Forms.TextBox()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
@@ -78,14 +86,6 @@ Partial Class ControlEmbarques
         Me.TxDomicilio = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.BtImprimir = New System.Windows.Forms.Button()
-        Me.TxGranoContraste = New System.Windows.Forms.TextBox()
-        Me.Label24 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Label29 = New System.Windows.Forms.Label()
-        Me.TxPuntaNegra = New System.Windows.Forms.TextBox()
-        Me.Label28 = New System.Windows.Forms.Label()
-        Me.TxPorcentajePB = New System.Windows.Forms.TextBox()
-        Me.Label30 = New System.Windows.Forms.Label()
         Me.GroupBox5.SuspendLayout()
         CType(Me.DgBoletaEmbarque, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GbDatoEntrada.SuspendLayout()
@@ -328,7 +328,7 @@ Partial Class ControlEmbarques
         Me.GbCalidad.Controls.Add(Me.Label30)
         Me.GbCalidad.Controls.Add(Me.TxPuntaNegra)
         Me.GbCalidad.Controls.Add(Me.Label28)
-        Me.GbCalidad.Controls.Add(Me.TextBox1)
+        Me.GbCalidad.Controls.Add(Me.TxGranoQuebrado)
         Me.GbCalidad.Controls.Add(Me.Label29)
         Me.GbCalidad.Controls.Add(Me.TxGranoContraste)
         Me.GbCalidad.Controls.Add(Me.Label24)
@@ -350,6 +350,76 @@ Partial Class ControlEmbarques
         Me.GbCalidad.TabIndex = 6
         Me.GbCalidad.TabStop = False
         Me.GbCalidad.Text = "Certificado de Calidad"
+        '
+        'TxPorcentajePB
+        '
+        Me.TxPorcentajePB.Location = New System.Drawing.Point(127, 128)
+        Me.TxPorcentajePB.MaxLength = 6
+        Me.TxPorcentajePB.Name = "TxPorcentajePB"
+        Me.TxPorcentajePB.Size = New System.Drawing.Size(122, 22)
+        Me.TxPorcentajePB.TabIndex = 91
+        '
+        'Label30
+        '
+        Me.Label30.AutoSize = True
+        Me.Label30.Location = New System.Drawing.Point(12, 130)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(109, 16)
+        Me.Label30.TabIndex = 92
+        Me.Label30.Text = "% Panza Blanca:"
+        '
+        'TxPuntaNegra
+        '
+        Me.TxPuntaNegra.Enabled = False
+        Me.TxPuntaNegra.Location = New System.Drawing.Point(127, 18)
+        Me.TxPuntaNegra.MaxLength = 6
+        Me.TxPuntaNegra.Name = "TxPuntaNegra"
+        Me.TxPuntaNegra.Size = New System.Drawing.Size(122, 22)
+        Me.TxPuntaNegra.TabIndex = 89
+        '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.Location = New System.Drawing.Point(35, 20)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(86, 16)
+        Me.Label28.TabIndex = 90
+        Me.Label28.Text = "Punta Negra:"
+        '
+        'TxGranoQuebrado
+        '
+        Me.TxGranoQuebrado.Location = New System.Drawing.Point(127, 156)
+        Me.TxGranoQuebrado.MaxLength = 6
+        Me.TxGranoQuebrado.Name = "TxGranoQuebrado"
+        Me.TxGranoQuebrado.Size = New System.Drawing.Size(122, 22)
+        Me.TxGranoQuebrado.TabIndex = 87
+        '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.Location = New System.Drawing.Point(9, 158)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(112, 16)
+        Me.Label29.TabIndex = 88
+        Me.Label29.Text = "Grano Quebrado:"
+        '
+        'TxGranoContraste
+        '
+        Me.TxGranoContraste.Enabled = False
+        Me.TxGranoContraste.Location = New System.Drawing.Point(127, 184)
+        Me.TxGranoContraste.MaxLength = 6
+        Me.TxGranoContraste.Name = "TxGranoContraste"
+        Me.TxGranoContraste.Size = New System.Drawing.Size(122, 22)
+        Me.TxGranoContraste.TabIndex = 85
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.Location = New System.Drawing.Point(13, 186)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(108, 16)
+        Me.Label24.TabIndex = 86
+        Me.Label24.Text = "Grano Contraste:"
         '
         'TxPesoEsp
         '
@@ -698,76 +768,6 @@ Partial Class ControlEmbarques
         Me.BtImprimir.Text = "Imprimir"
         Me.BtImprimir.UseVisualStyleBackColor = True
         '
-        'TxGranoContraste
-        '
-        Me.TxGranoContraste.Enabled = False
-        Me.TxGranoContraste.Location = New System.Drawing.Point(127, 184)
-        Me.TxGranoContraste.MaxLength = 6
-        Me.TxGranoContraste.Name = "TxGranoContraste"
-        Me.TxGranoContraste.Size = New System.Drawing.Size(122, 22)
-        Me.TxGranoContraste.TabIndex = 85
-        '
-        'Label24
-        '
-        Me.Label24.AutoSize = True
-        Me.Label24.Location = New System.Drawing.Point(13, 186)
-        Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(108, 16)
-        Me.Label24.TabIndex = 86
-        Me.Label24.Text = "Grano Contraste:"
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(127, 156)
-        Me.TextBox1.MaxLength = 6
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(122, 22)
-        Me.TextBox1.TabIndex = 87
-        '
-        'Label29
-        '
-        Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(9, 158)
-        Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(112, 16)
-        Me.Label29.TabIndex = 88
-        Me.Label29.Text = "Grano Quebrado:"
-        '
-        'TxPuntaNegra
-        '
-        Me.TxPuntaNegra.Enabled = False
-        Me.TxPuntaNegra.Location = New System.Drawing.Point(127, 18)
-        Me.TxPuntaNegra.MaxLength = 6
-        Me.TxPuntaNegra.Name = "TxPuntaNegra"
-        Me.TxPuntaNegra.Size = New System.Drawing.Size(122, 22)
-        Me.TxPuntaNegra.TabIndex = 89
-        '
-        'Label28
-        '
-        Me.Label28.AutoSize = True
-        Me.Label28.Location = New System.Drawing.Point(35, 20)
-        Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(86, 16)
-        Me.Label28.TabIndex = 90
-        Me.Label28.Text = "Punta Negra:"
-        '
-        'TxPorcentajePB
-        '
-        Me.TxPorcentajePB.Location = New System.Drawing.Point(127, 128)
-        Me.TxPorcentajePB.MaxLength = 6
-        Me.TxPorcentajePB.Name = "TxPorcentajePB"
-        Me.TxPorcentajePB.Size = New System.Drawing.Size(122, 22)
-        Me.TxPorcentajePB.TabIndex = 91
-        '
-        'Label30
-        '
-        Me.Label30.AutoSize = True
-        Me.Label30.Location = New System.Drawing.Point(12, 130)
-        Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(109, 16)
-        Me.Label30.TabIndex = 92
-        Me.Label30.Text = "% Panza Blanca:"
-        '
         'ControlEmbarques
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -862,7 +862,7 @@ Partial Class ControlEmbarques
     Friend WithEvents Label12 As Label
     Friend WithEvents TxGranoContraste As TextBox
     Friend WithEvents Label24 As Label
-    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents TxGranoQuebrado As TextBox
     Friend WithEvents Label29 As Label
     Friend WithEvents TxPuntaNegra As TextBox
     Friend WithEvents Label28 As Label
