@@ -23,9 +23,9 @@ Partial Class ControlEntradas
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.GbDatoEntrada = New System.Windows.Forms.GroupBox()
+        Me.CbNombre = New System.Windows.Forms.ComboBox()
         Me.CbLugarExp = New System.Windows.Forms.ComboBox()
         Me.CbLoteEntrada = New System.Windows.Forms.ComboBox()
-        Me.CbNombre = New System.Windows.Forms.ComboBox()
         Me.Label27 = New System.Windows.Forms.Label()
         Me.LbCapacidad = New System.Windows.Forms.Label()
         Me.Label26 = New System.Windows.Forms.Label()
@@ -106,9 +106,9 @@ Partial Class ControlEntradas
         '
         'GbDatoEntrada
         '
+        Me.GbDatoEntrada.Controls.Add(Me.CbNombre)
         Me.GbDatoEntrada.Controls.Add(Me.CbLugarExp)
         Me.GbDatoEntrada.Controls.Add(Me.CbLoteEntrada)
-        Me.GbDatoEntrada.Controls.Add(Me.CbNombre)
         Me.GbDatoEntrada.Controls.Add(Me.Label27)
         Me.GbDatoEntrada.Controls.Add(Me.LbCapacidad)
         Me.GbDatoEntrada.Controls.Add(Me.Label26)
@@ -144,7 +144,17 @@ Partial Class ControlEntradas
         Me.GbDatoEntrada.Size = New System.Drawing.Size(636, 656)
         Me.GbDatoEntrada.TabIndex = 0
         Me.GbDatoEntrada.TabStop = False
-        Me.GbDatoEntrada.Text = "Datos de la Entrada de Maiz"
+        Me.GbDatoEntrada.Text = "Datos de la Entrada"
+        '
+        'CbNombre
+        '
+        Me.CbNombre.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
+        Me.CbNombre.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.CbNombre.FormattingEnabled = True
+        Me.CbNombre.Location = New System.Drawing.Point(149, 56)
+        Me.CbNombre.Name = "CbNombre"
+        Me.CbNombre.Size = New System.Drawing.Size(481, 24)
+        Me.CbNombre.TabIndex = 1
         '
         'CbLugarExp
         '
@@ -163,16 +173,6 @@ Partial Class ControlEntradas
         Me.CbLoteEntrada.Name = "CbLoteEntrada"
         Me.CbLoteEntrada.Size = New System.Drawing.Size(247, 24)
         Me.CbLoteEntrada.TabIndex = 2
-        '
-        'CbNombre
-        '
-        Me.CbNombre.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest
-        Me.CbNombre.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.CbNombre.FormattingEnabled = True
-        Me.CbNombre.Location = New System.Drawing.Point(149, 56)
-        Me.CbNombre.Name = "CbNombre"
-        Me.CbNombre.Size = New System.Drawing.Size(481, 24)
-        Me.CbNombre.TabIndex = 1
         '
         'Label27
         '
@@ -282,11 +282,11 @@ Partial Class ControlEntradas
         '
         'TxHumedad
         '
-        Me.TxHumedad.Location = New System.Drawing.Point(127, 205)
+        Me.TxHumedad.Location = New System.Drawing.Point(127, 204)
         Me.TxHumedad.MaxLength = 6
         Me.TxHumedad.Name = "TxHumedad"
         Me.TxHumedad.Size = New System.Drawing.Size(122, 22)
-        Me.TxHumedad.TabIndex = 39
+        Me.TxHumedad.TabIndex = 8
         Me.TxHumedad.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label14
@@ -300,12 +300,12 @@ Partial Class ControlEntradas
         '
         'TxGranoContraste
         '
-        Me.TxGranoContraste.Enabled = False
         Me.TxGranoContraste.Location = New System.Drawing.Point(127, 180)
         Me.TxGranoContraste.MaxLength = 6
         Me.TxGranoContraste.Name = "TxGranoContraste"
         Me.TxGranoContraste.Size = New System.Drawing.Size(122, 22)
-        Me.TxGranoContraste.TabIndex = 36
+        Me.TxGranoContraste.TabIndex = 7
+        Me.TxGranoContraste.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TxPorcentajePB
         '
@@ -313,7 +313,8 @@ Partial Class ControlEntradas
         Me.TxPorcentajePB.MaxLength = 6
         Me.TxPorcentajePB.Name = "TxPorcentajePB"
         Me.TxPorcentajePB.Size = New System.Drawing.Size(122, 22)
-        Me.TxPorcentajePB.TabIndex = 32
+        Me.TxPorcentajePB.TabIndex = 5
+        Me.TxPorcentajePB.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TxGranoQuebrado
         '
@@ -321,16 +322,17 @@ Partial Class ControlEntradas
         Me.TxGranoQuebrado.MaxLength = 6
         Me.TxGranoQuebrado.Name = "TxGranoQuebrado"
         Me.TxGranoQuebrado.Size = New System.Drawing.Size(122, 22)
-        Me.TxGranoQuebrado.TabIndex = 34
+        Me.TxGranoQuebrado.TabIndex = 6
+        Me.TxGranoQuebrado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TxPuntaNegra
         '
-        Me.TxPuntaNegra.Enabled = False
         Me.TxPuntaNegra.Location = New System.Drawing.Point(127, 30)
         Me.TxPuntaNegra.MaxLength = 6
         Me.TxPuntaNegra.Name = "TxPuntaNegra"
         Me.TxPuntaNegra.Size = New System.Drawing.Size(122, 22)
-        Me.TxPuntaNegra.TabIndex = 31
+        Me.TxPuntaNegra.TabIndex = 0
+        Me.TxPuntaNegra.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label24
         '
@@ -376,7 +378,7 @@ Partial Class ControlEntradas
         Me.TxTotal.MaxLength = 9
         Me.TxTotal.Name = "TxTotal"
         Me.TxTotal.Size = New System.Drawing.Size(131, 35)
-        Me.TxTotal.TabIndex = 9
+        Me.TxTotal.TabIndex = 10
         Me.TxTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TxDeducciones
@@ -388,7 +390,7 @@ Partial Class ControlEntradas
         Me.TxDeducciones.MaxLength = 7
         Me.TxDeducciones.Name = "TxDeducciones"
         Me.TxDeducciones.Size = New System.Drawing.Size(131, 25)
-        Me.TxDeducciones.TabIndex = 8
+        Me.TxDeducciones.TabIndex = 9
         Me.TxDeducciones.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TxGranoDan
@@ -898,7 +900,7 @@ Partial Class ControlEntradas
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "ControlEntradas"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Entradas de Maiz"
+        Me.Text = "Entradas"
         Me.GbDatoEntrada.ResumeLayout(False)
         Me.GbDatoEntrada.PerformLayout()
         Me.GbCalidad.ResumeLayout(False)
@@ -972,7 +974,6 @@ Partial Class ControlEntradas
     Friend WithEvents Label27 As Label
     Friend WithEvents TxIdBoleta As TextBox
     Friend WithEvents Label17 As Label
-    Friend WithEvents CbNombre As ComboBox
     Friend WithEvents TxPesoEsp As TextBox
     Friend WithEvents Label18 As Label
     Friend WithEvents CbLoteEntrada As ComboBox
@@ -986,6 +987,7 @@ Partial Class ControlEntradas
     Friend WithEvents Label28 As Label
     Friend WithEvents Label29 As Label
     Friend WithEvents Label30 As Label
-    Friend WithEvents TxHumedad As TextBox
     Friend WithEvents Label14 As Label
+    Friend WithEvents CbNombre As ComboBox
+    Friend WithEvents TxHumedad As TextBox
 End Class

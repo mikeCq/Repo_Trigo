@@ -4,7 +4,7 @@ Imports System.Data
 Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.CrystalReports
 Public Class ControlEntradas
-    Dim resTon, valEntLib, valEntCon, deduccionGrandan, deduccionHumedad, deduccionImpurezas, deduccionPanzaB, deduccionPesoEsp, deduccionGranQ, calculoPanzaB, calculoHumedad, calculoPuntaNegra, calculaImpureza, calculaGranoDan, calculoGranQ, calculoPesoE As Double
+    Dim resTon, valEntLib, valEntCon, deduccionPuntaNeg, deduccionContraste, deduccionGrandan, deduccionHumedad, deduccionImpurezas, deduccionPanzaB, deduccionPesoEsp, deduccionGranQ, calculoPanzaB, calculoHumedad, calculoPuntaNegra, calculaImpureza, calculaGranoDan, calculoGranQ, calculoPesoE, calculoContraste As Double
     Dim compruebaEntradas, idloteSeleccion As String
     Private Sub Entradas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TxIdBoleta.Select()
@@ -31,24 +31,6 @@ Public Class ControlEntradas
         End Get
         Set(value As String)
             _codigoEntrada = value
-        End Set
-    End Property
-    Private _Cachanilla As String
-    Public Property Cachanilla() As String
-        Get
-            Return _Cachanilla
-        End Get
-        Set(value As String)
-            _Cachanilla = value
-        End Set
-    End Property
-    Private _cristalino As String
-    Public Property Cristalino() As String
-        Get
-            Return _cristalino
-        End Get
-        Set(value As String)
-            _cristalino = value
         End Set
     End Property
     Private Sub ControlesSinTab()
@@ -99,6 +81,7 @@ Public Class ControlEntradas
             CBConductor.Enabled = False
             BtImprimir.Enabled = False
             CbLoteEntrada.Enabled = False
+            TxPuntaNegra.Focus()
         ElseIf TxFolio.Text <> "" And CbAnalista.Text <> "" And Val(TxTara.Text) = 0 Then
             TxTara.Enabled = True
             CbAcopio.Enabled = True
@@ -136,13 +119,6 @@ Public Class ControlEntradas
         End If
     End Sub
     Private Sub BtImprimir_Click(sender As Object, e As EventArgs) Handles BtImprimir.Click
-        If RBTCachanilla.Checked = True And RBTCristalino.Checked = False Then
-            _Cachanilla = "X"
-            _cristalino = " "
-        ElseIf RBTCristalino.Checked = True And RBTCachanilla.Checked = False Then
-            _cristalino = "X"
-            _Cachanilla = " "
-        End If
         _codigoEntrada = TxFolio.Text
         ReporteBoletasEntradas.Show()
     End Sub
@@ -150,27 +126,43 @@ Public Class ControlEntradas
         Dim msg As String = ""
         Dim msgNo As String = ""
 
+        If Val(TxPuntaNegra.Text) > 6 And Val(TxPuntaNegra.Text) <= 8 Then
+            msg = msg & vbCrLf + "% Punta Negra : " & Val(TxPuntaNegra.Text)
+        ElseIf Val(TxPuntaNegra.Text) > 8 Then
+            msgNo = msgNo & vbCrLf + "% Punta Negra : " & Val(TxPuntaNegra.Text)
+        End If
         If Val(TxImpurezas.Text) > 6 And Val(TxImpurezas.Text) <= 8 Then
             msg = msg & vbCrLf + "% Impurezas : " & Val(TxImpurezas.Text)
         ElseIf Val(TxImpurezas.Text) > 8 Then
             msgNo = msgNo & vbCrLf + "% Impurezas : " & Val(TxImpurezas.Text)
-        End If
-        If Val(TxHumedad.Text) > 15.1 And Val(TxHumedad.Text) <= 16 Then
-            msg = msg & vbCrLf + "% Humedad : " & Val(TxHumedad.Text)
-        ElseIf Val(TxHumedad.Text) > 16 Then
-            msgNo = msgNo & vbCrLf + "% Humedad : " & Val(TxHumedad.Text)
         End If
         If Val(TxGranoDan.Text) > 8 And Val(TxGranoDan.Text) <= 10 Then
             msg = msg & vbCrLf + "% Grano Dañado : " & Val(TxGranoDan.Text)
         ElseIf Val(TxGranoDan.Text) > 10 Then
             msgNo = msgNo & vbCrLf + "% Grano Dañado : " & Val(TxGranoDan.Text)
         End If
+        If Val(TxPesoEsp.Text) < 70 Then
+            msgNo = msgNo & vbCrLf + "% Peso Especifico : " & Val(TxPesoEsp.Text)
+        End If
+        If Val(TxPorcentajePB.Text) >= 7 And Val(TxPorcentajePB.Text) <= 10 Then
+            msg = msg & vbCrLf + "% Panza Blanca : " & Val(TxPorcentajePB.Text)
+        ElseIf Val(TxPorcentajePB.Text) > 10 Then
+            msgNo = msgNo & vbCrLf + "% Panza Blanca : " & Val(TxPorcentajePB.Text)
+        End If
         If Val(TxGranoQuebrado.Text) >= 7 And Val(TxGranoQuebrado.Text) <= 10 Then
             msg = msg & vbCrLf + "% Grano Quebrado : " & Val(TxGranoQuebrado.Text)
         ElseIf Val(TxGranoQuebrado.Text) > 10 Then
             msgNo = msgNo & vbCrLf + "% Grano Quebrado : " & Val(TxGranoQuebrado.Text)
-        ElseIf Val(TxPesoEsp.Text) < 70 Then
-            msgNo = msgNo & vbCrLf + "% Peso Especifico : " & Val(TxPesoEsp.Text)
+        End If
+        If Val(TxGranoContraste.Text) >= 7 And Val(TxGranoContraste.Text) <= 10 Then
+            msg = msg & vbCrLf + "% Grano Contraste : " & Val(TxGranoContraste.Text)
+        ElseIf Val(TxGranoContraste.Text) > 10 Then
+            msgNo = msgNo & vbCrLf + "% Grano Contraste : " & Val(TxGranoContraste.Text)
+        End If
+        If Val(TxHumedad.Text) > 15.1 And Val(TxHumedad.Text) <= 16 Then
+            msg = msg & vbCrLf + "% Humedad : " & Val(TxHumedad.Text)
+        ElseIf Val(TxHumedad.Text) > 16 Then
+            msgNo = msgNo & vbCrLf + "% Humedad : " & Val(TxHumedad.Text)
         End If
         If msgNo <> "" Then
             MessageBox.Show("Se excedio el maximo o minimo permitido en los siguientes parametros, no se permitira el paso a esta entrada: " & msgNo, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Stop)
@@ -198,18 +190,27 @@ Public Class ControlEntradas
         deduccionImpurezas = 0
         deduccionGranQ = 0
         deduccionPesoEsp = 0
+        deduccionContraste = 0
+        deduccionGrandan = 0
+        deduccionPanzaB = 0
 
         calculaImpureza = 0
         deduccionGrandan = 0
         calculoHumedad = 0
         calculoGranQ = 0
         calculoPesoE = 0
+        calculoContraste = 0
+        calculoPanzaB = 0
+        deduccionPuntaNeg = 0
 
         TxImpurezas.Text = FormatNumber(TxImpurezas.Text, 2)
         TxGranoDan.Text = FormatNumber(TxGranoDan.Text, 2)
         TxHumedad.Text = FormatNumber(TxHumedad.Text, 2)
         TxGranoQuebrado.Text = FormatNumber(TxGranoQuebrado.Text, 2)
         TxPesoEsp.Text = FormatNumber(TxPesoEsp.Text, 2)
+        TxGranoContraste.Text = FormatNumber(TxGranoContraste.Text, 2)
+        TxPuntaNegra.Text = FormatNumber(TxPuntaNegra.Text, 2)
+        TxPorcentajePB.Text = FormatNumber(TxPorcentajePB.Text, 2)
 
         If Val(TxImpurezas.Text) > 2 And Val(TxImpurezas.Text) <= 8 Then
             Dim RI As Double = 0
@@ -228,6 +229,60 @@ Public Class ControlEntradas
 
         Else
             calculaImpureza = 0
+        End If
+        If Val(TxPuntaNegra.Text) > 2 And Val(TxPuntaNegra.Text) <= 8 Then
+            Dim RI As Double = 0
+            RI = CDbl(TxPuntaNegra.Text) - 2
+            'Dim cmd As New SqlCommand("Sp_CalculoImpureza", cnn)
+            'cmd.CommandType = CommandType.StoredProcedure
+            'cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxImpurezas.Text))
+            'Dim da As New SqlClient.SqlDataAdapter(cmd)
+            'Dim dt As New DataTable
+            'da.Fill(dt)
+            'Dim row As DataRow = dt.Rows(0)
+            'deduccionImpurezas = row("deduccion")
+            calculoPuntaNegra = (((RI / 0.1) * 1) * CDbl(TxNeto.Text)) / 1000
+            'calculaImpureza = (CDbl(TxNeto.Text) / 1000) * deduccionImpurezas
+            ' ElseIf Val(TxImpurezas.Text) > 5 Then
+
+        Else
+            calculoPuntaNegra = 0
+        End If
+        If Val(TxGranoContraste.Text) > 2 And Val(TxGranoContraste.Text) <= 8 Then
+            Dim RI As Double = 0
+            RI = CDbl(TxGranoContraste.Text) - 2
+            'Dim cmd As New SqlCommand("Sp_CalculoImpureza", cnn)
+            'cmd.CommandType = CommandType.StoredProcedure
+            'cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxImpurezas.Text))
+            'Dim da As New SqlClient.SqlDataAdapter(cmd)
+            'Dim dt As New DataTable
+            'da.Fill(dt)
+            'Dim row As DataRow = dt.Rows(0)
+            'deduccionImpurezas = row("deduccion")
+            calculoContraste = (((RI / 0.1) * 1) * CDbl(TxNeto.Text)) / 1000
+            'calculaImpureza = (CDbl(TxNeto.Text) / 1000) * deduccionImpurezas
+            ' ElseIf Val(TxImpurezas.Text) > 5 Then
+
+        Else
+            calculoContraste = 0
+        End If
+        If Val(TxPorcentajePB.Text) > 2 And Val(TxPorcentajePB.Text) <= 8 Then
+            Dim RI As Double = 0
+            RI = CDbl(TxPorcentajePB.Text) - 2
+            'Dim cmd As New SqlCommand("Sp_CalculoImpureza", cnn)
+            'cmd.CommandType = CommandType.StoredProcedure
+            'cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxImpurezas.Text))
+            'Dim da As New SqlClient.SqlDataAdapter(cmd)
+            'Dim dt As New DataTable
+            'da.Fill(dt)
+            'Dim row As DataRow = dt.Rows(0)
+            'deduccionImpurezas = row("deduccion")
+            calculoPanzaB = (((RI / 0.1) * 1) * CDbl(TxNeto.Text)) / 1000
+            'calculaImpureza = (CDbl(TxNeto.Text) / 1000) * deduccionImpurezas
+            ' ElseIf Val(TxImpurezas.Text) > 5 Then
+
+        Else
+            calculoPanzaB = 0
         End If
         If Val(TxGranoDan.Text) > 5 And Val(TxGranoDan.Text) <= 10 Then
             Dim RG As Double = 0
@@ -283,24 +338,23 @@ Public Class ControlEntradas
             calculoGranQ = 0
         End If
         If Val(TxPesoEsp.Text) > 70 Then
-            Dim cmd As New SqlCommand("Sp_CalculoPesoEsp", cnn)
-            cmd.CommandType = CommandType.StoredProcedure
-            cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxPesoEsp.Text))
-            Dim da As New SqlClient.SqlDataAdapter(cmd)
-            Dim dt As New DataTable
-            da.Fill(dt)
-            Dim row As DataRow = dt.Rows(0)
-            deduccionPesoEsp = row("deduccion")
-            calculoPesoE = (CDbl(TxNeto.Text) / 1000) * deduccionPesoEsp
-
+            'Dim cmd As New SqlCommand("Sp_CalculoPesoEsp", cnn)
+            'cmd.CommandType = CommandType.StoredProcedure
+            'cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxPesoEsp.Text))
+            'Dim da As New SqlClient.SqlDataAdapter(cmd)
+            'Dim dt As New DataTable
+            'da.Fill(dt)
+            'Dim row As DataRow = dt.Rows(0)
+            'deduccionPesoEsp = row("deduccion")
+            'calculoPesoE = (CDbl(TxNeto.Text) / 1000) * deduccionPesoEsp
+            calculoPesoE = 0
             ' ElseIf Val(TxGranoQuebrado.Text) > 3 Then
 
         Else
             calculoPesoE = 0
         End If
 
-
-        TxDeducciones.Text = calculaGranoDan + calculoHumedad + calculaImpureza + calculoGranQ + calculoPesoE
+        TxDeducciones.Text = calculaGranoDan + calculoHumedad + calculaImpureza + calculoGranQ + calculoPesoE + calculoContraste + calculoPuntaNegra + calculoPanzaB
         TxDeducciones.Text = FormatNumber(TxDeducciones.Text, 2)
         TxTotal.Text = Val(TxNeto.Text - TxDeducciones.Text)
         TxTotal.Text = FormatNumber(TxTotal.Text, 2)
@@ -342,7 +396,7 @@ Public Class ControlEntradas
                 TxNeto.Text = FormatNumber(TxNeto.Text, 2)
             End If
 
-            If Val(TxImpurezas.Text) > 0 And (TxHumedad.Text) > 0 And (TxGranoDan.Text) > 0 And Val(TxGranoQuebrado.Text) > 0 And Val(TxPesoEsp.Text) > 0 And Val(TxTara.Text) = 0 And Val(TxNeto.Text) = 0 And CbAcopio.SelectedValue = "" Then validacionParametros()
+            If Val(TxPuntaNegra.Text) > 0 And Val(TxImpurezas.Text) > 0 And (TxGranoDan.Text) > 0 And Val(TxPesoEsp.Text) > 0 And Val(TxPorcentajePB.Text) > 0 And Val(TxGranoQuebrado.Text) > 0 And (TxGranoContraste.Text) > 0 And (TxHumedad.Text) > 0 And Val(TxTara.Text) = 0 And Val(TxNeto.Text) = 0 And CbAcopio.SelectedValue = "" Then validacionParametros()
             If Val(TxTara.Text) > 0 And Val(TxNeto.Text) > 0 And CbAcopio.SelectedIndex = -1 Then
                 calculos()
             End If
@@ -369,7 +423,7 @@ Public Class ControlEntradas
                         Fase1.Parameters.AddWithValue("@NomProd", CbNombre.SelectedValue)
                         Fase1.Parameters.AddWithValue("@LoteColonia", CbLoteEntrada.Text)
                         Fase1.Parameters.AddWithValue("@domicilioProductor", "")
-                        Fase1.Parameters.AddWithValue("@grupoGrano", IIf(RBTCachanilla.Checked = True, "AMARILLO", "BLANCO"))
+                        Fase1.Parameters.AddWithValue("@grupoGrano", IIf(RBTCachanilla.Checked = True, "CACHANILLA", "CRISTALINO"))
                         Fase1.Parameters.AddWithValue("@lugarExpedicion", CbLugarExp.Text)
                         Fase1.Parameters.AddWithValue("@fechaPesaje", DTPEntradas.Text)
                         Fase1.Parameters.AddWithValue("@bruto", (CDbl(TxBruto.Text) / 1000))
@@ -388,7 +442,7 @@ Public Class ControlEntradas
                     End Try
                 End If
             ElseIf TxFolio.Text <> "" And CbNombre.Text <> "" And Val(TxBruto.Text) > 0 And TxPlacas.Text <> "" And Val(TxTara.Text) = 0 And Val(TxNeto.Text) = 0 Then
-                If Val(TxImpurezas.Text) = 0 Or Val(TxGranoDan.Text) = 0 Or Val(TxGranoQuebrado.Text) = 0 Or Val(TxHumedad.Text) = 0 Or CbAnalista.Text = "" Or Val(TxPesoEsp.Text) = 0 Then
+                If Val(TxImpurezas.Text) = 0 Or Val(TxGranoDan.Text) = 0 Or Val(TxGranoQuebrado.Text) = 0 Or Val(TxHumedad.Text) = 0 Or Val(TxPuntaNegra.Text) = 0 Or Val(TxGranoContraste.Text) = 0 Or Val(TxPorcentajePB.Text) = 0 Or CbAnalista.Text = "" Or Val(TxPesoEsp.Text) = 0 Then
                     MessageBox.Show("Verifica campos en blanco", "Aviso")
                 Else
 
@@ -401,6 +455,9 @@ Public Class ControlEntradas
                         Fase2.Parameters.AddWithValue("@Consecutivo", TxFolio.Text)
                         Fase2.Parameters.AddWithValue("@humedad", CDbl(TxHumedad.Text))
                         Fase2.Parameters.AddWithValue("@impurezas", CDbl(TxImpurezas.Text))
+                        Fase2.Parameters.AddWithValue("@granoContraste", CDbl(TxGranoContraste.Text))
+                        Fase2.Parameters.AddWithValue("@PorcentajePB", CDbl(TxPorcentajePB.Text))
+                        Fase2.Parameters.AddWithValue("@PuntaNegra", CDbl(TxPuntaNegra.Text))
                         Fase2.Parameters.AddWithValue("@granoDanado", CDbl(TxGranoDan.Text))
                         Fase2.Parameters.AddWithValue("@pesoEspecifico", CDbl(TxPesoEsp.Text))
                         Fase2.Parameters.AddWithValue("@granoQuebrado", CDbl(TxGranoQuebrado.Text))
@@ -459,6 +516,9 @@ Public Class ControlEntradas
                         Fase3.Parameters.AddWithValue("@kilosXtonGrDa", CDbl(FormatNumber(calculaGranoDan, 2)))
                         Fase3.Parameters.AddWithValue("@kilosXtonGrQu", CDbl(FormatNumber(calculoGranQ, 2)))
                         Fase3.Parameters.AddWithValue("@kilosXtonPeEs", CDbl(FormatNumber(calculoPesoE, 2)))
+                        Fase3.Parameters.AddWithValue("@KilosXtonPuNe", CDbl(FormatNumber(calculoPuntaNegra, 2)))
+                        Fase3.Parameters.AddWithValue("@KilosXtonPaBl", CDbl(FormatNumber(calculoPanzaB, 2)))
+                        Fase3.Parameters.AddWithValue("@KilosXtonGrCo", CDbl(FormatNumber(calculoContraste, 2)))
                         Fase3.Parameters.AddWithValue("@deducciones", (CDbl(TxDeducciones.Text)) / 1000)
                         Fase3.Parameters.AddWithValue("@CentroAcopio", CbAcopio.SelectedValue)
                         Fase3.Parameters.AddWithValue("@almacen", CbAlmacen.SelectedValue)
@@ -594,9 +654,12 @@ Public Class ControlEntradas
         TxBruto.Text = "0.00"
         TxTara.Text = "0.00"
         TxNeto.Text = "0.00"
+        TxPuntaNegra.Text = "0.00"
         TxHumedad.Text = "0.00"
         TxImpurezas.Text = "0.00"
         TxGranoDan.Text = "0.00"
+        TxPorcentajePB.Text = "0.00"
+        TxGranoContraste.Text = "0.00"
         TxGranoQuebrado.Text = "0.00"
         TxPesoEsp.Text = "0.00"
         TxDeducciones.Text = "0.00"
@@ -821,6 +884,7 @@ Public Class ControlEntradas
             Dim da As New SqlClient.SqlDataAdapter(cmd)
             Dim dt As New DataTable
 
+
             da.Fill(dt)
             Dim TipoGrano As String = ""
             Dim row As DataRow = dt.Rows(0)
@@ -834,6 +898,9 @@ Public Class ControlEntradas
             TxTara.Text = FormatNumber(CStr((row("Tara") * 1000)), 0)
             TxNeto.Text = FormatNumber(CStr((row("Neto") * 1000)), 0)
             TxHumedad.Text = FormatNumber(CStr(row("humedad")), 2)
+            TxPorcentajePB.Text = FormatNumber(CStr(row("porcentajePB")), 2)
+            TxPuntaNegra.Text = FormatNumber(CStr(row("PuntaNegra")), 2)
+            TxGranoContraste.Text = FormatNumber(CStr(row("granoContraste")), 2)
             TxImpurezas.Text = FormatNumber(CStr(row("Impurezas")), 2)
             TxGranoDan.Text = FormatNumber(CStr(row("granoDanado")), 2)
             TxPesoEsp.Text = FormatNumber(CStr(row("pesoEspecifico")), 2)
@@ -857,9 +924,9 @@ Public Class ControlEntradas
             CbAnalista.SelectedValue = row("usuarioAnalista")
             TxPlacas.Text = CStr(row("placasConductor"))
             Select Case TipoGrano
-                Case "AMARILLO"
+                Case "CACHANILLA"
                     RBTCachanilla.Checked = True
-                Case "BLANCO"
+                Case "CRISTALINO"
                     RBTCristalino.Checked = True
             End Select
             CbLoteEntrada.Text = CStr(row("LoteEntrada"))
