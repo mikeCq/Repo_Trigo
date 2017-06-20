@@ -398,9 +398,9 @@ Public Class LiquidacionXcomprador
             Dim dt As New DataSet()
             da.Fill(dt)
 
-            TBIdContrato.Text = CStr(dt.Tables(0).Rows(0)("id_contratoV").ToString())
-            TBIdComprador.Text = CStr(dt.Tables(0).Rows(0)("id_comprador").ToString())
-            TBNombreComprador.Text = CStr(dt.Tables(0).Rows(0)("NombreComprador").ToString())
+            TBIdContrato.Text = dt.Tables(0).Rows(0)("id_contratoV").ToString()
+            TBIdComprador.Text = dt.Tables(0).Rows(0)("id_comprador").ToString()
+            TBNombreComprador.Text = dt.Tables(0).Rows(0)("NombreComprador").ToString()
             NUDToneladasContrato.Value = CDbl(dt.Tables(0).Rows(0)("toneladasVentas").ToString())
             NUDToneladasRestantes.Value = CDbl(dt.Tables(0).Rows(0)("toneladasrestantes").ToString())
             PrecioContrato = CDbl(dt.Tables(0).Rows(0)("precioXtonelada").ToString())
@@ -602,7 +602,7 @@ Public Class LiquidacionXcomprador
             If NUDTotalLiquidar.Value > 0 Then
                 If CBTipoMoneda.Text = "MXN" Then
                     kilosAton = NUDTotalLiquidar.Value / 1000
-                    TBImporte.Text = CDbl(TBPrecioPorTonelada.Text) * kilosAton
+                    TBImporte.Text = TBPrecioPorTonelada.Text * kilosAton
                     NUDPrecioContrato.Value = CDbl(TBPrecioPorTonelada.Text)
                     TBPrecioPorTonelada.Text = FormatNumber(Val(TBPrecioPorTonelada.Text), 2)
                     'TBPrecioPorTonelada.Text = Format(CType(variable, Decimal), "###0.###0")
@@ -613,7 +613,7 @@ Public Class LiquidacionXcomprador
                     kilosAton = NUDTotalLiquidar.Value / 1000
                     TBPrecioPorTonelada.Text = tipoCambio * NUDPrecioContrato.Value
                     variable = TBPrecioPorTonelada.Text
-                    TBPrecioPorTonelada.Text = Format(CType(variable, Decimal), "###0.###0")
+                    TBPrecioPorTonelada.Text = Format(variable, "###0.###0")
                     TBImporte.Text = TBPrecioPorTonelada.Text * kilosAton
                     TBImporte.Text = FormatNumber(Val(TBImporte.Text), 2)
                 End If

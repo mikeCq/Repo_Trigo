@@ -416,7 +416,7 @@ Public Class Almacenes
     Private Sub TxCapacidad_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
         If InStr(1, "0123456789." & Chr(8), e.KeyChar) = 0 Then
             e.Handled = True
-            e.KeyChar = CChar("")
+            e.KeyChar = ""
         End If
     End Sub
     Private Sub bloquearCampos()

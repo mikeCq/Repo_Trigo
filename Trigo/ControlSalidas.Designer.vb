@@ -49,7 +49,7 @@ Partial Class ControlSalidas
         Me.CBAnalista = New System.Windows.Forms.ComboBox()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.GbCalidad = New System.Windows.Forms.GroupBox()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
+        Me.TxPuntaNegra = New System.Windows.Forms.TextBox()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.TxHumedad = New System.Windows.Forms.TextBox()
@@ -62,9 +62,7 @@ Partial Class ControlSalidas
         Me.TxPesoEsp = New System.Windows.Forms.TextBox()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.Label20 = New System.Windows.Forms.Label()
-        Me.TxTotal = New System.Windows.Forms.TextBox()
         Me.Label22 = New System.Windows.Forms.Label()
-        Me.TxDeducciones = New System.Windows.Forms.TextBox()
         Me.TxGranoDan = New System.Windows.Forms.TextBox()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
@@ -92,20 +90,24 @@ Partial Class ControlSalidas
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.BtImprimir = New System.Windows.Forms.Button()
+        Me.NUDDeducciones = New System.Windows.Forms.NumericUpDown()
+        Me.NUDTotal = New System.Windows.Forms.NumericUpDown()
         Me.GbBoletasSalidas.SuspendLayout()
         CType(Me.DgBoletaSalidas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GbDatoEntrada.SuspendLayout()
         Me.GbGrupoGrano.SuspendLayout()
         Me.GbCalidad.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
+        CType(Me.NUDDeducciones, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NUDTotal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BtnSalir
         '
         Me.BtnSalir.Font = New System.Drawing.Font("Arial", 8.0!)
-        Me.BtnSalir.Location = New System.Drawing.Point(428, 0)
+        Me.BtnSalir.Location = New System.Drawing.Point(428, 12)
         Me.BtnSalir.Name = "BtnSalir"
-        Me.BtnSalir.Size = New System.Drawing.Size(64, 59)
+        Me.BtnSalir.Size = New System.Drawing.Size(60, 40)
         Me.BtnSalir.TabIndex = 6
         Me.BtnSalir.Text = "Salir"
         Me.BtnSalir.UseVisualStyleBackColor = True
@@ -113,9 +115,9 @@ Partial Class ControlSalidas
         'BtnRestaurar
         '
         Me.BtnRestaurar.Font = New System.Drawing.Font("Arial", 8.0!)
-        Me.BtnRestaurar.Location = New System.Drawing.Point(358, 0)
+        Me.BtnRestaurar.Location = New System.Drawing.Point(338, 12)
         Me.BtnRestaurar.Name = "BtnRestaurar"
-        Me.BtnRestaurar.Size = New System.Drawing.Size(64, 59)
+        Me.BtnRestaurar.Size = New System.Drawing.Size(84, 40)
         Me.BtnRestaurar.TabIndex = 5
         Me.BtnRestaurar.Text = "Restaurar"
         Me.BtnRestaurar.UseVisualStyleBackColor = True
@@ -123,9 +125,9 @@ Partial Class ControlSalidas
         'BtnEliminar
         '
         Me.BtnEliminar.Font = New System.Drawing.Font("Arial", 8.0!)
-        Me.BtnEliminar.Location = New System.Drawing.Point(288, 0)
+        Me.BtnEliminar.Location = New System.Drawing.Point(272, 12)
         Me.BtnEliminar.Name = "BtnEliminar"
-        Me.BtnEliminar.Size = New System.Drawing.Size(64, 59)
+        Me.BtnEliminar.Size = New System.Drawing.Size(60, 40)
         Me.BtnEliminar.TabIndex = 4
         Me.BtnEliminar.Text = "Eliminar"
         Me.BtnEliminar.UseVisualStyleBackColor = True
@@ -133,9 +135,9 @@ Partial Class ControlSalidas
         'BtnBuscar
         '
         Me.BtnBuscar.Font = New System.Drawing.Font("Arial", 8.0!)
-        Me.BtnBuscar.Location = New System.Drawing.Point(498, 0)
+        Me.BtnBuscar.Location = New System.Drawing.Point(494, 12)
         Me.BtnBuscar.Name = "BtnBuscar"
-        Me.BtnBuscar.Size = New System.Drawing.Size(64, 59)
+        Me.BtnBuscar.Size = New System.Drawing.Size(60, 40)
         Me.BtnBuscar.TabIndex = 7
         Me.BtnBuscar.Text = "Buscar"
         Me.BtnBuscar.UseVisualStyleBackColor = True
@@ -144,9 +146,9 @@ Partial Class ControlSalidas
         'BtnModificar
         '
         Me.BtnModificar.Font = New System.Drawing.Font("Arial", 8.0!)
-        Me.BtnModificar.Location = New System.Drawing.Point(148, 0)
+        Me.BtnModificar.Location = New System.Drawing.Point(140, 12)
         Me.BtnModificar.Name = "BtnModificar"
-        Me.BtnModificar.Size = New System.Drawing.Size(64, 59)
+        Me.BtnModificar.Size = New System.Drawing.Size(60, 40)
         Me.BtnModificar.TabIndex = 2
         Me.BtnModificar.Text = "Modificar"
         Me.BtnModificar.UseVisualStyleBackColor = True
@@ -154,9 +156,9 @@ Partial Class ControlSalidas
         'BtnGuardar
         '
         Me.BtnGuardar.Font = New System.Drawing.Font("Arial", 8.0!)
-        Me.BtnGuardar.Location = New System.Drawing.Point(78, 0)
+        Me.BtnGuardar.Location = New System.Drawing.Point(74, 12)
         Me.BtnGuardar.Name = "BtnGuardar"
-        Me.BtnGuardar.Size = New System.Drawing.Size(64, 59)
+        Me.BtnGuardar.Size = New System.Drawing.Size(60, 40)
         Me.BtnGuardar.TabIndex = 1
         Me.BtnGuardar.Text = "Guardar"
         Me.BtnGuardar.UseVisualStyleBackColor = True
@@ -164,9 +166,9 @@ Partial Class ControlSalidas
         'BtnNuevo
         '
         Me.BtnNuevo.Font = New System.Drawing.Font("Arial", 8.0!)
-        Me.BtnNuevo.Location = New System.Drawing.Point(8, 0)
+        Me.BtnNuevo.Location = New System.Drawing.Point(8, 12)
         Me.BtnNuevo.Name = "BtnNuevo"
-        Me.BtnNuevo.Size = New System.Drawing.Size(64, 59)
+        Me.BtnNuevo.Size = New System.Drawing.Size(60, 40)
         Me.BtnNuevo.TabIndex = 0
         Me.BtnNuevo.Text = "Nuevo"
         Me.BtnNuevo.UseVisualStyleBackColor = True
@@ -234,9 +236,9 @@ Partial Class ControlSalidas
         Me.GbDatoEntrada.Controls.Add(Me.Label2)
         Me.GbDatoEntrada.Controls.Add(Me.Label3)
         Me.GbDatoEntrada.Controls.Add(Me.Label1)
-        Me.GbDatoEntrada.Location = New System.Drawing.Point(8, 75)
+        Me.GbDatoEntrada.Location = New System.Drawing.Point(8, 58)
         Me.GbDatoEntrada.Name = "GbDatoEntrada"
-        Me.GbDatoEntrada.Size = New System.Drawing.Size(636, 643)
+        Me.GbDatoEntrada.Size = New System.Drawing.Size(636, 660)
         Me.GbDatoEntrada.TabIndex = 1
         Me.GbDatoEntrada.TabStop = False
         Me.GbDatoEntrada.Text = "Datos de la Entrada de Trigo"
@@ -244,7 +246,7 @@ Partial Class ControlSalidas
         'CbLugarExp
         '
         Me.CbLugarExp.FormattingEnabled = True
-        Me.CbLugarExp.Location = New System.Drawing.Point(150, 154)
+        Me.CbLugarExp.Location = New System.Drawing.Point(142, 140)
         Me.CbLugarExp.Name = "CbLugarExp"
         Me.CbLugarExp.Size = New System.Drawing.Size(477, 24)
         Me.CbLugarExp.TabIndex = 3
@@ -253,7 +255,7 @@ Partial Class ControlSalidas
         '
         Me.GbGrupoGrano.Controls.Add(Me.RBTCachanilla)
         Me.GbGrupoGrano.Controls.Add(Me.RBTCristalino)
-        Me.GbGrupoGrano.Location = New System.Drawing.Point(1, 103)
+        Me.GbGrupoGrano.Location = New System.Drawing.Point(4, 86)
         Me.GbGrupoGrano.Name = "GbGrupoGrano"
         Me.GbGrupoGrano.Size = New System.Drawing.Size(630, 45)
         Me.GbGrupoGrano.TabIndex = 2
@@ -267,13 +269,13 @@ Partial Class ControlSalidas
         Me.RBTCachanilla.Name = "RBTCachanilla"
         Me.RBTCachanilla.Size = New System.Drawing.Size(86, 20)
         Me.RBTCachanilla.TabIndex = 1
-        Me.RBTCachanilla.TabStop = True
         Me.RBTCachanilla.Text = "Cachanilla"
         Me.RBTCachanilla.UseVisualStyleBackColor = True
         '
         'RBTCristalino
         '
         Me.RBTCristalino.AutoSize = True
+        Me.RBTCristalino.Checked = True
         Me.RBTCristalino.Location = New System.Drawing.Point(9, 19)
         Me.RBTCristalino.Name = "RBTCristalino"
         Me.RBTCristalino.Size = New System.Drawing.Size(80, 20)
@@ -285,7 +287,7 @@ Partial Class ControlSalidas
         'Label27
         '
         Me.Label27.AutoSize = True
-        Me.Label27.Location = New System.Drawing.Point(12, 409)
+        Me.Label27.Location = New System.Drawing.Point(6, 425)
         Me.Label27.Name = "Label27"
         Me.Label27.Size = New System.Drawing.Size(102, 16)
         Me.Label27.TabIndex = 35
@@ -295,7 +297,7 @@ Partial Class ControlSalidas
         '
         Me.LbCapacidad.AutoSize = True
         Me.LbCapacidad.Font = New System.Drawing.Font("Arial", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbCapacidad.Location = New System.Drawing.Point(151, 409)
+        Me.LbCapacidad.Location = New System.Drawing.Point(114, 423)
         Me.LbCapacidad.Name = "LbCapacidad"
         Me.LbCapacidad.Size = New System.Drawing.Size(49, 19)
         Me.LbCapacidad.TabIndex = 34
@@ -305,7 +307,7 @@ Partial Class ControlSalidas
         '
         Me.Label26.AutoSize = True
         Me.Label26.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label26.Location = New System.Drawing.Point(229, 464)
+        Me.Label26.Location = New System.Drawing.Point(132, 485)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(35, 16)
         Me.Label26.TabIndex = 33
@@ -316,7 +318,7 @@ Partial Class ControlSalidas
         '
         Me.LbToneladas.AutoSize = True
         Me.LbToneladas.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LbToneladas.Location = New System.Drawing.Point(139, 464)
+        Me.LbToneladas.Location = New System.Drawing.Point(86, 485)
         Me.LbToneladas.Name = "LbToneladas"
         Me.LbToneladas.Size = New System.Drawing.Size(40, 16)
         Me.LbToneladas.TabIndex = 32
@@ -326,7 +328,7 @@ Partial Class ControlSalidas
         'Label25
         '
         Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(41, 425)
+        Me.Label25.Location = New System.Drawing.Point(9, 452)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(73, 32)
         Me.Label25.TabIndex = 31
@@ -337,15 +339,15 @@ Partial Class ControlSalidas
         '
         Me.PbSilos.BackColor = System.Drawing.Color.Blue
         Me.PbSilos.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.PbSilos.Location = New System.Drawing.Point(120, 431)
+        Me.PbSilos.Location = New System.Drawing.Point(88, 452)
         Me.PbSilos.Name = "PbSilos"
-        Me.PbSilos.Size = New System.Drawing.Size(141, 30)
+        Me.PbSilos.Size = New System.Drawing.Size(182, 30)
         Me.PbSilos.TabIndex = 30
         '
         'CbAcopio
         '
         Me.CbAcopio.FormattingEnabled = True
-        Me.CbAcopio.Location = New System.Drawing.Point(120, 352)
+        Me.CbAcopio.Location = New System.Drawing.Point(81, 357)
         Me.CbAcopio.Name = "CbAcopio"
         Me.CbAcopio.Size = New System.Drawing.Size(144, 24)
         Me.CbAcopio.TabIndex = 5
@@ -353,7 +355,7 @@ Partial Class ControlSalidas
         'CbAlmacen
         '
         Me.CbAlmacen.FormattingEnabled = True
-        Me.CbAlmacen.Location = New System.Drawing.Point(120, 381)
+        Me.CbAlmacen.Location = New System.Drawing.Point(81, 387)
         Me.CbAlmacen.Name = "CbAlmacen"
         Me.CbAlmacen.Size = New System.Drawing.Size(144, 24)
         Me.CbAlmacen.TabIndex = 6
@@ -361,7 +363,7 @@ Partial Class ControlSalidas
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(45, 341)
+        Me.Label7.Location = New System.Drawing.Point(6, 348)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(69, 32)
         Me.Label7.TabIndex = 28
@@ -370,7 +372,7 @@ Partial Class ControlSalidas
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(51, 384)
+        Me.Label6.Location = New System.Drawing.Point(7, 384)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(63, 16)
         Me.Label6.TabIndex = 27
@@ -395,7 +397,9 @@ Partial Class ControlSalidas
         '
         'GbCalidad
         '
-        Me.GbCalidad.Controls.Add(Me.TextBox2)
+        Me.GbCalidad.Controls.Add(Me.NUDTotal)
+        Me.GbCalidad.Controls.Add(Me.NUDDeducciones)
+        Me.GbCalidad.Controls.Add(Me.TxPuntaNegra)
         Me.GbCalidad.Controls.Add(Me.Label17)
         Me.GbCalidad.Controls.Add(Me.Label14)
         Me.GbCalidad.Controls.Add(Me.TxHumedad)
@@ -408,9 +412,7 @@ Partial Class ControlSalidas
         Me.GbCalidad.Controls.Add(Me.TxPesoEsp)
         Me.GbCalidad.Controls.Add(Me.Label18)
         Me.GbCalidad.Controls.Add(Me.Label20)
-        Me.GbCalidad.Controls.Add(Me.TxTotal)
         Me.GbCalidad.Controls.Add(Me.Label22)
-        Me.GbCalidad.Controls.Add(Me.TxDeducciones)
         Me.GbCalidad.Controls.Add(Me.TxGranoDan)
         Me.GbCalidad.Controls.Add(Me.Label16)
         Me.GbCalidad.Controls.Add(Me.Label15)
@@ -422,18 +424,19 @@ Partial Class ControlSalidas
         Me.GbCalidad.TabStop = False
         Me.GbCalidad.Text = "Certificado de Calidad"
         '
-        'TextBox2
+        'TxPuntaNegra
         '
-        Me.TextBox2.Location = New System.Drawing.Point(120, 20)
-        Me.TextBox2.MaxLength = 6
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(122, 22)
-        Me.TextBox2.TabIndex = 41
+        Me.TxPuntaNegra.Location = New System.Drawing.Point(233, 21)
+        Me.TxPuntaNegra.MaxLength = 6
+        Me.TxPuntaNegra.Name = "TxPuntaNegra"
+        Me.TxPuntaNegra.Size = New System.Drawing.Size(122, 22)
+        Me.TxPuntaNegra.TabIndex = 41
+        Me.TxPuntaNegra.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(30, 22)
+        Me.Label17.Location = New System.Drawing.Point(141, 21)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(84, 16)
         Me.Label17.TabIndex = 42
@@ -442,7 +445,7 @@ Partial Class ControlSalidas
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(48, 197)
+        Me.Label14.Location = New System.Drawing.Point(160, 96)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(67, 16)
         Me.Label14.TabIndex = 57
@@ -450,7 +453,7 @@ Partial Class ControlSalidas
         '
         'TxHumedad
         '
-        Me.TxHumedad.Location = New System.Drawing.Point(120, 195)
+        Me.TxHumedad.Location = New System.Drawing.Point(233, 96)
         Me.TxHumedad.MaxLength = 6
         Me.TxHumedad.Name = "TxHumedad"
         Me.TxHumedad.Size = New System.Drawing.Size(122, 22)
@@ -459,33 +462,35 @@ Partial Class ControlSalidas
         '
         'TxGranoContraste
         '
-        Me.TxGranoContraste.Enabled = False
-        Me.TxGranoContraste.Location = New System.Drawing.Point(120, 170)
+        Me.TxGranoContraste.Location = New System.Drawing.Point(233, 197)
         Me.TxGranoContraste.MaxLength = 6
         Me.TxGranoContraste.Name = "TxGranoContraste"
         Me.TxGranoContraste.Size = New System.Drawing.Size(122, 22)
         Me.TxGranoContraste.TabIndex = 55
+        Me.TxGranoContraste.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TxPorcentajePB
         '
-        Me.TxPorcentajePB.Location = New System.Drawing.Point(120, 120)
+        Me.TxPorcentajePB.Location = New System.Drawing.Point(233, 173)
         Me.TxPorcentajePB.MaxLength = 6
         Me.TxPorcentajePB.Name = "TxPorcentajePB"
         Me.TxPorcentajePB.Size = New System.Drawing.Size(122, 22)
         Me.TxPorcentajePB.TabIndex = 51
+        Me.TxPorcentajePB.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'TxGranoQuebrado
         '
-        Me.TxGranoQuebrado.Location = New System.Drawing.Point(120, 145)
+        Me.TxGranoQuebrado.Location = New System.Drawing.Point(233, 121)
         Me.TxGranoQuebrado.MaxLength = 6
         Me.TxGranoQuebrado.Name = "TxGranoQuebrado"
         Me.TxGranoQuebrado.Size = New System.Drawing.Size(122, 22)
         Me.TxGranoQuebrado.TabIndex = 53
+        Me.TxGranoQuebrado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label24
         '
         Me.Label24.AutoSize = True
-        Me.Label24.Location = New System.Drawing.Point(6, 172)
+        Me.Label24.Location = New System.Drawing.Point(119, 197)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(107, 16)
         Me.Label24.TabIndex = 56
@@ -494,7 +499,7 @@ Partial Class ControlSalidas
         'Label29
         '
         Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(8, 147)
+        Me.Label29.Location = New System.Drawing.Point(120, 124)
         Me.Label29.Name = "Label29"
         Me.Label29.Size = New System.Drawing.Size(107, 16)
         Me.Label29.TabIndex = 54
@@ -503,7 +508,7 @@ Partial Class ControlSalidas
         'Label30
         '
         Me.Label30.AutoSize = True
-        Me.Label30.Location = New System.Drawing.Point(6, 122)
+        Me.Label30.Location = New System.Drawing.Point(117, 173)
         Me.Label30.Name = "Label30"
         Me.Label30.Size = New System.Drawing.Size(109, 16)
         Me.Label30.TabIndex = 52
@@ -511,7 +516,7 @@ Partial Class ControlSalidas
         '
         'TxPesoEsp
         '
-        Me.TxPesoEsp.Location = New System.Drawing.Point(120, 95)
+        Me.TxPesoEsp.Location = New System.Drawing.Point(232, 148)
         Me.TxPesoEsp.MaxLength = 6
         Me.TxPesoEsp.Name = "TxPesoEsp"
         Me.TxPesoEsp.Size = New System.Drawing.Size(122, 22)
@@ -521,7 +526,7 @@ Partial Class ControlSalidas
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(7, 98)
+        Me.Label18.Location = New System.Drawing.Point(120, 148)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(106, 16)
         Me.Label18.TabIndex = 50
@@ -531,22 +536,11 @@ Partial Class ControlSalidas
         '
         Me.Label20.AutoSize = True
         Me.Label20.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label20.Location = New System.Drawing.Point(74, 251)
+        Me.Label20.Location = New System.Drawing.Point(74, 261)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(144, 18)
         Me.Label20.TabIndex = 48
         Me.Label20.Text = "Total Deducciones:"
-        '
-        'TxTotal
-        '
-        Me.TxTotal.Enabled = False
-        Me.TxTotal.Font = New System.Drawing.Font("Arial", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxTotal.Location = New System.Drawing.Point(224, 282)
-        Me.TxTotal.MaxLength = 9
-        Me.TxTotal.Name = "TxTotal"
-        Me.TxTotal.Size = New System.Drawing.Size(131, 35)
-        Me.TxTotal.TabIndex = 9
-        Me.TxTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label22
         '
@@ -558,21 +552,9 @@ Partial Class ControlSalidas
         Me.Label22.TabIndex = 43
         Me.Label22.Text = "Total:"
         '
-        'TxDeducciones
-        '
-        Me.TxDeducciones.Enabled = False
-        Me.TxDeducciones.Font = New System.Drawing.Font("Arial", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxDeducciones.ImeMode = System.Windows.Forms.ImeMode.Off
-        Me.TxDeducciones.Location = New System.Drawing.Point(224, 248)
-        Me.TxDeducciones.MaxLength = 7
-        Me.TxDeducciones.Name = "TxDeducciones"
-        Me.TxDeducciones.Size = New System.Drawing.Size(131, 25)
-        Me.TxDeducciones.TabIndex = 8
-        Me.TxDeducciones.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        '
         'TxGranoDan
         '
-        Me.TxGranoDan.Location = New System.Drawing.Point(120, 70)
+        Me.TxGranoDan.Location = New System.Drawing.Point(233, 71)
         Me.TxGranoDan.MaxLength = 6
         Me.TxGranoDan.Name = "TxGranoDan"
         Me.TxGranoDan.Size = New System.Drawing.Size(122, 22)
@@ -582,7 +564,7 @@ Partial Class ControlSalidas
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(7, 72)
+        Me.Label16.Location = New System.Drawing.Point(118, 71)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(109, 16)
         Me.Label16.TabIndex = 0
@@ -591,7 +573,7 @@ Partial Class ControlSalidas
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(44, 47)
+        Me.Label15.Location = New System.Drawing.Point(155, 46)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(72, 16)
         Me.Label15.TabIndex = 0
@@ -599,7 +581,7 @@ Partial Class ControlSalidas
         '
         'TxImpurezas
         '
-        Me.TxImpurezas.Location = New System.Drawing.Point(120, 45)
+        Me.TxImpurezas.Location = New System.Drawing.Point(233, 46)
         Me.TxImpurezas.MaxLength = 6
         Me.TxImpurezas.Name = "TxImpurezas"
         Me.TxImpurezas.Size = New System.Drawing.Size(122, 22)
@@ -625,7 +607,7 @@ Partial Class ControlSalidas
         '
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.Location = New System.Drawing.Point(6, 72)
+        Me.Label11.Location = New System.Drawing.Point(5, 58)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(130, 24)
         Me.Label11.TabIndex = 47
@@ -634,7 +616,7 @@ Partial Class ControlSalidas
         'TxBruto
         '
         Me.TxBruto.Font = New System.Drawing.Font("Arial", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxBruto.Location = New System.Drawing.Point(137, 65)
+        Me.TxBruto.Location = New System.Drawing.Point(137, 58)
         Me.TxBruto.MaxLength = 9
         Me.TxBruto.Name = "TxBruto"
         Me.TxBruto.Size = New System.Drawing.Size(124, 35)
@@ -645,7 +627,7 @@ Partial Class ControlSalidas
         '
         Me.TxNeto.Enabled = False
         Me.TxNeto.Font = New System.Drawing.Font("Arial", 18.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxNeto.Location = New System.Drawing.Point(137, 114)
+        Me.TxNeto.Location = New System.Drawing.Point(137, 99)
         Me.TxNeto.MaxLength = 9
         Me.TxNeto.Name = "TxNeto"
         Me.TxNeto.Size = New System.Drawing.Size(124, 35)
@@ -676,7 +658,7 @@ Partial Class ControlSalidas
         '
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Arial", 15.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(16, 121)
+        Me.Label13.Location = New System.Drawing.Point(16, 96)
         Me.Label13.Name = "Label13"
         Me.Label13.Size = New System.Drawing.Size(120, 24)
         Me.Label13.TabIndex = 45
@@ -745,7 +727,7 @@ Partial Class ControlSalidas
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(14, 157)
+        Me.Label5.Location = New System.Drawing.Point(7, 143)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(130, 16)
         Me.Label5.TabIndex = 10
@@ -754,7 +736,7 @@ Partial Class ControlSalidas
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(10, 25)
+        Me.Label4.Location = New System.Drawing.Point(481, 18)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(48, 16)
         Me.Label4.TabIndex = 7
@@ -763,7 +745,7 @@ Partial Class ControlSalidas
         'DTPSalidas
         '
         Me.DTPSalidas.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DTPSalidas.Location = New System.Drawing.Point(64, 22)
+        Me.DTPSalidas.Location = New System.Drawing.Point(535, 19)
         Me.DTPSalidas.Name = "DTPSalidas"
         Me.DTPSalidas.Size = New System.Drawing.Size(92, 22)
         Me.DTPSalidas.TabIndex = 0
@@ -772,7 +754,7 @@ Partial Class ControlSalidas
         '
         Me.TxIdBoleta.BackColor = System.Drawing.Color.White
         Me.TxIdBoleta.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxIdBoleta.Location = New System.Drawing.Point(240, 22)
+        Me.TxIdBoleta.Location = New System.Drawing.Point(206, 19)
         Me.TxIdBoleta.MaxLength = 8
         Me.TxIdBoleta.Name = "TxIdBoleta"
         Me.TxIdBoleta.Size = New System.Drawing.Size(99, 22)
@@ -783,7 +765,7 @@ Partial Class ControlSalidas
         '
         Me.TxFolio.BackColor = System.Drawing.SystemColors.Control
         Me.TxFolio.Enabled = False
-        Me.TxFolio.Location = New System.Drawing.Point(528, 22)
+        Me.TxFolio.Location = New System.Drawing.Point(40, 19)
         Me.TxFolio.Name = "TxFolio"
         Me.TxFolio.Size = New System.Drawing.Size(99, 22)
         Me.TxFolio.TabIndex = 0
@@ -792,7 +774,7 @@ Partial Class ControlSalidas
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(182, 25)
+        Me.Label2.Location = New System.Drawing.Point(148, 19)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(52, 16)
         Me.Label2.TabIndex = 4
@@ -802,7 +784,7 @@ Partial Class ControlSalidas
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Arial", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(497, 25)
+        Me.Label3.Location = New System.Drawing.Point(9, 22)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(25, 16)
         Me.Label3.TabIndex = 4
@@ -820,12 +802,33 @@ Partial Class ControlSalidas
         'BtImprimir
         '
         Me.BtImprimir.Font = New System.Drawing.Font("Arial", 8.0!)
-        Me.BtImprimir.Location = New System.Drawing.Point(218, 0)
+        Me.BtImprimir.Location = New System.Drawing.Point(206, 12)
         Me.BtImprimir.Name = "BtImprimir"
-        Me.BtImprimir.Size = New System.Drawing.Size(64, 59)
+        Me.BtImprimir.Size = New System.Drawing.Size(60, 40)
         Me.BtImprimir.TabIndex = 3
         Me.BtImprimir.Text = "Imprimir"
         Me.BtImprimir.UseVisualStyleBackColor = True
+        '
+        'NUDDeducciones
+        '
+        Me.NUDDeducciones.DecimalPlaces = 2
+        Me.NUDDeducciones.Enabled = False
+        Me.NUDDeducciones.Location = New System.Drawing.Point(220, 261)
+        Me.NUDDeducciones.Maximum = New Decimal(New Integer() {9999999, 0, 0, 0})
+        Me.NUDDeducciones.Name = "NUDDeducciones"
+        Me.NUDDeducciones.Size = New System.Drawing.Size(131, 22)
+        Me.NUDDeducciones.TabIndex = 59
+        Me.NUDDeducciones.TabStop = False
+        '
+        'NUDTotal
+        '
+        Me.NUDTotal.DecimalPlaces = 2
+        Me.NUDTotal.Enabled = False
+        Me.NUDTotal.Location = New System.Drawing.Point(220, 289)
+        Me.NUDTotal.Maximum = New Decimal(New Integer() {9999999, 0, 0, 0})
+        Me.NUDTotal.Name = "NUDTotal"
+        Me.NUDTotal.Size = New System.Drawing.Size(131, 22)
+        Me.NUDTotal.TabIndex = 60
         '
         'ControlSalidas
         '
@@ -847,7 +850,7 @@ Partial Class ControlSalidas
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
         Me.Name = "ControlSalidas"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Salidas de Maiz"
+        Me.Text = "Salidas de Trigo"
         Me.GbBoletasSalidas.ResumeLayout(False)
         CType(Me.DgBoletaSalidas, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GbDatoEntrada.ResumeLayout(False)
@@ -858,6 +861,8 @@ Partial Class ControlSalidas
         Me.GbCalidad.PerformLayout()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
+        CType(Me.NUDDeducciones, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NUDTotal, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -900,8 +905,6 @@ Partial Class ControlSalidas
     Friend WithEvents Label13 As Label
     Friend WithEvents TxNeto As TextBox
     Friend WithEvents TxTara As TextBox
-    Friend WithEvents TxTotal As TextBox
-    Friend WithEvents TxDeducciones As TextBox
     Friend WithEvents TxGranoDan As TextBox
     Friend WithEvents TxImpurezas As TextBox
     Friend WithEvents Label27 As Label
@@ -930,6 +933,8 @@ Partial Class ControlSalidas
     Friend WithEvents Label24 As Label
     Friend WithEvents Label29 As Label
     Friend WithEvents Label30 As Label
-    Friend WithEvents TextBox2 As TextBox
+    Friend WithEvents TxPuntaNegra As TextBox
     Friend WithEvents Label17 As Label
+    Friend WithEvents NUDTotal As NumericUpDown
+    Friend WithEvents NUDDeducciones As NumericUpDown
 End Class

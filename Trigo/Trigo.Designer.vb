@@ -232,7 +232,7 @@ Partial Class Trigo
         '
         Me.ComprasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ContratosDeTigoConCompradoresToolStripMenuItem, Me.ComprasDeTrigoToolStripMenuItem})
         Me.ComprasToolStripMenuItem.Name = "ComprasToolStripMenuItem"
-        Me.ComprasToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
+        Me.ComprasToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ComprasToolStripMenuItem.Text = "Compras"
         '
         'ContratosDeTigoConCompradoresToolStripMenuItem
@@ -251,20 +251,20 @@ Partial Class Trigo
         '
         Me.VentasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ContratosDeTrigoConCompradoresToolStripMenuItem, Me.VentasDeTrigoToolStripMenuItem})
         Me.VentasToolStripMenuItem.Name = "VentasToolStripMenuItem"
-        Me.VentasToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
+        Me.VentasToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.VentasToolStripMenuItem.Text = "Ventas"
         '
         'ContratosDeTrigoConCompradoresToolStripMenuItem
         '
         Me.ContratosDeTrigoConCompradoresToolStripMenuItem.Name = "ContratosDeTrigoConCompradoresToolStripMenuItem"
         Me.ContratosDeTrigoConCompradoresToolStripMenuItem.Size = New System.Drawing.Size(288, 22)
-        Me.ContratosDeTrigoConCompradoresToolStripMenuItem.Text = "Contratos de Maiz con Compradores"
+        Me.ContratosDeTrigoConCompradoresToolStripMenuItem.Text = "Contratos de Trigo con Compradores"
         '
         'VentasDeTrigoToolStripMenuItem
         '
         Me.VentasDeTrigoToolStripMenuItem.Name = "VentasDeTrigoToolStripMenuItem"
         Me.VentasDeTrigoToolStripMenuItem.Size = New System.Drawing.Size(288, 22)
-        Me.VentasDeTrigoToolStripMenuItem.Text = "Ventas de Maiz"
+        Me.VentasDeTrigoToolStripMenuItem.Text = "Ventas de Trigo"
         '
         'ProcesosToolStripMenuItem
         '

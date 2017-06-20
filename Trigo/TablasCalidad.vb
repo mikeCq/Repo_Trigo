@@ -54,7 +54,7 @@ Public Class TablasCalidad
     Private Sub SoloNumeros(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TxDeduccion.KeyPress, TxPorcentaje.KeyPress, TxMinimo.KeyPress, TxMaximo.KeyPress, TextBox1.KeyPress, TxRangoIni2.KeyPress, TxRangoIni1.KeyPress, TxAumenta.KeyPress, TxRangoFin2.KeyPress, TxRangoFin1.KeyPress
         If InStr(1, "0123456789." & Chr(8), e.KeyChar) = 0 Then
             e.Handled = True
-            e.KeyChar = CChar("")
+            e.KeyChar = ""
         End If
     End Sub
     Private Sub DG_EditingControlShowing(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewEditingControlShowingEventArgs) Handles DgGranoDan.EditingControlShowing, DgGranoQue.EditingControlShowing, DgHumedad.EditingControlShowing, DgImpurezas.EditingControlShowing, DgPesoEsp.EditingControlShowing

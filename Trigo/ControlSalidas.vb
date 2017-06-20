@@ -4,7 +4,7 @@ Imports System.Data
 Imports CrystalDecisions.CrystalReports.Engine
 Imports CrystalDecisions.CrystalReports
 Public Class ControlSalidas
-    Dim resTon, valSalLib, valSalCon, deduccionGrandan, deduccionHumedad, deduccionImpurezas, deduccionPanzaB, deduccionPesoEsp, deduccionGranQ, calculoPanzaB, calculoHumedad, calculoPuntaNegra, calculaImpureza, calculaGranoDan, calculoGranQ, calculoPesoE As Double
+    Dim resTon, valSalLib, valSalCon, deduccionGrandan, deduccionHumedad, deduccionImpurezas, deduccionPanzaB, deduccionPesoEsp, deduccionGranQ, deduccionPorcentajePB, deduccionGranoContraste, deduccionPuntaNegra, calculogranDan, calculoPanzaB, calculoHumedad, calculoPuntaNegra, calculoImpureza, calculaGranoDan, calculoGranQ, calculoPesoE, calculoPorcentajePB, calculoGranoContraste As Double
     Dim compruebaSalidas As String
     Private Sub Salidas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         TxIdBoleta.Select()
@@ -13,7 +13,6 @@ Public Class ControlSalidas
         CargarData()
         DataGridPropiedades()
         ControlesSinTab()
-
     End Sub
     Private _codigoSalida As String
     Public Property codigoSalida() As String
@@ -105,7 +104,7 @@ Public Class ControlSalidas
             TxPlacas.Enabled = False
             CBConductor.Enabled = False
             BtImprimir.Enabled = False
-        ElseIf Val(TxBruto.Text) > 0 And Val(TxTotal.Text) > 0 Then
+        ElseIf Val(TxBruto.Text) > 0 And Val(NUDTotal.Value) > 0 Then
             TxTara.Enabled = False
             TxIdBoleta.Enabled = False
             TxBruto.Enabled = False
@@ -124,28 +123,36 @@ Public Class ControlSalidas
         End If
     End Sub
     Private Sub calculos()
-
+        deduccionImpurezas = 0
         deduccionGrandan = 0
         deduccionHumedad = 0
-        deduccionImpurezas = 0
         deduccionGranQ = 0
         deduccionPesoEsp = 0
+        deduccionPuntaNegra = 0
+        deduccionPorcentajePB = 0
+        deduccionGranoContraste = 0
 
-        calculaImpureza = 0
-        deduccionGrandan = 0
+        calculoImpureza = 0
+        calculogranDan = 0
         calculoHumedad = 0
         calculoGranQ = 0
         calculoPesoE = 0
+        calculoPorcentajePB = 0
+        calculoGranoContraste = 0
+        calculoPuntaNegra = 0
 
+        TxPuntaNegra.Text = FormatNumber(TxPuntaNegra.Text, 2)
         TxImpurezas.Text = FormatNumber(TxImpurezas.Text, 2)
         TxGranoDan.Text = FormatNumber(TxGranoDan.Text, 2)
         TxHumedad.Text = FormatNumber(TxHumedad.Text, 2)
         TxGranoQuebrado.Text = FormatNumber(TxGranoQuebrado.Text, 2)
         TxPesoEsp.Text = FormatNumber(TxPesoEsp.Text, 2)
+        TxPorcentajePB.Text = FormatNumber(TxPorcentajePB.Text, 2)
+        TxGranoContraste.Text = FormatNumber(TxGranoContraste.Text, 2)
 
-        If Val(TxImpurezas.Text) > 2 And Val(TxImpurezas.Text) <= 8 Then
+        If Val(TxPuntaNegra.Text) > 2 And Val(TxPuntaNegra.Text) <= 8 Then
             Dim RI As Double = 0
-            RI = CDbl(TxImpurezas.Text) - 2
+            RI = TxPuntaNegra.Text - 2
             'Dim cmd As New SqlCommand("Sp_CalculoImpureza", cnn)
             'cmd.CommandType = CommandType.StoredProcedure
             'cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxImpurezas.Text))
@@ -154,16 +161,34 @@ Public Class ControlSalidas
             'da.Fill(dt)
             'Dim row As DataRow = dt.Rows(0)
             'deduccionImpurezas = row("deduccion")
-            calculaImpureza = (((RI / 0.1) * 1) * CDbl(TxNeto.Text)) / 1000
+            calculoPuntaNegra = (((RI / 0.1) * 1) * TxNeto.Text) / 1000
             'calculaImpureza = (CDbl(TxNeto.Text) / 1000) * deduccionImpurezas
             ' ElseIf Val(TxImpurezas.Text) > 5 Then
-
         Else
-            calculaImpureza = 0
+            calculoPuntaNegra = 0
         End If
+
+        If Val(TxImpurezas.Text) > 2 And Val(TxImpurezas.Text) <= 8 Then
+            Dim RI As Double = 0
+            RI = TxImpurezas.Text - 2
+            'Dim cmd As New SqlCommand("Sp_CalculoImpureza", cnn)
+            'cmd.CommandType = CommandType.StoredProcedure
+            'cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxImpurezas.Text))
+            'Dim da As New SqlClient.SqlDataAdapter(cmd)
+            'Dim dt As New DataTable
+            'da.Fill(dt)
+            'Dim row As DataRow = dt.Rows(0)
+            'deduccionImpurezas = row("deduccion")
+            calculoImpureza = (((RI / 0.1) * 1) * TxNeto.Text) / 1000
+            'calculaImpureza = (CDbl(TxNeto.Text) / 1000) * deduccionImpurezas
+            ' ElseIf Val(TxImpurezas.Text) > 5 Then
+        Else
+            calculoImpureza = 0
+        End If
+
         If Val(TxGranoDan.Text) > 5 And Val(TxGranoDan.Text) <= 10 Then
             Dim RG As Double = 0
-            RG = CDbl(TxGranoDan.Text) - 5
+            RG = TxGranoDan.Text - 5
             'Dim cmd As New SqlCommand("Sp_CalculoGranDan", cnn)
             'cmd.CommandType = CommandType.StoredProcedure
             'cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxGranoDan.Text))
@@ -172,15 +197,15 @@ Public Class ControlSalidas
             'da.Fill(dt)
             'Dim row As DataRow = dt.Rows(0)
             'deduccionGrandan = row("deduccion")
-            calculaGranoDan = (((RG / 0.1) * 1) * CDbl(TxNeto.Text)) / 1000
+            calculaGranoDan = (((RG / 0.1) * 1) * TxNeto.Text) / 1000
             'ElseIf Val(TxGranoDan.Text) > 3.0 Then
-
         Else
             calculaGranoDan = 0
         End If
+
         If Val(TxHumedad.Text) > 14 And Val(TxHumedad.Text) <= 18 Then
             Dim RH As Double = 0
-            RH = CDbl(TxHumedad.Text) - 14
+            RH = TxHumedad.Text - 14
             'Dim cmd As New SqlCommand("Sp_CalculoHumedad", cnn)
             'cmd.CommandType = CommandType.StoredProcedure
             'cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxHumedad.Text))
@@ -189,16 +214,16 @@ Public Class ControlSalidas
             'da.Fill(dt)
             'Dim row As DataRow = dt.Rows(0)
             'deduccionHumedad = row("deduccion")
-            calculoHumedad = (((RH / 0.1) * 1.16) * CDbl(TxNeto.Text)) / 1000
+            calculoHumedad = (((RH / 0.1) * 1.16) * TxNeto.Text) / 1000
             'calculoHumedad = (CDbl(TxNeto.Text) / 1000) * deduccionHumedad
             ' ElseIf Val(TxHumedad.Text) > 15.0 Then
-
         Else
             calculoHumedad = 0
         End If
+
         If Val(TxGranoQuebrado.Text) > 3.5 And Val(TxGranoQuebrado.Text) <= 10 Then
             Dim RG As Double = 0
-            RG = CDbl(TxGranoQuebrado.Text) - 3.5
+            RG = TxGranoQuebrado.Text - 3.5
             'Dim cmd As New SqlCommand("Sp_CalculoGranoQueb", cnn)
             'cmd.CommandType = CommandType.StoredProcedure
             'cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxGranoQuebrado.Text))
@@ -207,32 +232,67 @@ Public Class ControlSalidas
             'da.Fill(dt)
             'Dim row As DataRow = dt.Rows(0)
             'deduccionGranQ = row("deduccion")
-            calculoGranQ = (((RG / 0.1) * 1) * CDbl(TxNeto.Text)) / 1000
-
+            calculoGranQ = (((RG / 0.1) * 1) * TxNeto.Text) / 1000
             ' ElseIf Val(TxGranoQuebrado.Text) > 3 Then
-
         Else
             calculoGranQ = 0
         End If
-        If Val(TxPesoEsp.Text) > 70 Then
-            Dim cmd As New SqlCommand("Sp_CalculoPesoEsp", cnn)
-            cmd.CommandType = CommandType.StoredProcedure
-            cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxPesoEsp.Text))
-            Dim da As New SqlClient.SqlDataAdapter(cmd)
-            Dim dt As New DataTable
-            da.Fill(dt)
-            Dim row As DataRow = dt.Rows(0)
-            deduccionPesoEsp = row("deduccion")
-            calculoPesoE = (CDbl(TxNeto.Text) / 1000) * deduccionPesoEsp
 
+        If Val(TxPorcentajePB.Text) > 3.5 And Val(TxPorcentajePB.Text) <= 10 Then
+            Dim RG As Double = 0
+            RG = TxPorcentajePB.Text - 3.5
+            'Dim cmd As New SqlCommand("Sp_CalculoGranoQueb", cnn)
+            'cmd.CommandType = CommandType.StoredProcedure
+            'cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxGranoQuebrado.Text))
+            'Dim da As New SqlClient.SqlDataAdapter(cmd)
+            'Dim dt As New DataTable
+            'da.Fill(dt)
+            'Dim row As DataRow = dt.Rows(0)
+            'deduccionGranQ = row("deduccion")
+            calculoPorcentajePB = (((RG / 0.1) * 1) * TxNeto.Text) / 1000
+            ' ElseIf Val(TxGranoQuebrado.Text) > 3 Then
+        Else
+            calculoPorcentajePB = 0
+        End If
+
+        If Val(TxGranoContraste.Text) > 3.5 And Val(TxGranoContraste.Text) <= 10 Then
+            Dim RG As Double = 0
+            RG = TxGranoContraste.Text - 3.5
+            'Dim cmd As New SqlCommand("Sp_CalculoGranoQueb", cnn)
+            'cmd.CommandType = CommandType.StoredProcedure
+            'cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxGranoQuebrado.Text))
+            'Dim da As New SqlClient.SqlDataAdapter(cmd)
+            'Dim dt As New DataTable
+            'da.Fill(dt)
+            'Dim row As DataRow = dt.Rows(0)
+            'deduccionGranQ = row("deduccion")
+            calculoGranoContraste = (((RG / 0.1) * 1) * TxNeto.Text) / 1000
+            ' ElseIf Val(TxGranoQuebrado.Text) > 3 Then
+        Else
+            calculoGranoContraste = 0
+        End If
+
+        If Val(TxPesoEsp.Text) > 70 Then
+            Dim RG As Double = 0
+            RG = TxPesoEsp.Text - 3.5
+            'Dim cmd As New SqlCommand("Sp_CalculoPesoEsp", cnn)
+            'cmd.CommandType = CommandType.StoredProcedure
+            'cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxPesoEsp.Text))
+            'Dim da As New SqlClient.SqlDataAdapter(cmd)
+            'Dim dt As New DataTable
+            'da.Fill(dt)
+            'Dim row As DataRow = dt.Rows(0)
+            'deduccionPesoEsp = row("deduccion")
+            calculoPesoE = (TxNeto.Text / 1000) * deduccionPesoEsp
             ' ElseIf Val(TxGranoQuebrado.Text) > 3 Then
         Else
             calculoPesoE = 0
         End If
-        TxDeducciones.Text = calculaGranoDan + calculoHumedad + calculaImpureza + calculoGranQ + calculoPesoE
-        TxDeducciones.Text = FormatNumber(TxDeducciones.Text, 2)
-        TxTotal.Text = Val(TxNeto.Text - TxDeducciones.Text)
-        TxTotal.Text = FormatNumber(TxTotal.Text, 2)
+
+        NUDDeducciones.Value = calculoPuntaNegra + calculaGranoDan + calculoHumedad + calculoImpureza + calculoGranQ + calculoPesoE + calculoPorcentajePB + calculoGranoContraste
+        NUDDeducciones.Value = FormatNumber(NUDDeducciones.Value, 2)
+        NUDTotal.Value = Val(TxNeto.Text - NUDDeducciones.Value)
+        NUDTotal.Value = FormatNumber(NUDTotal.Value, 2)
     End Sub
     Private Sub BtImprimir_Click(sender As Object, e As EventArgs) Handles BtImprimir.Click
         If RBTCachanilla.Checked = True And RBTCristalino.Checked = False Then
@@ -245,10 +305,10 @@ Public Class ControlSalidas
         _codigoSalida = TxFolio.Text
         ReporteBoletasSalidas.Show()
     End Sub
-    Private Sub SoloNumerosTx(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TxTara.KeyPress, TxNeto.KeyPress, TxImpurezas.KeyPress, TxGranoDan.KeyPress, TxIdBoleta.KeyPress
+    Private Sub SoloNumerosTx(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TxTara.KeyPress, TxNeto.KeyPress, TxBruto.KeyPress, TxPuntaNegra.KeyPress, TxImpurezas.KeyPress, TxGranoDan.KeyPress, TxHumedad.KeyPress, TxGranoQuebrado.KeyPress, TxPesoEsp.KeyPress, TxPorcentajePB.KeyPress, TxGranoContraste.KeyPress, TxIdBoleta.KeyPress
         If InStr(1, "0123456789." & Chr(8), e.KeyChar) = 0 Then
             e.Handled = True
-            e.KeyChar = CChar("")
+            e.KeyChar = ""
         End If
     End Sub
     Private Sub capacidadSilo() Handles CbAlmacen.SelectionChangeCommitted
@@ -256,10 +316,8 @@ Public Class ControlSalidas
         cmd.CommandType = CommandType.StoredProcedure
         cmd.Parameters.Add(New SqlClient.SqlParameter("@idacopio", CbAcopio.SelectedValue))
         cmd.Parameters.Add(New SqlClient.SqlParameter("@idalmacen", CbAlmacen.SelectedValue))
-
         Dim da As New SqlClient.SqlDataAdapter(cmd)
         Dim dt As New DataTable
-
         da.Fill(dt)
         Dim row As DataRow = dt.Rows(0)
         PbSilos.Minimum = 0
@@ -292,28 +350,23 @@ Public Class ControlSalidas
                     Try
                         BloqueoFases()
                         Dim Fase1 As New SqlCommand("Sp_InsNueSalidasFase1", cnn)
-
                         Fase1.CommandType = CommandType.StoredProcedure
-
                         Fase1.Parameters.AddWithValue("@Consecutivo", generaCodigoSalida(TxFolio.Text))
                         Fase1.Parameters.AddWithValue("@numeroBoleta", TxIdBoleta.Text)
                         Fase1.Parameters.AddWithValue("@NomVendedor", CbNombre.SelectedValue)
                         Fase1.Parameters.AddWithValue("@domicilioProductor", "")
-                        Fase1.Parameters.AddWithValue("@grupoGrano", IIf(RBTCachanilla.Checked = True, "AMARILLO", "BLANCO"))
+                        Fase1.Parameters.AddWithValue("@grupoGrano", IIf(RBTCachanilla.Checked = True, RBTCristalino.Text, RBTCristalino.Text))
                         Fase1.Parameters.AddWithValue("@lugarExpedicion", CbLugarExp.Text)
                         Fase1.Parameters.AddWithValue("@fechaPesaje", DTPSalidas.Text)
-                        Fase1.Parameters.AddWithValue("@tara", (CDbl(TxTara.Text)) / 1000)
+                        Fase1.Parameters.AddWithValue("@tara", (TxTara.Text) / 1000)
                         Fase1.Parameters.AddWithValue("@contratoComprador", CBContrato.SelectedValue)
                         Fase1.Parameters.AddWithValue("@conductorCam", UCase(CBConductor.Text))
                         Fase1.Parameters.AddWithValue("@placasConductor", UCase(TxPlacas.Text))
                         Fase1.Parameters.AddWithValue("@Estado", 0)
-
                         TxFolio.Text = Fase1.Parameters("@Consecutivo").Value.ToString()
-
                         Fase1.ExecuteNonQuery()
                         CargarData()
                         DataGridPropiedades()
-
                     Catch ex As Exception
                         MsgBox("Error", MsgBoxStyle.Critical)
                     End Try
@@ -325,14 +378,12 @@ Public Class ControlSalidas
                     Try
                         BloqueoFases()
                         Dim Fase2 As New SqlCommand("Sp_InsNueSalidasFase2", cnn)
-
                         Fase2.CommandType = CommandType.StoredProcedure
                         Fase2.Parameters.AddWithValue("@Consecutivo", TxFolio.Text)
-                        Fase2.Parameters.AddWithValue("@bruto", (CDbl(TxBruto.Text)) / 1000)
-                        Fase2.Parameters.AddWithValue("@neto", (CDbl(TxNeto.Text)) / 1000)
+                        Fase2.Parameters.AddWithValue("@bruto", (TxBruto.Text) / 1000)
+                        Fase2.Parameters.AddWithValue("@neto", (TxNeto.Text) / 1000)
                         Fase2.Parameters.AddWithValue("@CentroAcopio", CbAcopio.SelectedValue)
                         Fase2.Parameters.AddWithValue("@almacen", CbAlmacen.SelectedValue)
-
                         Fase2.ExecuteNonQuery()
                         CargarData()
                         DataGridPropiedades()
@@ -340,34 +391,36 @@ Public Class ControlSalidas
                     Catch ex As Exception
                         MsgBox("Error", MsgBoxStyle.Critical)
                     End Try
-
                 End If
-            ElseIf TxFolio.Text <> "" And Val(TxTotal.Text) > 0 And CBAnalista.Text <> "" And Val(TxPesoEsp.Text) > 0 Then
+            ElseIf TxFolio.Text <> "" And Val(NUDTotal.Value) > 0 And CBAnalista.Text <> "" And Val(TxPesoEsp.Text) > 0 Then
                 If TxImpurezas.Text = "" Or TxGranoDan.Text = "" Or TxGranoQuebrado.Text = "" Or TxHumedad.Text = "" Or Val(TxPesoEsp.Text) = 0 Or CBAnalista.Text = "" Then
                     MessageBox.Show("Verifica campos en blanco", "Aviso")
                 Else
                     Try
                         BloqueoFases()
                         Dim Fase3 As New SqlCommand("Sp_InsNueSalidasFase3", cnn)
-
                         Fase3.CommandType = CommandType.StoredProcedure
-
                         Fase3.Parameters.AddWithValue("@Consecutivo", TxFolio.Text)
                         Fase3.Parameters.AddWithValue("@humedad", CDbl(TxHumedad.Text))
-                        Fase3.Parameters.AddWithValue("@kilosXtonHum", FormatNumber(calculoHumedad, 2))
+                        Fase3.Parameters.AddWithValue("@kilosXtonHum", CDbl(FormatNumber(calculoHumedad, 2)))
                         Fase3.Parameters.AddWithValue("@impurezas", CDbl(TxImpurezas.Text))
-                        Fase3.Parameters.AddWithValue("@kilosXtonImp", FormatNumber(calculaImpureza, 2))
+                        Fase3.Parameters.AddWithValue("@kilosXtonImp", CDbl(FormatNumber(calculoImpureza, 2)))
                         Fase3.Parameters.AddWithValue("@granoDanado", CDbl(TxGranoDan.Text))
-                        Fase3.Parameters.AddWithValue("@kilosXtonGrDa", FormatNumber(calculaGranoDan, 2))
+                        Fase3.Parameters.AddWithValue("@kilosXtonGrDa", CDbl(FormatNumber(calculaGranoDan, 2)))
+                        Fase3.Parameters.AddWithValue("@puntaNegra", CDbl(TxPuntaNegra.Text))
+                        Fase3.Parameters.AddWithValue("@kilosXtonPuNe", CDbl(FormatNumber(calculoPuntaNegra, 2)))
+                        Fase3.Parameters.AddWithValue("@granoContraste", CDbl(TxGranoContraste.Text))
+                        Fase3.Parameters.AddWithValue("@kilosXtonCon", CDbl(FormatNumber(calculoGranoContraste, 2)))
+                        Fase3.Parameters.AddWithValue("@porcentajePB", CDbl(TxPorcentajePB.Text))
+                        Fase3.Parameters.AddWithValue("@kilosXtonPaBl", CDbl(FormatNumber(calculoPorcentajePB, 2)))
                         Fase3.Parameters.AddWithValue("@pesoEspecifico", CDbl(TxPesoEsp.Text))
-                        Fase3.Parameters.AddWithValue("@kilosXtonPeEs", FormatNumber(calculoPesoE, 2))
+                        Fase3.Parameters.AddWithValue("@kilosXtonPeEs", CDbl(FormatNumber(calculoPesoE, 2)))
                         Fase3.Parameters.AddWithValue("@granoQuebrado", CDbl(TxGranoQuebrado.Text))
-                        Fase3.Parameters.AddWithValue("@kilosXtonGrQu", FormatNumber(calculoGranQ, 2))
-                        Fase3.Parameters.AddWithValue("@deducciones", (CDbl(TxDeducciones.Text)) / 1000)
-                        Fase3.Parameters.AddWithValue("@total", (CDbl(TxTotal.Text)) / 1000)
+                        Fase3.Parameters.AddWithValue("@kilosXtonGrQu", CDbl(FormatNumber(calculoGranQ, 2)))
+                        Fase3.Parameters.AddWithValue("@deducciones", NUDDeducciones.Value / 1000)
+                        Fase3.Parameters.AddWithValue("@total", NUDTotal.Value / 1000)
                         Fase3.Parameters.AddWithValue("@usuarioAnalista", CBAnalista.SelectedValue)
                         Fase3.Parameters.AddWithValue("@Estado", 1)
-
                         Fase3.ExecuteNonQuery()
                         CargarData()
                         DataGridPropiedades()
@@ -386,7 +439,7 @@ Public Class ControlSalidas
     End Sub
     Private Sub actualizaCapacidadSilo()
         Dim PesoNeto As Double = 0
-        PesoNeto = CDbl(TxNeto.Text) / 1000
+        PesoNeto = TxNeto.Text / 1000
         Dim cmd As New SqlCommand("sp_ActCapacidadSilosSalidas", cnn)
         cmd.CommandType = CommandType.StoredProcedure
         cmd.Parameters.AddWithValue("@idacopio", CbAcopio.SelectedValue)
@@ -403,7 +456,6 @@ Public Class ControlSalidas
         cmd.Parameters.AddWithValue("@toneladasLibres", valSalLib)
         cmd.Parameters.AddWithValue("@Caso", compruebaSalidas)
         cmd.ExecuteNonQuery()
-
         resTon = 0
         valSalLib = 0
         valSalCon = 0
@@ -411,13 +463,10 @@ Public Class ControlSalidas
     End Sub
     Private Function CompruebaToneladasEntradas(ByRef compruebaEntradas As String) As String
         Dim cmd As New SqlCommand("sp_VerificaContratoEntradas", cnn)
-
         cmd.CommandType = CommandType.StoredProcedure
         cmd.Parameters.Add(New SqlClient.SqlParameter("@idcliente", CbNombre.SelectedValue))
-
         Dim da As New SqlClient.SqlDataAdapter(cmd)
         Dim dt As New DataTable
-
         da.Fill(dt)
         Dim row As DataRow = dt.Rows(0)
         compruebaEntradas = ""
@@ -425,7 +474,6 @@ Public Class ControlSalidas
         valSalLib = 0
         valSalCon = 0
         If row("aceptacontratolibre") = 0 Then
-
             If (row("toneladasentradas") + CDbl(TxNeto.Text)) < row("toneladascompras") Then
                 resTon = row("toneladascompras") - (row("toneladasentradas") + CDbl(TxNeto.Text))
                 If resTon <= 60000 Then
@@ -477,9 +525,7 @@ Public Class ControlSalidas
                     compruebaEntradas = "3" 'SE COMPLETO EL CONTRATO CON SOBRANTE PARA LIBRE
                 End If
             End If
-
         End If
-
         Return compruebaEntradas
     End Function
     Private Sub DataGridPropiedades()
@@ -491,26 +537,21 @@ Public Class ControlSalidas
         DgBoletaSalidas.Columns("Neto").HeaderText = "Peso Neto"
         DgBoletaSalidas.Columns("Fecha_Pesaje").HeaderText = "Fecha"
         DgBoletaSalidas.Columns("Estado").HeaderText = "Estado"
-
         DgBoletaSalidas.Columns("Bruto").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
         DgBoletaSalidas.Columns("Tara").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
         DgBoletaSalidas.Columns("Neto").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-
         DgBoletaSalidas.Columns("Bruto").DefaultCellStyle.Format = "###,##0.00"
         DgBoletaSalidas.Columns("Tara").DefaultCellStyle.Format = "###,##0.00"
         DgBoletaSalidas.Columns("Neto").DefaultCellStyle.Format = "###,##0.00"
     End Sub
     Private Sub seleccionarAlmacenXacopio() Handles CbAcopio.SelectionChangeCommitted
-
         Dim cmdllenaCbAlm As SqlCommand
         Dim da As SqlDataAdapter
         Dim ds As DataSet
-
         cmdllenaCbAlm = New SqlCommand("Sp_CbAlmacen")
         cmdllenaCbAlm.CommandType = CommandType.StoredProcedure
         cmdllenaCbAlm.Parameters.Add(New SqlClient.SqlParameter("@idacopio", CbAcopio.SelectedValue))
         cmdllenaCbAlm.Connection = cnn
-
         da = New SqlDataAdapter(cmdllenaCbAlm)
         ds = New DataSet()
         da.Fill(ds)
@@ -518,20 +559,15 @@ Public Class ControlSalidas
         CbAlmacen.DisplayMember = "nombre_almacen"
         CbAlmacen.ValueMember = "Id_almacen"
         CbAlmacen.SelectedIndex = -1
-
     End Sub
 
     Private Sub llenarCombos()
-
         Dim da As SqlDataAdapter
         Dim ds As DataSet
-
         Dim cmdllenaCbSil As SqlCommand
-
         cmdllenaCbSil = New SqlCommand("Sp_CbAcopio")
         cmdllenaCbSil.CommandType = CommandType.StoredProcedure
         cmdllenaCbSil.Connection = cnn
-
         da = New SqlDataAdapter(cmdllenaCbSil)
         ds = New DataSet()
         da.Fill(ds)
@@ -539,13 +575,10 @@ Public Class ControlSalidas
         CbAcopio.DisplayMember = "NombreCentro"
         CbAcopio.ValueMember = "Id_CentroAcopio"
         CbAcopio.SelectedIndex = -1
-
         Dim cmdllenaCbCom As SqlCommand
-
         cmdllenaCbCom = New SqlCommand("Sp_CbCompradores")
         cmdllenaCbCom.CommandType = CommandType.StoredProcedure
         cmdllenaCbCom.Connection = cnn
-
         da = New SqlDataAdapter(cmdllenaCbCom)
         ds = New DataSet()
         da.Fill(ds)
@@ -553,13 +586,10 @@ Public Class ControlSalidas
         CbNombre.DisplayMember = "nombre_comprador"
         CbNombre.ValueMember = "Id_comprador"
         CbNombre.SelectedIndex = -1
-
         Dim cmdllenaCbAna As SqlCommand
-
         cmdllenaCbAna = New SqlCommand("sp_CbAnalista")
         cmdllenaCbAna.CommandType = CommandType.StoredProcedure
         cmdllenaCbAna.Connection = cnn
-
         da = New SqlDataAdapter(cmdllenaCbAna)
         ds = New DataSet()
         da.Fill(ds)
@@ -567,13 +597,10 @@ Public Class ControlSalidas
         CBAnalista.DisplayMember = "nombre"
         CBAnalista.ValueMember = "Id_usuario"
         CBAnalista.SelectedIndex = -1
-
         Dim cmdllenaCbVen As SqlCommand
-
         cmdllenaCbVen = New SqlCommand("Sp_CbEmpresaSal")
         cmdllenaCbVen.CommandType = CommandType.StoredProcedure
         cmdllenaCbVen.Connection = cnn
-
         da = New SqlDataAdapter(cmdllenaCbVen)
         ds = New DataSet()
         da.Fill(ds)
@@ -581,13 +608,10 @@ Public Class ControlSalidas
         CbNombre.DisplayMember = "NombreVendedor"
         CbNombre.ValueMember = "Id_Empresa"
         CbNombre.SelectedIndex = -1
-
         Dim cmdllenaCbPro As SqlCommand
-
         cmdllenaCbPro = New SqlCommand("Sp_CbProductor")
         cmdllenaCbPro.CommandType = CommandType.StoredProcedure
         cmdllenaCbPro.Connection = cnn
-
         da = New SqlDataAdapter(cmdllenaCbPro)
         ds = New DataSet()
         da.Fill(ds)
@@ -595,13 +619,10 @@ Public Class ControlSalidas
         CBContrato.DisplayMember = "Nombre_Comprador"
         CBContrato.ValueMember = "Id_ContratoV"
         CBContrato.SelectedIndex = -1
-
         Dim cmdllenaCbEmp As SqlCommand
-
         cmdllenaCbEmp = New SqlCommand("sp_CbEmpresas")
         cmdllenaCbEmp.CommandType = CommandType.StoredProcedure
         cmdllenaCbEmp.Connection = cnn
-
         da = New SqlDataAdapter(cmdllenaCbEmp)
         ds = New DataSet()
         da.Fill(ds)
@@ -613,13 +634,9 @@ Public Class ControlSalidas
     Private Sub CargarData()
         DgBoletaSalidas.DataSource = ""
         Dim cmd As New SqlCommand("Sp_llenarDgSalidas", cnn)
-
         cmd.CommandType = CommandType.StoredProcedure
-
         Dim da As New SqlDataAdapter(cmd)
-
         Dim dt As New DataTable
-
         da.Fill(dt)
         DgBoletaSalidas.DataSource = dt
     End Sub
@@ -634,12 +651,15 @@ Public Class ControlSalidas
         TxTara.Text = "0.00"
         TxNeto.Text = "0.00"
         TxHumedad.Text = "0.00"
+        TxPuntaNegra.Text = "0.00"
+        TxPorcentajePB.Text = "0.00"
         TxImpurezas.Text = "0.00"
         TxGranoDan.Text = "0.00"
         TxGranoQuebrado.Text = "0.00"
+        TxGranoContraste.Text = "0.00"
         TxPesoEsp.Text = "0.00"
-        TxDeducciones.Text = "0.00"
-        TxTotal.Text = "0.00"
+        NUDDeducciones.Value = "0.00"
+        NUDTotal.Value = "0.00"
         CbAlmacen.SelectedIndex = -1
         CbAcopio.SelectedIndex = -1
         CBContrato.SelectedIndex = -1
@@ -664,13 +684,10 @@ Public Class ControlSalidas
         Dim codigoproductor As Object = BuscarControlTrigo.CodigoProductor
         If BuscarControlTrigo.CodigoProductor <> Nothing Then
             Dim cmd As New SqlCommand("sp_llenarDg_sal_prod", cnn)
-
             cmd.CommandType = CommandType.StoredProcedure
             cmd.Parameters.Add(New SqlClient.SqlParameter("@idproductor", BuscarControlTrigo.CodigoProductor))
-
             Dim da As New SqlClient.SqlDataAdapter(cmd)
             Dim dt As New DataTable
-
             da.Fill(dt)
             DgBoletaSalidas.DataSource = dt
             DataGridPropiedades()
@@ -684,28 +701,20 @@ Public Class ControlSalidas
             MessageBox.Show("No hay datos para seleccionar.")
         ElseIf Not DgBoletaSalidas Is Nothing Then
             Dim valorId As String
-
             valorId = CStr(DgBoletaSalidas.CurrentRow.Cells(0).Value)
-
             TxFolio.Text = valorId
-
             Dim cmd As New SqlCommand("sp_seleccionIdProdSal", cnn)
-
             cmd.CommandType = CommandType.StoredProcedure
-
             cmd.Parameters.Add(New SqlClient.SqlParameter("@idsalida", valorId))
-
             Dim da As New SqlClient.SqlDataAdapter(cmd)
             Dim dt As New DataTable
-
             da.Fill(dt)
-
             Dim row As DataRow = dt.Rows(0)
             Dim TipoGrano As String = ""
             CbNombre.SelectedValue = row("NombreVendedor")
             TxIdBoleta.Text = row("numeroboleta")
             CbLugarExp.Text = CStr(row("LugarExpedicion"))
-            TipoGrano = CStr(row("GRUPOGRANO"))
+            TipoGrano = CStr(row("grupoGrano"))
             DTPSalidas.Value = row("Fecha_Pesaje")
             TxBruto.Text = FormatNumber(CStr((row("Bruto") * 1000)), 0)
             TxTara.Text = FormatNumber(CStr((row("Tara") * 1000)), 0)
@@ -715,8 +724,11 @@ Public Class ControlSalidas
             TxGranoDan.Text = FormatNumber(CStr(row("granoDanado")), 2)
             TxPesoEsp.Text = FormatNumber(CStr(row("pesoEspecifico")), 2)
             TxGranoQuebrado.Text = FormatNumber(CStr(row("granoQuebrado")), 2)
-            TxDeducciones.Text = FormatNumber((row("Deducciones") * 1000), 2)
-            TxTotal.Text = FormatNumber((row("Total") * 1000), 2)
+            TxPuntaNegra.Text = FormatNumber(CStr(row("puntaNegra")), 2)
+            TxPorcentajePB.Text = FormatNumber(CStr(row("porcentajePB")), 2)
+            TxGranoContraste.Text = FormatNumber(CStr(row("granoContraste")), 2)
+            NUDDeducciones.Value = FormatNumber((row("Deducciones") * 1000), 2)
+            NUDTotal.Value = FormatNumber((row("Total") * 1000), 2)
             If CStr(row("id_centroacopio")) <> "" Then
                 CbAcopio.SelectedValue = row("id_centroacopio")
                 seleccionarAlmacenXacopio()
@@ -734,9 +746,9 @@ Public Class ControlSalidas
             CBAnalista.SelectedValue = row("usuarioAnalista")
             TxPlacas.Text = CStr(row("placasConductor"))
             Select Case TipoGrano
-                Case "AMARILLO"
+                Case "Cachanilla"
                     RBTCachanilla.Checked = True
-                Case "BLANCO"
+                Case "Cristalino"
                     RBTCristalino.Checked = True
             End Select
             BloqueoFases()
@@ -751,8 +763,8 @@ Public Class ControlSalidas
             'TxBruto.Text = FormatNumber(TxBruto.Text, 2)
             'TxTara.Text = FormatNumber(TxTara.Text, 2)
             'TxNeto.Text = FormatNumber(TxNeto.Text, 2)
-            TxDeducciones.Text = FormatNumber(TxDeducciones.Text, 2)
-            TxTotal.Text = FormatNumber(TxTotal.Text, 2)
+            NUDDeducciones.Value = FormatNumber(NUDDeducciones.Value, 2)
+            NUDTotal.Value = FormatNumber(NUDTotal.Value, 2)
             BtnGuardar.Enabled = True
         End If
     End Sub

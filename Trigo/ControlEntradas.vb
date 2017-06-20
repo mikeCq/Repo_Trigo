@@ -213,7 +213,7 @@ Public Class ControlEntradas
 
         If Val(TxImpurezas.Text) > 2 And Val(TxImpurezas.Text) <= 8 Then
             Dim RI As Double = 0
-            RI = CDbl(TxImpurezas.Text) - 2
+            RI = TxImpurezas.Text - 2
             'Dim cmd As New SqlCommand("Sp_CalculoImpureza", cnn)
             'cmd.CommandType = CommandType.StoredProcedure
             'cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxImpurezas.Text))
@@ -222,7 +222,7 @@ Public Class ControlEntradas
             'da.Fill(dt)
             'Dim row As DataRow = dt.Rows(0)
             'deduccionImpurezas = row("deduccion")
-            calculaImpureza = (((RI / 0.1) * 1) * CDbl(TxNeto.Text)) / 1000
+            calculaImpureza = (((RI / 0.1) * 1) * TxNeto.Text) / 1000
             'calculaImpureza = (CDbl(TxNeto.Text) / 1000) * deduccionImpurezas
             ' ElseIf Val(TxImpurezas.Text) > 5 Then
 
@@ -231,7 +231,7 @@ Public Class ControlEntradas
         End If
         If Val(TxGranoDan.Text) > 5 And Val(TxGranoDan.Text) <= 10 Then
             Dim RG As Double = 0
-            RG = CDbl(TxGranoDan.Text) - 5
+            RG = TxGranoDan.Text - 5
             'Dim cmd As New SqlCommand("Sp_CalculoGranDan", cnn)
             'cmd.CommandType = CommandType.StoredProcedure
             'cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxGranoDan.Text))
@@ -240,7 +240,7 @@ Public Class ControlEntradas
             'da.Fill(dt)
             'Dim row As DataRow = dt.Rows(0)
             'deduccionGrandan = row("deduccion")
-            calculaGranoDan = (((RG / 0.1) * 1) * CDbl(TxNeto.Text)) / 1000
+            calculaGranoDan = (((RG / 0.1) * 1) * TxNeto.Text) / 1000
             'ElseIf Val(TxGranoDan.Text) > 3.0 Then
 
         Else
@@ -248,7 +248,7 @@ Public Class ControlEntradas
         End If
         If Val(TxHumedad.Text) > 14 And Val(TxHumedad.Text) <= 18 Then
             Dim RH As Double = 0
-            RH = CDbl(TxHumedad.Text) - 14
+            RH = TxHumedad.Text - 14
             'Dim cmd As New SqlCommand("Sp_CalculoHumedad", cnn)
             'cmd.CommandType = CommandType.StoredProcedure
             'cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxHumedad.Text))
@@ -257,7 +257,7 @@ Public Class ControlEntradas
             'da.Fill(dt)
             'Dim row As DataRow = dt.Rows(0)
             'deduccionHumedad = row("deduccion")
-            calculoHumedad = (((RH / 0.1) * 1.16) * CDbl(TxNeto.Text)) / 1000
+            calculoHumedad = (((RH / 0.1) * 1.16) * TxNeto.Text) / 1000
             'calculoHumedad = (CDbl(TxNeto.Text) / 1000) * deduccionHumedad
             ' ElseIf Val(TxHumedad.Text) > 15.0 Then
 
@@ -266,7 +266,7 @@ Public Class ControlEntradas
         End If
         If Val(TxGranoQuebrado.Text) > 3.5 And Val(TxGranoQuebrado.Text) <= 10 Then
             Dim RG As Double = 0
-            RG = CDbl(TxGranoQuebrado.Text) - 3.5
+            RG = TxGranoQuebrado.Text - 3.5
             'Dim cmd As New SqlCommand("Sp_CalculoGranoQueb", cnn)
             'cmd.CommandType = CommandType.StoredProcedure
             'cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxGranoQuebrado.Text))
@@ -275,7 +275,7 @@ Public Class ControlEntradas
             'da.Fill(dt)
             'Dim row As DataRow = dt.Rows(0)
             'deduccionGranQ = row("deduccion")
-            calculoGranQ = (((RG / 0.1) * 1) * CDbl(TxNeto.Text)) / 1000
+            calculoGranQ = (((RG / 0.1) * 1) * TxNeto.Text) / 1000
 
             ' ElseIf Val(TxGranoQuebrado.Text) > 3 Then
 
@@ -291,7 +291,7 @@ Public Class ControlEntradas
             da.Fill(dt)
             Dim row As DataRow = dt.Rows(0)
             deduccionPesoEsp = row("deduccion")
-            calculoPesoE = (CDbl(TxNeto.Text) / 1000) * deduccionPesoEsp
+            calculoPesoE = (TxNeto.Text / 1000) * deduccionPesoEsp
 
             ' ElseIf Val(TxGranoQuebrado.Text) > 3 Then
 
@@ -313,7 +313,7 @@ Public Class ControlEntradas
     Private Sub SoloNumerosTxCalidad(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TxBruto.KeyPress, TxTara.KeyPress, TxNeto.KeyPress, TxImpurezas.KeyPress, TxGranoDan.KeyPress, TxIdBoleta.KeyPress, TxPesoEsp.KeyPress
         If InStr(1, "0123456789." & Chr(8), e.KeyChar) = 0 Then
             e.Handled = True
-            e.KeyChar = CChar("")
+            e.KeyChar = ""
         End If
     End Sub
     Private Sub capacidadSilo() Handles CbAlmacen.SelectionChangeCommitted
@@ -372,7 +372,7 @@ Public Class ControlEntradas
                         Fase1.Parameters.AddWithValue("@grupoGrano", IIf(RBTCachanilla.Checked = True, "AMARILLO", "BLANCO"))
                         Fase1.Parameters.AddWithValue("@lugarExpedicion", CbLugarExp.Text)
                         Fase1.Parameters.AddWithValue("@fechaPesaje", DTPEntradas.Text)
-                        Fase1.Parameters.AddWithValue("@bruto", (CDbl(TxBruto.Text) / 1000))
+                        Fase1.Parameters.AddWithValue("@bruto", (TxBruto.Text / 1000))
                         Fase1.Parameters.AddWithValue("@conductorCam", UCase(CBConductor.Text))
                         Fase1.Parameters.AddWithValue("@placasConductor", UCase(TxPlacas.Text))
                         Fase1.Parameters.AddWithValue("@Estado", 0)
@@ -452,17 +452,17 @@ Public Class ControlEntradas
                         Fase3.CommandType = CommandType.StoredProcedure
 
                         Fase3.Parameters.AddWithValue("@Consecutivo", TxFolio.Text)
-                        Fase3.Parameters.AddWithValue("@tara", (CDbl(TxTara.Text)) / 1000)
-                        Fase3.Parameters.AddWithValue("@neto", (CDbl(TxNeto.Text)) / 1000)
+                        Fase3.Parameters.AddWithValue("@tara", (TxTara.Text) / 1000)
+                        Fase3.Parameters.AddWithValue("@neto", (TxNeto.Text) / 1000)
                         Fase3.Parameters.AddWithValue("@kilosXtonHum", CDbl(FormatNumber(calculoHumedad, 2)))
                         Fase3.Parameters.AddWithValue("@kilosXtonImp", CDbl(FormatNumber(calculaImpureza, 2)))
                         Fase3.Parameters.AddWithValue("@kilosXtonGrDa", CDbl(FormatNumber(calculaGranoDan, 2)))
                         Fase3.Parameters.AddWithValue("@kilosXtonGrQu", CDbl(FormatNumber(calculoGranQ, 2)))
                         Fase3.Parameters.AddWithValue("@kilosXtonPeEs", CDbl(FormatNumber(calculoPesoE, 2)))
-                        Fase3.Parameters.AddWithValue("@deducciones", (CDbl(TxDeducciones.Text)) / 1000)
+                        Fase3.Parameters.AddWithValue("@deducciones", (TxDeducciones.Text) / 1000)
                         Fase3.Parameters.AddWithValue("@CentroAcopio", CbAcopio.SelectedValue)
                         Fase3.Parameters.AddWithValue("@almacen", CbAlmacen.SelectedValue)
-                        Fase3.Parameters.AddWithValue("@total", (CDbl(TxTotal.Text)) / 1000)
+                        Fase3.Parameters.AddWithValue("@total", (TxTotal.Text) / 1000)
                         Fase3.Parameters.AddWithValue("@Estado", 1)
 
                         Fase3.ExecuteNonQuery()
@@ -486,7 +486,7 @@ Public Class ControlEntradas
     End Sub
     Private Sub actualizaCapacidadSilo()
         Dim PesoNeto As Double = 0
-        PesoNeto = CDbl(TxNeto.Text) / 1000
+        PesoNeto = TxNeto.Text / 1000
         Dim cmd As New SqlCommand("sp_ActCapacidadSilos", cnn)
         cmd.CommandType = CommandType.StoredProcedure
         cmd.Parameters.AddWithValue("@idacopio", CbAcopio.SelectedValue)
@@ -526,54 +526,54 @@ Public Class ControlEntradas
         valEntCon = 0
         If row("aceptacontratolibre") = 0 Then
 
-            If (row("toneladasentradas") + (CDbl(TxNeto.Text) / 1000)) < row("toneladascompras") Then
-                resTon = row("toneladascompras") - (row("toneladasentradas") + (CDbl(TxNeto.Text) / 1000))
+            If (row("toneladasentradas") + (TxNeto.Text / 1000)) < row("toneladascompras") Then
+                resTon = row("toneladascompras") - (row("toneladasentradas") + (TxNeto.Text / 1000))
                 If resTon <= 60 Then
-                    valEntCon = (CDbl(TxNeto.Text) / 1000)
+                    valEntCon = (TxNeto.Text / 1000)
                     valEntLib = 0
                     compruebaEntradas = "1" 'FALTAN 60 TONELADAS PARA COMPLETAR EL CONTRATO
                 ElseIf resTon > 60 Then
-                    valEntCon = (CDbl(TxNeto.Text) / 1000)
+                    valEntCon = (TxNeto.Text / 1000)
                     valEntLib = 0
                     compruebaEntradas = "0" 'TIENE BASTANTE RANGO PARA LLEGAR AL LIMITE DE CONTRATO
                 End If
-            ElseIf (row("toneladasentradas") + (CDbl(TxNeto.Text) / 1000)) >= row("toneladascompras") Then
-                resTon = (row("toneladasentradas") + (CDbl(TxNeto.Text) / 1000)) - row("toneladascompras")
+            ElseIf (row("toneladasentradas") + (TxNeto.Text / 1000)) >= row("toneladascompras") Then
+                resTon = (row("toneladasentradas") + (TxNeto.Text / 1000)) - row("toneladascompras")
                 If resTon = 0 Then
-                    valEntCon = (CDbl(TxNeto.Text) / 1000)
+                    valEntCon = (TxNeto.Text / 1000)
                     valEntLib = 0
                     compruebaEntradas = "4" 'SE COMPLETO EL CONTRATO SIN SOBRANTE 
                 ElseIf resTon > 0 Then
-                    valEntCon = (CDbl(TxNeto.Text) / 1000)
+                    valEntCon = (TxNeto.Text / 1000)
                     valEntLib = 0
                     compruebaEntradas = "5" 'SE COMPLETO EL CONTRATO CON SOBRANTE SIN CONTRATO LIBRE
                 End If
             End If
         Else
-            If (row("toneladasentradas") + (CDbl(TxNeto.Text) / 1000)) < row("toneladascompras") Then
-                resTon = row("toneladascompras") - (row("toneladasentradas") + (CDbl(TxNeto.Text) / 1000))
+            If (row("toneladasentradas") + (TxNeto.Text / 1000)) < row("toneladascompras") Then
+                resTon = row("toneladascompras") - (row("toneladasentradas") + (TxNeto.Text / 1000))
                 If resTon <= 60 Then
-                    valEntCon = (CDbl(TxNeto.Text) / 1000)
+                    valEntCon = (TxNeto.Text / 1000)
                     valEntLib = 0
                     compruebaEntradas = "1" 'FALTAN 60 TONELADAS PARA COMPLETAR EL CONTRATO
                 ElseIf resTon > 60 Then
-                    valEntCon = (CDbl(TxNeto.Text) / 1000)
+                    valEntCon = (TxNeto.Text / 1000)
                     valEntLib = 0
                     compruebaEntradas = "0" 'TIENE BASTANTE RANGO PARA LLEGAR AL LIMITE DE CONTRATO
                 End If
             ElseIf row("toneladasentradas") = row("toneladascompras") And row("toneladaslibresEntradas") > 0 Then
-                valEntLib = (CDbl(TxNeto.Text) / 1000)
+                valEntLib = (TxNeto.Text / 1000)
                 valEntCon = row("toneladasentradas")
                 compruebaEntradas = "6" 'SE AGREGA DIRECTAMENTE A LIBRES
-            ElseIf (row("toneladasentradas") + (CDbl(TxNeto.Text) / 1000)) >= row("toneladascompras") Then
-                resTon = (CDbl(TxNeto.Text) / 1000) + row("toneladasentradas") - (row("toneladascompras"))
+            ElseIf (row("toneladasentradas") + (TxNeto.Text / 1000)) >= row("toneladascompras") Then
+                resTon = (TxNeto.Text / 1000) + row("toneladasentradas") - (row("toneladascompras"))
                 If resTon = 0 Then
-                    valEntCon = (CDbl(TxNeto.Text) / 1000)
+                    valEntCon = (TxNeto.Text / 1000)
                     valEntLib = 0
                     compruebaEntradas = "2" 'SE COMPLETO EL CONTRATO
                 ElseIf resTon > 0 Then
                     valEntLib = resTon
-                    valEntCon = (CDbl(TxNeto.Text) / 1000) + row("toneladasentradas") - resTon
+                    valEntCon = (TxNeto.Text / 1000) + row("toneladasentradas") - resTon
                     compruebaEntradas = "3" 'SE COMPLETO EL CONTRATO CON SOBRANTE PARA LIBRE
                 End If
             End If

@@ -47,7 +47,7 @@ Public Class Clientes
     Private Sub SoloTx(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TxCpFisica.KeyPress, TxCpostalMoral.KeyPress
         If InStr(1, "0123456789." & Chr(8), e.KeyChar) = 0 Then
             e.Handled = True
-            e.KeyChar = CChar("")
+            e.KeyChar = ""
         End If
     End Sub
     Private Sub validarfc() Handles TxRfcFisico.MouseUp
