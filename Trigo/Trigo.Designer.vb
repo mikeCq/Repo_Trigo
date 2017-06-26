@@ -81,6 +81,7 @@ Partial Class Trigo
         Me.SbNombreUsuario = New System.Windows.Forms.ToolStripStatusLabel()
         Me.SbUsuario = New System.Windows.Forms.ToolStripStatusLabel()
         Me.SbIdUsuario = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ConexionBDDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SsUsuario.SuspendLayout()
         Me.SuspendLayout()
@@ -232,7 +233,7 @@ Partial Class Trigo
         '
         Me.ComprasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ContratosDeTigoConCompradoresToolStripMenuItem, Me.ComprasDeTrigoToolStripMenuItem})
         Me.ComprasToolStripMenuItem.Name = "ComprasToolStripMenuItem"
-        Me.ComprasToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ComprasToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
         Me.ComprasToolStripMenuItem.Text = "Compras"
         '
         'ContratosDeTigoConCompradoresToolStripMenuItem
@@ -251,7 +252,7 @@ Partial Class Trigo
         '
         Me.VentasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ContratosDeTrigoConCompradoresToolStripMenuItem, Me.VentasDeTrigoToolStripMenuItem})
         Me.VentasToolStripMenuItem.Name = "VentasToolStripMenuItem"
-        Me.VentasToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.VentasToolStripMenuItem.Size = New System.Drawing.Size(128, 22)
         Me.VentasToolStripMenuItem.Text = "Ventas"
         '
         'ContratosDeTrigoConCompradoresToolStripMenuItem
@@ -376,7 +377,7 @@ Partial Class Trigo
         '
         'UtileriasToolStripMenuItem
         '
-        Me.UtileriasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EnlaceABaseDeToolStripMenuItem, Me.AutorizacionDiariaToolStripMenuItem})
+        Me.UtileriasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EnlaceABaseDeToolStripMenuItem, Me.AutorizacionDiariaToolStripMenuItem, Me.ConexionBDDToolStripMenuItem})
         Me.UtileriasToolStripMenuItem.Name = "UtileriasToolStripMenuItem"
         Me.UtileriasToolStripMenuItem.Size = New System.Drawing.Size(67, 20)
         Me.UtileriasToolStripMenuItem.Text = "Utilerias"
@@ -460,6 +461,12 @@ Partial Class Trigo
         Me.SbIdUsuario.Size = New System.Drawing.Size(57, 17)
         Me.SbIdUsuario.Text = "idUsuario"
         Me.SbIdUsuario.Visible = False
+        '
+        'ConexionBDDToolStripMenuItem
+        '
+        Me.ConexionBDDToolStripMenuItem.Name = "ConexionBDDToolStripMenuItem"
+        Me.ConexionBDDToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.ConexionBDDToolStripMenuItem.Text = "Conexion BDD"
         '
         'Trigo
         '
@@ -548,4 +555,5 @@ Partial Class Trigo
     Friend WithEvents CalculoDeLiquidaciónPorCompradorToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents EntradasGlobalesPorProductorToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents EstatusDeContratosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ConexionBDDToolStripMenuItem As ToolStripMenuItem
 End Class

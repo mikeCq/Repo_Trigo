@@ -39,7 +39,7 @@ Public Class ReporteCompras
         Try
             Dim RptReporteCompras As New RptComprasXproductor
             If DTInicio.Value <= DTFinal.Value And DTFinal.Value >= DTInicio.Value Then
-                RptReporteCompras.SetDatabaseLogon(VarGlob.UserDB, VarGlob.PasswordDB, VarGlob.ServerDB, VarGlob.DataBase)
+                RptReporteCompras.SetDatabaseLogon(VarGlob1.UserDB, VarGlob1.PasswordDB, VarGlob1.ServerDB, VarGlob1.DataBase)
                 RptReporteCompras.SetParameterValue("@idproductor", IIf(CbProductor.SelectedValue = Nothing, "", CbProductor.SelectedValue))
                 RptReporteCompras.SetParameterValue("@tipoContrato", IIf(CbTipoContrato.Text = Nothing, "", CbTipoContrato.Text))
                 RptReporteCompras.SetParameterValue("@fechaini", DTInicio.Value)
@@ -58,7 +58,7 @@ Public Class ReporteCompras
             Try
                 Dim RptReporteCompras As New RptComprasXproductor
                 If DTInicio.Value <= DTFinal.Value And DTFinal.Value >= DTInicio.Value Then
-                    RptReporteCompras.SetDatabaseLogon(VarGlob.UserDB, VarGlob.PasswordDB, VarGlob.ServerDB, VarGlob.DataBase)
+                    RptReporteCompras.SetDatabaseLogon(VarGlob1.UserDB, VarGlob1.PasswordDB, VarGlob1.ServerDB, VarGlob1.DataBase)
                     RptReporteCompras.SetParameterValue("@idproductor", IIf(CbProductor.SelectedValue = Nothing, "", CbProductor.SelectedValue))
                     RptReporteCompras.SetParameterValue("@tipoContrato", IIf(CbTipoContrato.Text = Nothing, "", CbTipoContrato.Text))
                     RptReporteCompras.SetParameterValue("@fechaini", DTInicio.Value)

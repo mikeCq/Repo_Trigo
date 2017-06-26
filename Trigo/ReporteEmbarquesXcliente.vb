@@ -38,7 +38,7 @@ Public Class ReporteEmbarquesXcliente
         Try
             Dim RptEmbarques As New ReporteEmbarques
             If DTInicio.Value <= DTFinal.Value And DTFinal.Value >= DTInicio.Value Then
-                RptEmbarques.SetDatabaseLogon(VarGlob.UserDB, VarGlob.PasswordDB, VarGlob.ServerDB, VarGlob.DataBase)
+                RptEmbarques.SetDatabaseLogon(VarGlob1.UserDB, VarGlob1.PasswordDB, VarGlob1.ServerDB, VarGlob1.DataBase)
                 RptEmbarques.SetParameterValue("@numboleta", TxNumBoleta.Text)
                 RptEmbarques.SetParameterValue("@productor", IIf(CbProductor.SelectedValue = Nothing, "", CbProductor.SelectedValue))
                 RptEmbarques.SetParameterValue("@fechaini", DTInicio.Value)
@@ -57,7 +57,7 @@ Public Class ReporteEmbarquesXcliente
             Try
                 Dim RptEmbarques As New ReporteEmbarques
                 If DTInicio.Value <= DTFinal.Value And DTFinal.Value >= DTInicio.Value Then
-                    RptEmbarques.SetDatabaseLogon(VarGlob.UserDB, VarGlob.PasswordDB, VarGlob.ServerDB, VarGlob.DataBase)
+                    RptEmbarques.SetDatabaseLogon(VarGlob1.UserDB, VarGlob1.PasswordDB, VarGlob1.ServerDB, VarGlob1.DataBase)
                     RptEmbarques.SetParameterValue("@numboleta", TxNumBoleta.Text)
                     RptEmbarques.SetParameterValue("@productor", IIf(CbProductor.SelectedValue = Nothing, "", CbProductor.SelectedValue))
                     RptEmbarques.SetParameterValue("@fechaini", DTInicio.Value)

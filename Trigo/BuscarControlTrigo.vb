@@ -22,8 +22,8 @@ Public Class BuscarControlTrigo
             cmd.CommandType = CommandType.StoredProcedure
 
 
-            cmd.Parameters.AddWithValue("@TabOri", VarGlob.busqueda)
-            cmd.Parameters.AddWithValue("@nombre", TxNomBus.Text)
+        cmd.Parameters.AddWithValue("@TabOri", VarGlob1.busqueda)
+        cmd.Parameters.AddWithValue("@nombre", TxNomBus.Text)
 
             cmd.ExecuteNonQuery()
 
@@ -43,7 +43,7 @@ Public Class BuscarControlTrigo
         ElseIf Not DgBoletaIngresada Is Nothing
 
             _codigoProductor = CStr(DgBoletaIngresada.CurrentRow.Cells(0).Value)
-            VarGlob.busqueda = ""
+            VarGlob1.busqueda = ""
             DgBoletaIngresada.DataSource = ""
             Close()
         End If
@@ -62,7 +62,7 @@ Public Class BuscarControlTrigo
         DgBoletaIngresada.Columns("Nombre").HeaderText = "Nombre"
     End Sub
     Private Sub BtCancelar_Click(sender As Object, e As EventArgs) Handles BtCancelar.Click
-        VarGlob.busqueda = ""
+        VarGlob1.busqueda = ""
         DgBoletaIngresada.DataSource = ""
         Close()
 

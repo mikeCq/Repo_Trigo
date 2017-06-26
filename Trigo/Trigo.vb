@@ -146,8 +146,11 @@ Public Class Trigo
     Private Sub EntradasGlobalesPorProductorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EntradasGlobalesPorProductorToolStripMenuItem.Click
         ReporteEntradasGlobalXprod.ShowDialog()
     End Sub
+    Private Sub ConexionBDDToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConexionBDDToolStripMenuItem.Click
+        ConexionBDD.ShowDialog()
+    End Sub
     Private Sub AutorizacionDiariaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AutorizacionDiariaToolStripMenuItem.Click
-        VarGlob.idUsAutoriza = SbIdUsuario.Text
+        VarGlob1.idUsAutoriza = SbIdUsuario.Text
         AutorizacionDiaria.Show()
     End Sub
     Private Sub SalirToolStripMenuItem_Click(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing

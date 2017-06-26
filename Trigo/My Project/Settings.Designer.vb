@@ -57,8 +57,8 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=SERVER2008\SERVER12;Initial Catalog=TRIGO;Persist Security Info=True;"& _ 
-            "User ID=sa;Password=Usuario01")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=SERVER2008\SERVER12;Initial Catalog=TRIGO2017;Persist Security Info=T"& _ 
+            "rue;User ID=sa;Password=Usuario01")>  _
         Public ReadOnly Property TGConn() As String
             Get
                 Return CType(Me("TGConn"),String)

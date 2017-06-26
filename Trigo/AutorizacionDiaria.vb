@@ -10,7 +10,7 @@ Public Class AutorizacionDiaria
 
         cmd.CommandType = CommandType.StoredProcedure
 
-        cmd.Parameters.Add(New SqlClient.SqlParameter("@idusuario", VarGlob.idUsAutoriza))
+        cmd.Parameters.Add(New SqlClient.SqlParameter("@idusuario", VarGlob1.idUsAutoriza))
 
         Dim da As New SqlClient.SqlDataAdapter(cmd)
         Dim dt As New DataTable
@@ -28,7 +28,7 @@ Public Class AutorizacionDiaria
     End Sub
     Private Sub Salir(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
         TxClaveAutorizacion.Text = ""
-        VarGlob.idUsAutoriza = ""
+        VarGlob1.idUsAutoriza = ""
     End Sub
 
 End Class

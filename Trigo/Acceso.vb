@@ -1,9 +1,18 @@
 ﻿Imports System.Data.SqlClient
 Public Class Acceso
     Private Sub Acceso_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        abrir()
-
+        abrirmaster()
+        llenaComboBDD()
     End Sub
+    Private _conUsu As String
+    Public Property ConUsu() As String
+        Get
+            Return _conUsu
+        End Get
+        Set(value As String)
+            _conUsu = value
+        End Set
+    End Property
 
     Private _codUsuario As String
     Public Property CodUsuario() As String
@@ -15,14 +24,18 @@ Public Class Acceso
         End Set
     End Property
     Private Sub BtnAceptar_Click(sender As Object, e As EventArgs) Handles BtnAceptar.Click
+        cerrarMaster()
+        _conUsu = CbBaseDatos.Text
+        abrir()
+        'ConexionUsuario(conusu)
         Try
             If usuarioRegistrado(TxUsuario.Text) = True Then
                 Dim contra As String = clave(TxUsuario.Text)
                 If contra.Equals(TxContraseña.Text) = True Then
-                    Dim Maiz As New Trigo
+                    Dim Trigo As New Trigo
                     _codUsuario = TxUsuario.Text
                     Hide()
-                    Maiz.ShowDialog()
+                    Trigo.ShowDialog()
                 Else
                     MsgBox("Contraseña incorrecta.", MsgBoxStyle.Critical)
                     TxContraseña.Text = ""
@@ -37,14 +50,18 @@ Public Class Acceso
     End Sub
     Private Sub TxContraseña_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TxContraseña.KeyDown
         If e.KeyCode = Keys.Enter Then
+            cerrarMaster()
+            VarGlob1.DataBase = CbBaseDatos.Text
+            abrir()
+            'ConexionUsuario(conusu)
             Try
                 If usuarioRegistrado(TxUsuario.Text) = True Then
                     Dim contra As String = clave(TxUsuario.Text)
                     If contra.Equals(TxContraseña.Text) = True Then
-                        Dim Maiz As New Trigo
+                        Dim Trigo As New Trigo
                         _codUsuario = TxUsuario.Text
                         Hide()
-                        Maiz.ShowDialog()
+                        Trigo.ShowDialog()
                     Else
                         MsgBox("Contraseña incorrecta.", MsgBoxStyle.Critical)
                         TxContraseña.Text = ""
@@ -57,6 +74,17 @@ Public Class Acceso
                 MsgBox(ex.ToString)
             End Try
         End If
+    End Sub
+    Private Sub llenaComboBDD()
+        Dim cmd As String = "SELECT name, database_id FROM sys.databases where name like '%'+'TRIGO'+'%'"
+        Dim da As New SqlDataAdapter(cmd, cnnMaster)
+        Dim ds As New DataSet
+        da.Fill(ds)
+        With Me.CbBaseDatos
+            Me.CbBaseDatos.DataSource = ds.Tables(0)
+            Me.CbBaseDatos.DisplayMember = "name"
+            Me.CbBaseDatos.ValueMember = "database_id"
+        End With
     End Sub
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
         CambiarContraseña.ShowDialog()

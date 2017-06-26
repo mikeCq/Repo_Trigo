@@ -843,7 +843,7 @@ Public Class ControlEntradas
     End Sub
     Private Sub BtBuscar_Click(sender As Object, e As EventArgs) Handles BtBuscar.Click
         Dim BuscarControlTrigo As New BuscarControlTrigo
-        VarGlob.busqueda = "ENT"
+        VarGlob1.busqueda = "ENT"
         BuscarControlTrigo.ShowDialog()
         DgBoletaIngresada.DataSource = ""
         Dim codigoproductor As Object = BuscarControlTrigo.CodigoProductor

@@ -10,7 +10,16 @@ Public Class ConexionBDD
     End Sub
 
     Private Sub BtGuardar_Click(sender As Object, e As EventArgs) Handles BtGuardar.Click
+        Try
+            Using cmd As New SqlCommand("SELECT dbo.Fn_ObtBaseDeDatos(@USUARIO)", cnn)
+                cmd.Parameters.AddWithValue("@USUARIO", "")
 
+                TxNombreBDD.Text = CStr(cmd.ExecuteScalar())
+
+            End Using
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
     End Sub
 
     Private Sub BtSalir_Click(sender As Object, e As EventArgs) Handles BtSalir.Click

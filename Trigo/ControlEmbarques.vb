@@ -714,7 +714,7 @@ Public Class ControlEmbarques
     End Sub
     Private Sub BtnBuscar_Click(sender As Object, e As EventArgs) Handles BtnBuscar.Click
         Dim BuscarControlTrigo As New BuscarControlTrigo
-        VarGlob.busqueda = "EMB"
+        VarGlob1.busqueda = "EMB"
         BuscarControlTrigo.ShowDialog()
         DgBoletaEmbarque.DataSource = ""
         Dim codigoproductor As Object = BuscarControlTrigo.CodigoProductor

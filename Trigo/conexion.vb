@@ -2,18 +2,32 @@
 Imports System.Data.SqlClient
 Module conexion
 
-    Public cnn As SqlConnection
+    Public cnn, cnnMaster As SqlConnection
     Public consulta As SqlCommand
     Public respuesta As SqlDataReader
 
+
     Sub abrir()
         Try
-            cnn = New SqlConnection(VarGlob.ConexionPrincipal)
+            Dim cnnp As String = ""
+            cnn = New SqlConnection(ConexionP(cnnp))
 
             cnn.Open()
         Catch ex As Exception
             MsgBox("No se pudo conectar" + ex.ToString)
         End Try
+    End Sub
+    Sub abrirmaster()
+        Try
+            cnnMaster = New SqlConnection(VarGlob1.ConexionMaster)
+
+            cnnMaster.Open()
+        Catch ex As Exception
+            MsgBox("No se pudo conectar" + ex.ToString)
+        End Try
+    End Sub
+    Sub cerrarMaster()
+        cnnMaster.Close()
     End Sub
     '#######################SE COMPRUEBA EXISTENCIA DE USUARIO Y CONTRASEÑA CORRECTA##############################################
     Function IdUsuRegistrado(ByVal nombreUsuario As String) As Boolean
@@ -41,6 +55,21 @@ Module conexion
             respuesta.Close()
         Catch ex As Exception
             MsgBox(ex.ToString)
+        End Try
+        Return resultado
+
+    End Function
+    Function ConexionUsuario(ByVal UsuCon As String) As String
+        Dim resultado As String = ""
+        Try
+            Using cmd As New SqlCommand("SELECT dbo.Fn_ObtBaseDeDatos(@USUARIO)", cnn)
+                cmd.Parameters.AddWithValue("@USUARIO", UsuCon)
+
+                UsuCon = CStr(cmd.ExecuteScalar())
+
+            End Using
+        Catch ex As Exception
+            MsgBox(ex.Message)
         End Try
         Return resultado
 

@@ -7,7 +7,7 @@ Public Class ReporteVentas
     Private Sub ReporteVentas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim rptReporteVentas As New RptVentaXcomprador
         Dim codigo As String = LiquidacionXcomprador.codigoLiquidacionVenta
-        rptReporteVentas.SetDatabaseLogon(VarGlob.UserDB, VarGlob.PasswordDB, VarGlob.ServerDB, VarGlob.DataBase)
+        rptReporteVentas.SetDatabaseLogon(VarGlob1.UserDB, VarGlob1.PasswordDB, VarGlob1.ServerDB, VarGlob1.DataBase)
         rptReporteVentas.SetParameterValue("@idliquidacionVenta", codigo)
         CrLiquidacionVenta.ReportSource = rptReporteVentas
     End Sub

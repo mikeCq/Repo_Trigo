@@ -33,6 +33,8 @@ Partial Class Acceso
         Me.BtnAceptar = New System.Windows.Forms.Button()
         Me.LinkLabel1 = New System.Windows.Forms.LinkLabel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.CbBaseDatos = New System.Windows.Forms.ComboBox()
+        Me.Label2 = New System.Windows.Forms.Label()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -97,7 +99,7 @@ Partial Class Acceso
         '
         'BtnCancelar
         '
-        Me.BtnCancelar.Location = New System.Drawing.Point(445, 149)
+        Me.BtnCancelar.Location = New System.Drawing.Point(445, 189)
         Me.BtnCancelar.Name = "BtnCancelar"
         Me.BtnCancelar.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.BtnCancelar.Size = New System.Drawing.Size(83, 30)
@@ -108,7 +110,7 @@ Partial Class Acceso
         '
         'BtnAceptar
         '
-        Me.BtnAceptar.Location = New System.Drawing.Point(356, 149)
+        Me.BtnAceptar.Location = New System.Drawing.Point(356, 189)
         Me.BtnAceptar.Name = "BtnAceptar"
         Me.BtnAceptar.Size = New System.Drawing.Size(83, 30)
         Me.BtnAceptar.TabIndex = 8
@@ -135,16 +137,35 @@ Partial Class Acceso
         Me.PictureBox1.TabIndex = 10
         Me.PictureBox1.TabStop = False
         '
+        'CbBaseDatos
+        '
+        Me.CbBaseDatos.FormattingEnabled = True
+        Me.CbBaseDatos.Location = New System.Drawing.Point(357, 139)
+        Me.CbBaseDatos.Name = "CbBaseDatos"
+        Me.CbBaseDatos.Size = New System.Drawing.Size(171, 24)
+        Me.CbBaseDatos.TabIndex = 12
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(205, 142)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(102, 16)
+        Me.Label2.TabIndex = 4
+        Me.Label2.Text = "Base de Datos :"
+        '
         'Acceso
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(618, 325)
+        Me.Controls.Add(Me.CbBaseDatos)
         Me.Controls.Add(Me.LbBienvenido)
         Me.Controls.Add(Me.LinkLabel1)
         Me.Controls.Add(Me.BtnCancelar)
         Me.Controls.Add(Me.BtnAceptar)
         Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.LbContraseña)
         Me.Controls.Add(Me.LbNomUsu)
         Me.Controls.Add(Me.TxUsuario)
@@ -171,4 +192,6 @@ Partial Class Acceso
     Friend WithEvents TxUsuario As TextBox
     Friend WithEvents LinkLabel1 As LinkLabel
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents CbBaseDatos As ComboBox
+    Friend WithEvents Label2 As Label
 End Class

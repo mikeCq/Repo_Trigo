@@ -678,7 +678,7 @@ Public Class ControlSalidas
     End Sub
     Private Sub BtnBuscar_Click(sender As Object, e As EventArgs) Handles BtnBuscar.Click
         Dim BuscarControlTrigo As New BuscarControlTrigo
-        VarGlob.busqueda = "SAL"
+        VarGlob1.busqueda = "SAL"
         BuscarControlTrigo.ShowDialog()
         DgBoletaSalidas.DataSource = ""
         Dim codigoproductor As Object = BuscarControlTrigo.CodigoProductor

@@ -6,7 +6,7 @@ Imports CrystalDecisions.CrystalReports
 Public Class ReporteBoletasEntradas
     Private Sub ReporteBoletasEntradas_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim RptBoletasEntradas As New ReporteBoletaEntrada
-        RptBoletasEntradas.SetDatabaseLogon(VarGlob.UserDB, VarGlob.PasswordDB, VarGlob.ServerDB, VarGlob.DataBase)
+        RptBoletasEntradas.SetDatabaseLogon(VarGlob1.UserDB, VarGlob1.PasswordDB, VarGlob1.ServerDB, VarGlob1.DataBase)
         RptBoletasEntradas.SetParameterValue("@identrada", ControlEntradas.codigoEntrada)
         CrBoletaEntrada.ReportSource = RptBoletasEntradas
     End Sub

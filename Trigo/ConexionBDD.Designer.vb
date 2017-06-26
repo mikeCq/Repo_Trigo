@@ -80,7 +80,6 @@ Partial Class ConexionBDD
         Me.TxNombreBDD.Location = New System.Drawing.Point(216, 160)
         Me.TxNombreBDD.MaxLength = 15
         Me.TxNombreBDD.Name = "TxNombreBDD"
-        Me.TxNombreBDD.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.TxNombreBDD.Size = New System.Drawing.Size(142, 20)
         Me.TxNombreBDD.TabIndex = 1
         '

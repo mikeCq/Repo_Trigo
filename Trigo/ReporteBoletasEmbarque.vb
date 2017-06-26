@@ -6,7 +6,7 @@ Imports CrystalDecisions.CrystalReports
 Public Class ReporteBoletasEmbarque
     Private Sub ReporteBoletasEmbarque_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim RptBoletasEmbarques As New ReporteBoletaEmbarque
-        RptBoletasEmbarques.SetDatabaseLogon(VarGlob.UserDB, VarGlob.PasswordDB, VarGlob.ServerDB, VarGlob.DataBase)
+        RptBoletasEmbarques.SetDatabaseLogon(VarGlob1.UserDB, VarGlob1.PasswordDB, VarGlob1.ServerDB, VarGlob1.DataBase)
         RptBoletasEmbarques.SetParameterValue("@idembarque", ControlEmbarques.codigoEmbarque)
         RptBoletasEmbarques.SetParameterValue("@MaizAmarillo", ControlEmbarques.MaizAmarillo)
         RptBoletasEmbarques.SetParameterValue("@MaizBlanco", ControlEmbarques.MaizBlanco)

@@ -39,7 +39,7 @@ Public Class ReportesSalidas
     Private Sub generaReporte(sender As Object, e As EventArgs) Handles BtGenerarReporte.Click
         Dim RptSalidas As New ReporteSalidas
         If DTInicio.Value <= DTFinal.Value And DTFinal.Value >= DTInicio.Value Then
-            RptSalidas.SetDatabaseLogon(VarGlob.UserDB, VarGlob.PasswordDB, VarGlob.ServerDB, VarGlob.DataBase)
+            RptSalidas.SetDatabaseLogon(VarGlob1.UserDB, VarGlob1.PasswordDB, VarGlob1.ServerDB, VarGlob1.DataBase)
             RptSalidas.SetParameterValue("@numboleta", TxNumBoleta.Text)
             RptSalidas.SetParameterValue("@comprador", IIf(CbComprador.SelectedValue = Nothing, "", CbComprador.SelectedValue))
             RptSalidas.SetParameterValue("@fechaini", DTInicio.Value)
@@ -55,7 +55,7 @@ Public Class ReportesSalidas
             Try
                 Dim RptSalidas As New ReporteSalidas
                 If DTInicio.Value <= DTFinal.Value And DTFinal.Value >= DTInicio.Value Then
-                    RptSalidas.SetDatabaseLogon(VarGlob.UserDB, VarGlob.PasswordDB, VarGlob.ServerDB, VarGlob.DataBase)
+                    RptSalidas.SetDatabaseLogon(VarGlob1.UserDB, VarGlob1.PasswordDB, VarGlob1.ServerDB, VarGlob1.DataBase)
                     RptSalidas.SetParameterValue("@numboleta", TxNumBoleta.Text)
                     RptSalidas.SetParameterValue("@comprador", IIf(CbComprador.SelectedValue = Nothing, "", CbComprador.SelectedValue))
                     RptSalidas.SetParameterValue("@fechaini", DTInicio.Value)

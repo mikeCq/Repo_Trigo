@@ -618,7 +618,7 @@
     <Compile Include="Usuarios.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VarGlob.vb" />
+    <Compile Include="VarGlob1.vb" />
     <Compile Include="Variedades.Designer.vb">
       <DependentUpon>Variedades.vb</DependentUpon>
     </Compile>
