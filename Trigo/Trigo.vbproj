@@ -311,6 +311,12 @@
     <Compile Include="ControlSalidas.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="CrearBaseDatos.Designer.vb">
+      <DependentUpon>CrearBaseDatos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CrearBaseDatos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Empresas.Designer.vb">
       <DependentUpon>Empresas.vb</DependentUpon>
     </Compile>
@@ -725,6 +731,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ControlSalidas.resx">
       <DependentUpon>ControlSalidas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrearBaseDatos.resx">
+      <DependentUpon>CrearBaseDatos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Empresas.resx">
       <DependentUpon>Empresas.vb</DependentUpon>

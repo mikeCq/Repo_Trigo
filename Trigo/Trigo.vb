@@ -166,12 +166,16 @@ Public Class Trigo
             e.Cancel = True
         End If
     End Sub
-    Private Sub SalirToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SalirToolStripMenuItem.Click
+    Private Sub SalirToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SalirToolStripMenuItem.Click, MyBase.FormClosing
         SqlConnection.ClearAllPools()
         Me.Close()
     End Sub
 
     Private Sub EstatusDeContratosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EstatusDeContratosToolStripMenuItem.Click
         ReporteEstatusContrato.ShowDialog()
+    End Sub
+
+    Private Sub CrearNuevaBDDToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CrearNuevaBDDToolStripMenuItem.Click
+        CrearBaseDatos.ShowDialog()
     End Sub
 End Class
