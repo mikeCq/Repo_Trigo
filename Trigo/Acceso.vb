@@ -95,6 +95,7 @@ Public Class Acceso
             Me.CbBaseDatos.DataSource = ds.Tables(0)
             Me.CbBaseDatos.DisplayMember = "name"
             Me.CbBaseDatos.ValueMember = "database_id"
+            Me.CbBaseDatos.SelectedIndex = CbBaseDatos.Items.Count - 1
         End With
     End Sub
     Private Sub LinkLabel1_LinkClicked(sender As Object, e As LinkLabelLinkClickedEventArgs) Handles LinkLabel1.LinkClicked
