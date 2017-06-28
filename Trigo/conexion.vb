@@ -7,7 +7,7 @@ Module conexion
     Public respuesta As SqlDataReader
 
 
-    Sub abrir()
+    Sub abrirPrincipal()
         Try
             Dim cnnp As String = ""
             cnn = New SqlConnection(ConexionP(cnnp))
@@ -16,6 +16,9 @@ Module conexion
         Catch ex As Exception
             MsgBox("No se pudo conectar" + ex.ToString)
         End Try
+    End Sub
+    Sub cerrarPrincipal()
+        cnn.Close()
     End Sub
     Sub abrirmaster()
         Try

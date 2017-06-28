@@ -32,6 +32,7 @@ Public Class Trigo
         SbNombreUsuario.Text = CStr(row("Nombre"))
         SbTipoUsuario.Text = CStr(row("Nombre_TipoUsuario"))
         SbIdUsuario.Text = CStr(row("id_usuario"))
+        TsBdd.Text = Acceso.basedatos
 
         If CStr(row("id_tipoUsuario")) = 2 Or CStr(row("id_tipoUsuario")) = 3 Then
             UsuariosToolStripMenuItem.Enabled = False
@@ -148,6 +149,7 @@ Public Class Trigo
     End Sub
     Private Sub ConexionBDDToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ConexionBDDToolStripMenuItem.Click
         ConexionBDD.ShowDialog()
+        TsBdd.Text = ConexionBDD.BaseDatos
     End Sub
     Private Sub AutorizacionDiariaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AutorizacionDiariaToolStripMenuItem.Click
         VarGlob1.idUsAutoriza = SbIdUsuario.Text
@@ -164,7 +166,7 @@ Public Class Trigo
             e.Cancel = True
         End If
     End Sub
-    Private Sub SalirToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SalirToolStripMenuItem.Click, MyBase.FormClosing
+    Private Sub SalirToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SalirToolStripMenuItem.Click
         SqlConnection.ClearAllPools()
         Me.Close()
     End Sub

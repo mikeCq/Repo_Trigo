@@ -71,6 +71,7 @@ Partial Class Trigo
         Me.UtileriasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EnlaceABaseDeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AutorizacionDiariaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ConexionBDDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ManualDeUusarioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AcercaDeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -81,7 +82,9 @@ Partial Class Trigo
         Me.SbNombreUsuario = New System.Windows.Forms.ToolStripStatusLabel()
         Me.SbUsuario = New System.Windows.Forms.ToolStripStatusLabel()
         Me.SbIdUsuario = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.ConexionBDDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.TsBdd = New System.Windows.Forms.ToolStripStatusLabel()
         Me.MenuStrip1.SuspendLayout()
         Me.SsUsuario.SuspendLayout()
         Me.SuspendLayout()
@@ -394,6 +397,12 @@ Partial Class Trigo
         Me.AutorizacionDiariaToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
         Me.AutorizacionDiariaToolStripMenuItem.Text = "Autorizacion Diaria"
         '
+        'ConexionBDDToolStripMenuItem
+        '
+        Me.ConexionBDDToolStripMenuItem.Name = "ConexionBDDToolStripMenuItem"
+        Me.ConexionBDDToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.ConexionBDDToolStripMenuItem.Text = "Conexion BDD"
+        '
         'AyudaToolStripMenuItem
         '
         Me.AyudaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ManualDeUusarioToolStripMenuItem, Me.AcercaDeToolStripMenuItem})
@@ -422,7 +431,7 @@ Partial Class Trigo
         'SsUsuario
         '
         Me.SsUsuario.BackColor = System.Drawing.Color.Gray
-        Me.SsUsuario.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SbTipoUsuario, Me.TsSeparador, Me.SbNombreUsuario, Me.SbUsuario, Me.SbIdUsuario})
+        Me.SsUsuario.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TsBdd, Me.ToolStripStatusLabel2, Me.ToolStripStatusLabel1, Me.SbTipoUsuario, Me.TsSeparador, Me.SbNombreUsuario, Me.SbUsuario, Me.SbIdUsuario})
         Me.SsUsuario.Location = New System.Drawing.Point(0, 728)
         Me.SsUsuario.Name = "SsUsuario"
         Me.SsUsuario.RightToLeft = System.Windows.Forms.RightToLeft.Yes
@@ -462,11 +471,23 @@ Partial Class Trigo
         Me.SbIdUsuario.Text = "idUsuario"
         Me.SbIdUsuario.Visible = False
         '
-        'ConexionBDDToolStripMenuItem
+        'ToolStripStatusLabel1
         '
-        Me.ConexionBDDToolStripMenuItem.Name = "ConexionBDDToolStripMenuItem"
-        Me.ConexionBDDToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
-        Me.ConexionBDDToolStripMenuItem.Text = "Conexion BDD"
+        Me.ToolStripStatusLabel1.Name = "ToolStripStatusLabel1"
+        Me.ToolStripStatusLabel1.Size = New System.Drawing.Size(61, 17)
+        Me.ToolStripStatusLabel1.Text = "|                |"
+        '
+        'ToolStripStatusLabel2
+        '
+        Me.ToolStripStatusLabel2.Name = "ToolStripStatusLabel2"
+        Me.ToolStripStatusLabel2.Size = New System.Drawing.Size(96, 17)
+        Me.ToolStripStatusLabel2.Text = ": BASE DE DATOS"
+        '
+        'TsBdd
+        '
+        Me.TsBdd.Name = "TsBdd"
+        Me.TsBdd.Size = New System.Drawing.Size(28, 17)
+        Me.TsBdd.Text = "Bdd"
         '
         'Trigo
         '
@@ -556,4 +577,7 @@ Partial Class Trigo
     Friend WithEvents EntradasGlobalesPorProductorToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents EstatusDeContratosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ConexionBDDToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents TsBdd As ToolStripStatusLabel
+    Friend WithEvents ToolStripStatusLabel2 As ToolStripStatusLabel
+    Friend WithEvents ToolStripStatusLabel1 As ToolStripStatusLabel
 End Class

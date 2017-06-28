@@ -6,7 +6,7 @@ Public Class Almacenes
         NuCapacidadCentro.Controls(0).Visible = False
         llenarCombos()
         ControlBotones()
-        abrir()
+        abrirPrincipal()
         CargarData()
         LimpiarControles()
         DataGridPropiedades()

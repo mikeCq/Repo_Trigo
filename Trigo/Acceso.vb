@@ -23,10 +23,20 @@ Public Class Acceso
             _codUsuario = value
         End Set
     End Property
+    Private _baseDatos As String
+    Public Property BaseDatos() As String
+        Get
+            Return _baseDatos
+        End Get
+        Set(value As String)
+            _baseDatos = value
+        End Set
+    End Property
     Private Sub BtnAceptar_Click(sender As Object, e As EventArgs) Handles BtnAceptar.Click
         cerrarMaster()
         _conUsu = CbBaseDatos.Text
-        abrir()
+        _baseDatos = CbBaseDatos.Text
+        abrirPrincipal()
         'ConexionUsuario(conusu)
         Try
             If usuarioRegistrado(TxUsuario.Text) = True Then
@@ -51,8 +61,9 @@ Public Class Acceso
     Private Sub TxContraseña_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TxContraseña.KeyDown
         If e.KeyCode = Keys.Enter Then
             cerrarMaster()
-            VarGlob1.DataBase = CbBaseDatos.Text
-            abrir()
+            _conUsu = CbBaseDatos.Text
+            _baseDatos = CbBaseDatos.Text
+            abrirPrincipal()
             'ConexionUsuario(conusu)
             Try
                 If usuarioRegistrado(TxUsuario.Text) = True Then
