@@ -6,7 +6,7 @@ Public Class ReporteEstatusContrato
         CREstatusContrato.Refresh()
     End Sub
     Private Sub BtGenerarReporte_Click(sender As Object, e As EventArgs) Handles BtGenerarReporte.Click
-        Dim RPTEstatusContrato As New RPTEstatusContrato
+        Dim RPTEstatusContrato As New RptEstatusContrato1
         If CBEstatusContrato.Text = "" Then
             MessageBox.Show("Seleccione un estatus.", "Aviso")
         Else

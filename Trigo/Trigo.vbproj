@@ -317,6 +317,14 @@
     <Compile Include="CrearBaseDatos.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="DsReporte.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsReporte.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DsReporte.vb">
+      <DependentUpon>DsReporte.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Empresas.Designer.vb">
       <DependentUpon>Empresas.vb</DependentUpon>
     </Compile>
@@ -482,6 +490,24 @@
     <Compile Include="ReporteVentas.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="RPT\RptEntradas.vb">
+      <DependentUpon>RptEntradas.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="RPT\RptBoletaSalida.vb">
+      <DependentUpon>RptBoletaSalida.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="RPT\RptBoletaEmbarque.vb">
+      <DependentUpon>RptBoletaEmbarque.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="RPT\ReporteBoletaEmbarque.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -512,10 +538,10 @@
       <DependentUpon>ReporteEmbarquesXcomprador.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="RPT\ReporteEntradaGlobalXprod.vb">
+    <Compile Include="RPT\RptEntradaGlobalXprod.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ReporteEntradaGlobalXprod.rpt</DependentUpon>
+      <DependentUpon>RptEntradaGlobalXprod.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="RPT\ReporteEntradas.vb">
@@ -554,10 +580,16 @@
       <DependentUpon>ReporteProductor1.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="RPT\ReporteSalidas.vb">
+    <Compile Include="RPT\RptSalidas.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ReporteSalidas.rpt</DependentUpon>
+      <DependentUpon>RptSalidas.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RPT\RptBoletaEntrada.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RptBoletaEntrada.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="RPT\RptComprasXproductor.vb">
@@ -566,10 +598,10 @@
       <DependentUpon>RptComprasXproductor.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="RPT\RPTEstatusContrato.vb">
+    <Compile Include="RPT\RptEstatusContrato1.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>RPTEstatusContrato.rpt</DependentUpon>
+      <DependentUpon>RptEstatusContrato.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="RPT\RptVentaResumen.vb">
@@ -816,6 +848,18 @@
     <EmbeddedResource Include="ReporteVentas.resx">
       <DependentUpon>ReporteVentas.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RPT\RptEntradas.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptEntradas.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RPT\RptBoletaSalida.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptBoletaSalida.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RPT\RptBoletaEmbarque.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptBoletaEmbarque.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="RPT\ReporteBoletaEmbarque.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ReporteBoletaEmbarque.vb</LastGenOutput>
@@ -836,9 +880,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ReporteEmbarquesXcomprador.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="RPT\ReporteEntradaGlobalXprod.rpt">
+    <EmbeddedResource Include="RPT\RptEntradaGlobalXprod.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>ReporteEntradaGlobalXprod.vb</LastGenOutput>
+      <LastGenOutput>RptEntradaGlobalXprod.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="RPT\ReporteEntradas.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -864,17 +908,21 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ReporteProductor1.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="RPT\ReporteSalidas.rpt">
+    <EmbeddedResource Include="RPT\RptSalidas.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>ReporteSalidas.vb</LastGenOutput>
+      <LastGenOutput>RptSalidas.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RPT\RptBoletaEntrada.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RptBoletaEntrada.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="RPT\RptComprasXproductor.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>RptComprasXproductor.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="RPT\RPTEstatusContrato.rpt">
+    <EmbeddedResource Include="RPT\RptEstatusContrato.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RPTEstatusContrato.vb</LastGenOutput>
+      <LastGenOutput>RptEstatusContrato1.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="RPT\RptVentaResumen.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -916,6 +964,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="DsReporte.xsc">
+      <DependentUpon>DsReporte.xsd</DependentUpon>
+    </None>
+    <None Include="DsReporte.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsReporte.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="DsReporte.xss">
+      <DependentUpon>DsReporte.xsd</DependentUpon>
+    </None>
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
@@ -1001,6 +1060,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

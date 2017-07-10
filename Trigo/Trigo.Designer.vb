@@ -72,6 +72,7 @@ Partial Class Trigo
         Me.EnlaceABaseDeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AutorizacionDiariaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ConexionBDDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CrearNuevaBDDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AyudaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ManualDeUusarioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AcercaDeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -85,7 +86,6 @@ Partial Class Trigo
         Me.SbNombreUsuario = New System.Windows.Forms.ToolStripStatusLabel()
         Me.SbUsuario = New System.Windows.Forms.ToolStripStatusLabel()
         Me.SbIdUsuario = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.CrearNuevaBDDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SsUsuario.SuspendLayout()
         Me.SuspendLayout()
@@ -404,6 +404,12 @@ Partial Class Trigo
         Me.ConexionBDDToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
         Me.ConexionBDDToolStripMenuItem.Text = "Conexion BDD"
         '
+        'CrearNuevaBDDToolStripMenuItem
+        '
+        Me.CrearNuevaBDDToolStripMenuItem.Name = "CrearNuevaBDDToolStripMenuItem"
+        Me.CrearNuevaBDDToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
+        Me.CrearNuevaBDDToolStripMenuItem.Text = "Crear nueva BDD"
+        '
         'AyudaToolStripMenuItem
         '
         Me.AyudaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ManualDeUusarioToolStripMenuItem, Me.AcercaDeToolStripMenuItem})
@@ -489,12 +495,6 @@ Partial Class Trigo
         Me.SbIdUsuario.Size = New System.Drawing.Size(57, 17)
         Me.SbIdUsuario.Text = "idUsuario"
         Me.SbIdUsuario.Visible = False
-        '
-        'CrearNuevaBDDToolStripMenuItem
-        '
-        Me.CrearNuevaBDDToolStripMenuItem.Name = "CrearNuevaBDDToolStripMenuItem"
-        Me.CrearNuevaBDDToolStripMenuItem.Size = New System.Drawing.Size(185, 22)
-        Me.CrearNuevaBDDToolStripMenuItem.Text = "Crear nueva BDD"
         '
         'Trigo
         '

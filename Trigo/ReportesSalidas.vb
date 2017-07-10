@@ -37,14 +37,59 @@ Public Class ReportesSalidas
         TxNumBoleta.Select()
     End Sub
     Private Sub generaReporte(sender As Object, e As EventArgs) Handles BtGenerarReporte.Click
-        Dim RptSalidas As New ReporteSalidas
+        'Dim RptSalidas As New ReporteSalidas
         If DTInicio.Value <= DTFinal.Value And DTFinal.Value >= DTInicio.Value Then
-            RptSalidas.SetDatabaseLogon(VarGlob1.UserDB, VarGlob1.PasswordDB, VarGlob1.ServerDB, VarGlob1.DataBase)
-            RptSalidas.SetParameterValue("@numboleta", TxNumBoleta.Text)
-            RptSalidas.SetParameterValue("@comprador", IIf(CbComprador.SelectedValue = Nothing, "", CbComprador.SelectedValue))
-            RptSalidas.SetParameterValue("@fechaini", DTInicio.Value)
-            RptSalidas.SetParameterValue("@fechafin", DTFinal.Value)
-            CRsalidas.ReportSource = RptSalidas
+            'RptSalidas.SetDatabaseLogon(VarGlob1.UserDB, VarGlob1.PasswordDB, VarGlob1.ServerDB, VarGlob1.DataBase)
+            'RptSalidas.SetParameterValue("@numboleta", TxNumBoleta.Text)
+            'RptSalidas.SetParameterValue("@comprador", IIf(CbComprador.SelectedValue = Nothing, "", CbComprador.SelectedValue))
+            'RptSalidas.SetParameterValue("@fechaini", DTInicio.Value)
+            'RptSalidas.SetParameterValue("@fechafin", DTFinal.Value)
+            'CRsalidas.ReportSource = RptSalidas
+
+            Try
+                Dim da As New SqlCommand("sp_reporteSalidas", cnn)
+                da.CommandType = CommandType.StoredProcedure
+                Dim NumBoleta As New SqlClient.SqlParameter()
+                Dim idProductor As New SqlClient.SqlParameter()
+                Dim Fechainicial As New SqlClient.SqlParameter()
+                Dim FechaFinal As New SqlClient.SqlParameter()
+
+                NumBoleta.ParameterName = "@numBoleta"
+                idProductor.ParameterName = "@comprador"
+                Fechainicial.ParameterName = "@fechaini"
+                FechaFinal.ParameterName = "@fechafin"
+
+                NumBoleta.SqlDbType = SqlDbType.NVarChar
+                idProductor.SqlDbType = SqlDbType.NVarChar
+                Fechainicial.SqlDbType = SqlDbType.Date
+                FechaFinal.SqlDbType = SqlDbType.Date
+
+                NumBoleta.Value = TxNumBoleta.Text
+                idProductor.Value = IIf(CbComprador.SelectedValue Is Nothing, "", CbComprador.SelectedValue)
+                Fechainicial.Value = DTInicio.Value
+                FechaFinal.Value = DTFinal.Value
+
+                da.Parameters.Add(NumBoleta)
+                da.Parameters.Add(idProductor)
+                da.Parameters.Add(Fechainicial)
+                da.Parameters.Add(FechaFinal)
+
+                Dim dasp_ReporteEntradas As New SqlClient.SqlDataAdapter()
+                dasp_ReporteEntradas.SelectCommand = da
+                Dim ds As New DataTable
+                dasp_ReporteEntradas.Fill(ds)
+
+                Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
+                ' Asigno el reporte 
+                CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
+                'CrReport.Load(Application.StartupPath & "\RPT\RptEntradas.rpt")
+                CrReport.Load("C:\Users\MSISTEMAS\Desktop\Desarrollo\Respositorio_Trigo\Trigo\RPT\RptSalidas.rpt")
+                CrReport.SetDataSource(ds)
+
+                CRsalidas.ReportSource = CrReport
+            Catch ex As Exception
+                MessageBox.Show("excepcion: " & ex.Message, "Mostrando Reporte")
+            End Try
         Else
             MessageBox.Show("La fecha inicial no puede ser mayor que la fecha final, ni la fecha final, menor que la fecha inicial.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error)
             limpiarCampos()
@@ -53,14 +98,52 @@ Public Class ReportesSalidas
     Private Sub TxContraseña_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TxNumBoleta.KeyDown, DTFinal.KeyDown, CbComprador.KeyDown
         If e.KeyCode = Keys.Enter Then
             Try
-                Dim RptSalidas As New ReporteSalidas
+                'Dim RptSalidas As New ReporteSalidas
                 If DTInicio.Value <= DTFinal.Value And DTFinal.Value >= DTInicio.Value Then
-                    RptSalidas.SetDatabaseLogon(VarGlob1.UserDB, VarGlob1.PasswordDB, VarGlob1.ServerDB, VarGlob1.DataBase)
-                    RptSalidas.SetParameterValue("@numboleta", TxNumBoleta.Text)
-                    RptSalidas.SetParameterValue("@comprador", IIf(CbComprador.SelectedValue = Nothing, "", CbComprador.SelectedValue))
-                    RptSalidas.SetParameterValue("@fechaini", DTInicio.Value)
-                    RptSalidas.SetParameterValue("@fechafin", DTFinal.Value)
-                    CRsalidas.ReportSource = RptSalidas
+                    Try
+                        Dim da As New SqlCommand("sp_reporteSalidas", cnn)
+                        da.CommandType = CommandType.StoredProcedure
+                        Dim NumBoleta As New SqlClient.SqlParameter()
+                        Dim idProductor As New SqlClient.SqlParameter()
+                        Dim Fechainicial As New SqlClient.SqlParameter()
+                        Dim FechaFinal As New SqlClient.SqlParameter()
+
+                        NumBoleta.ParameterName = "@numBoleta"
+                        idProductor.ParameterName = "@comprador"
+                        Fechainicial.ParameterName = "@fechaini"
+                        FechaFinal.ParameterName = "@fechafin"
+
+                        NumBoleta.SqlDbType = SqlDbType.NVarChar
+                        idProductor.SqlDbType = SqlDbType.NVarChar
+                        Fechainicial.SqlDbType = SqlDbType.Date
+                        FechaFinal.SqlDbType = SqlDbType.Date
+
+                        NumBoleta.Value = TxNumBoleta.Text
+                        idProductor.Value = IIf(CbComprador.SelectedValue Is Nothing, "", CbComprador.SelectedValue)
+                        Fechainicial.Value = DTInicio.Value
+                        FechaFinal.Value = DTFinal.Value
+
+                        da.Parameters.Add(NumBoleta)
+                        da.Parameters.Add(idProductor)
+                        da.Parameters.Add(Fechainicial)
+                        da.Parameters.Add(FechaFinal)
+
+                        Dim dasp_ReporteEntradas As New SqlClient.SqlDataAdapter()
+                        dasp_ReporteEntradas.SelectCommand = da
+                        Dim ds As New DataTable
+                        dasp_ReporteEntradas.Fill(ds)
+
+                        Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
+                        ' Asigno el reporte 
+                        CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
+                        'CrReport.Load(Application.StartupPath & "\RPT\RptEntradas.rpt")
+                        CrReport.Load("C:\Users\MSISTEMAS\Desktop\Desarrollo\Respositorio_Trigo\Trigo\RPT\RptSalidas.rpt")
+                        CrReport.SetDataSource(ds)
+
+                        CRsalidas.ReportSource = CrReport
+                    Catch ex As Exception
+                        MessageBox.Show("excepcion: " & ex.Message, "Mostrando Reporte")
+                    End Try
                 Else
                     MessageBox.Show("La fecha inicial no puede ser mayor que la fecha final, ni la fecha final, menor que la fecha inicial.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     limpiarCampos()
