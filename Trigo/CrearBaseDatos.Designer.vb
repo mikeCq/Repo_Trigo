@@ -39,6 +39,8 @@ Partial Class CrearBaseDatos
         '
         'TbNombre
         '
+        Me.TbNombre.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TbNombre.Enabled = False
         Me.TbNombre.Location = New System.Drawing.Point(63, 9)
         Me.TbNombre.Name = "TbNombre"
         Me.TbNombre.Size = New System.Drawing.Size(209, 20)
@@ -66,7 +68,7 @@ Partial Class CrearBaseDatos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(284, 108)
+        Me.ClientSize = New System.Drawing.Size(284, 71)
         Me.Controls.Add(Me.BtCancelar)
         Me.Controls.Add(Me.BtAceptar)
         Me.Controls.Add(Me.TbNombre)

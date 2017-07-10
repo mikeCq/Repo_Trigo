@@ -317,6 +317,7 @@
     <Compile Include="CrearBaseDatos.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="CrearTablas.vb" />
     <Compile Include="Empresas.Designer.vb">
       <DependentUpon>Empresas.vb</DependentUpon>
     </Compile>
@@ -358,6 +359,7 @@
     <Compile Include="LiquidacionXcomprador.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="LlenarTablas.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <DependentUpon>Application.myapp</DependentUpon>
       <AutoGen>True</AutoGen>
