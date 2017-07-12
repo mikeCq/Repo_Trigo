@@ -18,7 +18,7 @@ Imports System
 Imports System.ComponentModel
 
 
-Public Class ReporteLiquidacionResumen
+Public Class RptBoletaSalida
     Inherits ReportClass
     
     Public Sub New()
@@ -27,7 +27,7 @@ Public Class ReporteLiquidacionResumen
     
     Public Overrides Property ResourceName() As String
         Get
-            Return "ReporteLiquidacionResumen.rpt"
+            Return "RptBoletaSalida.rpt"
         End Get
         Set
             'Do nothing
@@ -45,7 +45,7 @@ Public Class ReporteLiquidacionResumen
     
     Public Overrides Property FullResourceName() As String
         Get
-            Return "Trigo.ReporteLiquidacionResumen.rpt"
+            Return "Trigo.RptBoletaSalida.rpt"
         End Get
         Set
             'Do nothing
@@ -94,15 +94,23 @@ Public Class ReporteLiquidacionResumen
     
     <Browsable(false),  _
      DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
-    Public ReadOnly Property Parameter_idLiquidacionTotal() As CrystalDecisions.[Shared].IParameterField
+    Public ReadOnly Property Parameter_MaizAmarillo() As CrystalDecisions.[Shared].IParameterField
         Get
             Return Me.DataDefinition.ParameterFields(0)
+        End Get
+    End Property
+    
+    <Browsable(false),  _
+     DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)>  _
+    Public ReadOnly Property Parameter_MaizBlanco() As CrystalDecisions.[Shared].IParameterField
+        Get
+            Return Me.DataDefinition.ParameterFields(1)
         End Get
     End Property
 End Class
 
 <System.Drawing.ToolboxBitmapAttribute(GetType(CrystalDecisions.[Shared].ExportOptions), "report.bmp")>  _
-Public Class CachedReporteLiquidacionResumen
+Public Class CachedRptBoletaSalida
     Inherits Component
     Implements ICachedReport
     
@@ -144,7 +152,7 @@ Public Class CachedReporteLiquidacionResumen
     End Property
     
     Public Overridable Function CreateReport() As CrystalDecisions.CrystalReports.Engine.ReportDocument Implements CrystalDecisions.ReportSource.ICachedReport.CreateReport
-        Dim rpt As ReporteLiquidacionResumen = New ReporteLiquidacionResumen()
+        Dim rpt As RptBoletaSalida = New RptBoletaSalida()
         rpt.Site = Me.Site
         Return rpt
     End Function

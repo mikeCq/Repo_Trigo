@@ -46,7 +46,7 @@ Partial Class Acceso
         Me.TxContraseña.Name = "TxContraseña"
         Me.TxContraseña.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.TxContraseña.Size = New System.Drawing.Size(172, 22)
-        Me.TxContraseña.TabIndex = 2
+        Me.TxContraseña.TabIndex = 1
         '
         'LbNomUsu
         '
@@ -95,7 +95,7 @@ Partial Class Acceso
         Me.TxUsuario.MaxLength = 15
         Me.TxUsuario.Name = "TxUsuario"
         Me.TxUsuario.Size = New System.Drawing.Size(172, 22)
-        Me.TxUsuario.TabIndex = 2
+        Me.TxUsuario.TabIndex = 0
         '
         'BtnCancelar
         '
@@ -103,7 +103,7 @@ Partial Class Acceso
         Me.BtnCancelar.Name = "BtnCancelar"
         Me.BtnCancelar.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.BtnCancelar.Size = New System.Drawing.Size(83, 30)
-        Me.BtnCancelar.TabIndex = 9
+        Me.BtnCancelar.TabIndex = 4
         Me.BtnCancelar.Text = "Cancelar"
         Me.BtnCancelar.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.BtnCancelar.UseVisualStyleBackColor = True
@@ -113,7 +113,7 @@ Partial Class Acceso
         Me.BtnAceptar.Location = New System.Drawing.Point(356, 189)
         Me.BtnAceptar.Name = "BtnAceptar"
         Me.BtnAceptar.Size = New System.Drawing.Size(83, 30)
-        Me.BtnAceptar.TabIndex = 8
+        Me.BtnAceptar.TabIndex = 3
         Me.BtnAceptar.Text = "Aceptar"
         Me.BtnAceptar.TextAlign = System.Drawing.ContentAlignment.TopCenter
         Me.BtnAceptar.UseVisualStyleBackColor = True
@@ -143,7 +143,7 @@ Partial Class Acceso
         Me.CbBaseDatos.Location = New System.Drawing.Point(357, 139)
         Me.CbBaseDatos.Name = "CbBaseDatos"
         Me.CbBaseDatos.Size = New System.Drawing.Size(171, 24)
-        Me.CbBaseDatos.TabIndex = 12
+        Me.CbBaseDatos.TabIndex = 2
         '
         'Label2
         '

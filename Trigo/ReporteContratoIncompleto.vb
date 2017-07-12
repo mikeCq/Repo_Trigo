@@ -6,14 +6,47 @@ Public Class ReporteEstatusContrato
         CREstatusContrato.Refresh()
     End Sub
     Private Sub BtGenerarReporte_Click(sender As Object, e As EventArgs) Handles BtGenerarReporte.Click
-        Dim RPTEstatusContrato As New RPTEstatusContrato
+        'Dim RPTEstatusContrato As New RptEstatusContrato1
         If CBEstatusContrato.Text = "" Then
             MessageBox.Show("Seleccione un estatus.", "Aviso")
         Else
-            RPTEstatusContrato.SetDatabaseLogon(VarGlob1.UserDB, VarGlob1.PasswordDB, VarGlob1.ServerDB, VarGlob1.DataBase)
+            'RPTEstatusContrato.SetDatabaseLogon(VarGlob1.UserDB, VarGlob1.PasswordDB, VarGlob1.ServerDB, VarGlob1.DataBase)
             'RPTEstatusContrato.SetParameterValue("@IdCliente", IIf(CBComprador.SelectedValue = Nothing, "", CBEstatusContrato.SelectedValue))
-            RPTEstatusContrato.SetParameterValue("@IdEstatus", CBEstatusContrato.SelectedValue)
-            CREstatusContrato.ReportSource = RPTEstatusContrato
+            'RPTEstatusContrato.SetParameterValue("@IdEstatus", CBEstatusContrato.SelectedValue)
+            'CREstatusContrato.ReportSource = RPTEstatusContrato
+
+            Try
+                Dim da As New SqlCommand("sp_ReporteEstatusContrato", cnn)
+                da.CommandType = CommandType.StoredProcedure
+                Dim Estatus As New SqlClient.SqlParameter()
+
+                Estatus.ParameterName = "@IdEstatus"
+
+                Estatus.SqlDbType = SqlDbType.Int
+
+
+                Estatus.Value = CBEstatusContrato.SelectedValue
+
+
+                da.Parameters.Add(Estatus)
+
+
+                Dim dasp_ReporteEstatusContrato As New SqlClient.SqlDataAdapter()
+                dasp_ReporteEstatusContrato.SelectCommand = da
+                Dim ds As New DataTable
+                dasp_ReporteEstatusContrato.Fill(ds)
+
+                Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
+                ' Asigno el reporte 
+                CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
+                'CrReport.Load(Application.StartupPath & "\RPT\RptEntradas.rpt")
+                CrReport.Load("C:\Users\MSISTEMAS\Desktop\Desarrollo\Respositorio_Trigo\Trigo\RPT\RptEstatusContrato.rpt")
+                CrReport.SetDataSource(ds)
+
+                CREstatusContrato.ReportSource = CrReport
+            Catch ex As Exception
+                MessageBox.Show("excepcion: " & ex.Message, "Mostrando Reporte")
+            End Try
         End If
 
     End Sub
