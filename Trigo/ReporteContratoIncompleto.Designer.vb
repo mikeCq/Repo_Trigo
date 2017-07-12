@@ -115,6 +115,7 @@ Partial Class ReporteEstatusContrato
         Me.Controls.Add(Me.SplitContainer1)
         Me.Name = "ReporteEstatusContrato"
         Me.Text = "ReporteContratoIncompleto"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel1.PerformLayout()
         Me.SplitContainer1.Panel2.ResumeLayout(False)

@@ -39,12 +39,58 @@ Public Class ReporteCompras
         Try
             Dim RptReporteCompras As New RptComprasXproductor
             If DTInicio.Value <= DTFinal.Value And DTFinal.Value >= DTInicio.Value Then
-                RptReporteCompras.SetDatabaseLogon(VarGlob1.UserDB, VarGlob1.PasswordDB, VarGlob1.ServerDB, VarGlob1.DataBase)
-                RptReporteCompras.SetParameterValue("@idproductor", IIf(CbProductor.SelectedValue = Nothing, "", CbProductor.SelectedValue))
-                RptReporteCompras.SetParameterValue("@tipoContrato", IIf(CbTipoContrato.Text = Nothing, "", CbTipoContrato.Text))
-                RptReporteCompras.SetParameterValue("@fechaini", DTInicio.Value)
-                RptReporteCompras.SetParameterValue("@fechafin", DTFinal.Value)
-                CrComprasXproductor.ReportSource = RptReporteCompras
+                'RptReporteCompras.SetDatabaseLogon(VarGlob1.UserDB, VarGlob1.PasswordDB, VarGlob1.ServerDB, VarGlob1.DataBase)
+                'RptReporteCompras.SetParameterValue("@idproductor", IIf(CbProductor.SelectedValue = Nothing, "", CbProductor.SelectedValue))
+                'RptReporteCompras.SetParameterValue("@tipoContrato", IIf(CbTipoContrato.Text = Nothing, "", CbTipoContrato.Text))
+                'RptReporteCompras.SetParameterValue("@fechaini", DTInicio.Value)
+                'RptReporteCompras.SetParameterValue("@fechafin", DTFinal.Value)
+                'CrComprasXproductor.ReportSource = RptReporteCompras
+
+                Try
+                    Dim da As New SqlCommand("sp_ReporteCompras", cnn)
+                    da.CommandType = CommandType.StoredProcedure
+                    Dim TipoContrato As New SqlClient.SqlParameter()
+                    Dim idProductor As New SqlClient.SqlParameter()
+                    Dim Fechainicial As New SqlClient.SqlParameter()
+                    Dim FechaFinal As New SqlClient.SqlParameter()
+
+                    idProductor.ParameterName = "@idproductor"
+                    TipoContrato.ParameterName = "@tipoContrato"
+                    Fechainicial.ParameterName = "@fechaini"
+                    FechaFinal.ParameterName = "@fechafin"
+
+                    TipoContrato.SqlDbType = SqlDbType.NVarChar
+                    idProductor.SqlDbType = SqlDbType.NVarChar
+                    Fechainicial.SqlDbType = SqlDbType.Date
+                    FechaFinal.SqlDbType = SqlDbType.Date
+
+                    idProductor.Value = IIf(CbProductor.SelectedValue Is Nothing, "", CbProductor.SelectedValue)
+                    TipoContrato.Value = IIf(CbTipoContrato.Text Is Nothing, "", CbTipoContrato.Text)
+                    Fechainicial.Value = DTInicio.Value
+                    FechaFinal.Value = DTFinal.Value
+
+                    da.Parameters.Add(TipoContrato)
+                    da.Parameters.Add(idProductor)
+                    da.Parameters.Add(Fechainicial)
+                    da.Parameters.Add(FechaFinal)
+
+                    Dim dasp_ReporteCompras As New SqlClient.SqlDataAdapter()
+                    dasp_ReporteCompras.SelectCommand = da
+                    Dim ds As New DataTable
+                    dasp_ReporteCompras.Fill(ds)
+
+                    Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
+                    ' Asigno el reporte 
+                    CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
+                    'CrReport.Load(Application.StartupPath & "\RPT\RptEntradas.rpt")
+                    CrReport.Load("C:\Users\MSISTEMAS\Desktop\Desarrollo\Respositorio_Trigo\Trigo\RPT\RptComprasXproductor.rpt")
+                    CrReport.SetDataSource(ds)
+
+                    CrComprasXproductor.ReportSource = CrReport
+                Catch ex As Exception
+                    MessageBox.Show("excepcion: " & ex.Message, "Mostrando Reporte")
+                End Try
+
             Else
                 MessageBox.Show("La fecha inicial no puede ser mayor que la fecha final, ni la fecha final, menor que la fecha inicial.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 limpiarCampos()
@@ -58,12 +104,59 @@ Public Class ReporteCompras
             Try
                 Dim RptReporteCompras As New RptComprasXproductor
                 If DTInicio.Value <= DTFinal.Value And DTFinal.Value >= DTInicio.Value Then
-                    RptReporteCompras.SetDatabaseLogon(VarGlob1.UserDB, VarGlob1.PasswordDB, VarGlob1.ServerDB, VarGlob1.DataBase)
-                    RptReporteCompras.SetParameterValue("@idproductor", IIf(CbProductor.SelectedValue = Nothing, "", CbProductor.SelectedValue))
-                    RptReporteCompras.SetParameterValue("@tipoContrato", IIf(CbTipoContrato.Text = Nothing, "", CbTipoContrato.Text))
-                    RptReporteCompras.SetParameterValue("@fechaini", DTInicio.Value)
-                    RptReporteCompras.SetParameterValue("@fechafin", DTFinal.Value)
-                    CrComprasXproductor.ReportSource = RptReporteCompras
+                    'RptReporteCompras.SetDatabaseLogon(VarGlob1.UserDB, VarGlob1.PasswordDB, VarGlob1.ServerDB, VarGlob1.DataBase)
+                    'RptReporteCompras.SetParameterValue("@idproductor", IIf(CbProductor.SelectedValue = Nothing, "", CbProductor.SelectedValue))
+                    'RptReporteCompras.SetParameterValue("@tipoContrato", IIf(CbTipoContrato.Text = Nothing, "", CbTipoContrato.Text))
+                    'RptReporteCompras.SetParameterValue("@fechaini", DTInicio.Value)
+                    'RptReporteCompras.SetParameterValue("@fechafin", DTFinal.Value)
+                    'CrComprasXproductor.ReportSource = RptReporteCompras
+
+
+                    Try
+                        Dim da As New SqlCommand("sp_ReporteCompras", cnn)
+                        da.CommandType = CommandType.StoredProcedure
+                        Dim TipoContrato As New SqlClient.SqlParameter()
+                        Dim idProductor As New SqlClient.SqlParameter()
+                        Dim Fechainicial As New SqlClient.SqlParameter()
+                        Dim FechaFinal As New SqlClient.SqlParameter()
+
+                        idProductor.ParameterName = "@idproductor"
+                        TipoContrato.ParameterName = "@tipoContrato"
+                        Fechainicial.ParameterName = "@fechaini"
+                        FechaFinal.ParameterName = "@fechafin"
+
+                        TipoContrato.SqlDbType = SqlDbType.NVarChar
+                        idProductor.SqlDbType = SqlDbType.NVarChar
+                        Fechainicial.SqlDbType = SqlDbType.Date
+                        FechaFinal.SqlDbType = SqlDbType.Date
+
+                        idProductor.Value = IIf(CbProductor.SelectedValue Is Nothing, "", CbProductor.SelectedValue)
+                        TipoContrato.Value = IIf(CbTipoContrato.Text Is Nothing, "", CbTipoContrato.Text)
+                        Fechainicial.Value = DTInicio.Value
+                        FechaFinal.Value = DTFinal.Value
+
+                        da.Parameters.Add(TipoContrato)
+                        da.Parameters.Add(idProductor)
+                        da.Parameters.Add(Fechainicial)
+                        da.Parameters.Add(FechaFinal)
+
+                        Dim dasp_ReporteCompras As New SqlClient.SqlDataAdapter()
+                        dasp_ReporteCompras.SelectCommand = da
+                        Dim ds As New DataTable
+                        dasp_ReporteCompras.Fill(ds)
+
+                        Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
+                        ' Asigno el reporte 
+                        CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
+                        'CrReport.Load(Application.StartupPath & "\RPT\RptEntradas.rpt")
+                        CrReport.Load("C:\Users\MSISTEMAS\Desktop\Desarrollo\Respositorio_Trigo\Trigo\RPT\RptComprasXproductor.rpt")
+                        CrReport.SetDataSource(ds)
+
+                        CrComprasXproductor.ReportSource = CrReport
+                    Catch ex As Exception
+                        MessageBox.Show("excepcion: " & ex.Message, "Mostrando Reporte")
+                    End Try
+
                 Else
                     MessageBox.Show("La fecha inicial no puede ser mayor que la fecha final, ni la fecha final, menor que la fecha inicial.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     limpiarCampos()

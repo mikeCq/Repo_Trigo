@@ -556,16 +556,16 @@
       <DependentUpon>ReporteGlobalInventario.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="RPT\ReporteLiquidacionesXproductor.vb">
+    <Compile Include="RPT\RptLiquidacionesXproductor.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ReporteLiquidacionesXproductor.rpt</DependentUpon>
+      <DependentUpon>RptLiquidacionesXproductor.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="RPT\ReporteLiquidacionResumen.vb">
+    <Compile Include="RPT\RptLiquidacionResumen.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ReporteLiquidacionResumen.rpt</DependentUpon>
+      <DependentUpon>RptLiquidacionResumen.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="RPT\ReporteProductor.vb">
@@ -892,13 +892,13 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>ReporteGlobalInventario.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="RPT\ReporteLiquidacionesXproductor.rpt">
+    <EmbeddedResource Include="RPT\RptLiquidacionesXproductor.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>ReporteLiquidacionesXproductor.vb</LastGenOutput>
+      <LastGenOutput>RptLiquidacionesXproductor.vb</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="RPT\ReporteLiquidacionResumen.rpt">
+    <EmbeddedResource Include="RPT\RptLiquidacionResumen.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>ReporteLiquidacionResumen.vb</LastGenOutput>
+      <LastGenOutput>RptLiquidacionResumen.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="RPT\ReporteProductor.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
