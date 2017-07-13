@@ -82,8 +82,8 @@ Public Class ReporteCompras
                     Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
                     ' Asigno el reporte 
                     CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
-                    'CrReport.Load(Application.StartupPath & "\RPT\RptEntradas.rpt")
-                    CrReport.Load("C:\Users\MSISTEMAS\Desktop\Desarrollo\Respositorio_Trigo\Trigo\RPT\RptComprasXproductor.rpt")
+                    CrReport.Load(Application.StartupPath & "\RPT\RptComprasXproductor.rpt")
+                    'CrReport.Load("C:\Users\MSISTEMAS\Desktop\Desarrollo\Respositorio_Trigo\Trigo\RPT\RptComprasXproductor.rpt")
                     CrReport.SetDataSource(ds)
 
                     CrComprasXproductor.ReportSource = CrReport
