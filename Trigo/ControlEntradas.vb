@@ -212,20 +212,20 @@ Public Class ControlEntradas
         TxPuntaNegra.Text = FormatNumber(TxPuntaNegra.Text, 2)
         TxPorcentajePB.Text = FormatNumber(TxPorcentajePB.Text, 2)
 
-        If Val(TxImpurezas.Text) > 2 And Val(TxImpurezas.Text) <= 8 Then
-            Dim RI As Double = 0
-            RI = CDbl(TxImpurezas.Text) - 2
-            'Dim cmd As New SqlCommand("Sp_CalculoImpureza", cnn)
-            'cmd.CommandType = CommandType.StoredProcedure
-            'cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxImpurezas.Text))
-            'Dim da As New SqlClient.SqlDataAdapter(cmd)
-            'Dim dt As New DataTable
-            'da.Fill(dt)
-            'Dim row As DataRow = dt.Rows(0)
-            'deduccionImpurezas = row("deduccion")
-            calculaImpureza = (((RI / 0.1) * 1) * CDbl(TxNeto.Text)) / 1000
-            'calculaImpureza = (CDbl(TxNeto.Text) / 1000) * deduccionImpurezas
-            ' ElseIf Val(TxImpurezas.Text) > 5 Then
+        If Val(TxImpurezas.Text) > 2 And Val(TxImpurezas.Text) <= 5 Then
+            'Dim RI As Double = 0
+            'RI = CDbl(TxImpurezas.Text) - 2
+            Dim cmd As New SqlCommand("Sp_CalculoImpureza", cnn)
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxImpurezas.Text))
+            Dim da As New SqlClient.SqlDataAdapter(cmd)
+            Dim dt As New DataTable
+            da.Fill(dt)
+            Dim row As DataRow = dt.Rows(0)
+            deduccionImpurezas = row("deduccion")
+            'calculaImpureza = (((RI / 0.1) * 1) * CDbl(TxNeto.Text)) / 1000
+            calculaImpureza = (CDbl(TxNeto.Text) / 1000) * deduccionImpurezas
+        ElseIf Val(TxImpurezas.Text) > 5 Then
 
         Else
             calculaImpureza = 0
@@ -266,55 +266,56 @@ Public Class ControlEntradas
         Else
             calculoContraste = 0
         End If
-        If Val(TxPorcentajePB.Text) > 2 And Val(TxPorcentajePB.Text) <= 8 Then
-            Dim RI As Double = 0
-            RI = CDbl(TxPorcentajePB.Text) - 2
-            'Dim cmd As New SqlCommand("Sp_CalculoImpureza", cnn)
-            'cmd.CommandType = CommandType.StoredProcedure
-            'cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxImpurezas.Text))
-            'Dim da As New SqlClient.SqlDataAdapter(cmd)
-            'Dim dt As New DataTable
-            'da.Fill(dt)
-            'Dim row As DataRow = dt.Rows(0)
-            'deduccionImpurezas = row("deduccion")
-            calculoPanzaB = (((RI / 0.1) * 1) * CDbl(TxNeto.Text)) / 1000
-            'calculaImpureza = (CDbl(TxNeto.Text) / 1000) * deduccionImpurezas
-            ' ElseIf Val(TxImpurezas.Text) > 5 Then
+        If Val(TxPorcentajePB.Text) > 22 And Val(TxPorcentajePB.Text) <= 99.9 Then
+            'Dim RI As Double = 0
+            'RI = CDbl(TxPorcentajePB.Text) - 2
+            Dim cmd As New SqlCommand("Sp_CalculoPanzaBlanca", cnn)
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxPorcentajePB.Text))
+            Dim da As New SqlClient.SqlDataAdapter(cmd)
+            Dim dt As New DataTable
+            da.Fill(dt)
+            Dim row As DataRow = dt.Rows(0)
+            deduccionPanzaB = row("deduccion")
+            'calculoPanzaB = (((RI / 0.1) * 1) * CDbl(TxNeto.Text)) / 1000
+            calculoPanzaB = (CDbl(TxNeto.Text) / 1000) * deduccionPanzaB
+        ElseIf Val(TxPorcentajePB.Text) > 99.9 Then
 
         Else
             calculoPanzaB = 0
         End If
-        If Val(TxGranoDan.Text) > 5 And Val(TxGranoDan.Text) <= 10 Then
-            Dim RG As Double = 0
-            RG = CDbl(TxGranoDan.Text) - 5
-            'Dim cmd As New SqlCommand("Sp_CalculoGranDan", cnn)
-            'cmd.CommandType = CommandType.StoredProcedure
-            'cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxGranoDan.Text))
-            'Dim da As New SqlClient.SqlDataAdapter(cmd)
-            'Dim dt As New DataTable
-            'da.Fill(dt)
-            'Dim row As DataRow = dt.Rows(0)
-            'deduccionGrandan = row("deduccion")
-            calculaGranoDan = (((RG / 0.1) * 1) * CDbl(TxNeto.Text)) / 1000
-            'ElseIf Val(TxGranoDan.Text) > 3.0 Then
+        If Val(TxGranoDan.Text) > 1.5 And Val(TxGranoDan.Text) <= 3 Then
+            'Dim RG As Double = 0
+            'RG = CDbl(TxGranoDan.Text) - 5
+            Dim cmd As New SqlCommand("Sp_CalculoGranDan", cnn)
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxGranoDan.Text))
+            Dim da As New SqlClient.SqlDataAdapter(cmd)
+            Dim dt As New DataTable
+            da.Fill(dt)
+            Dim row As DataRow = dt.Rows(0)
+            deduccionGrandan = row("deduccion")
+            calculaGranoDan = (CDbl(TxNeto.Text) / 1000) * deduccionGrandan
+            'calculaGranoDan = (((RG / 0.1) * 1) * CDbl(TxNeto.Text)) / 1000
+        ElseIf Val(TxGranoDan.Text) > 3.0 Then
 
         Else
             calculaGranoDan = 0
         End If
-        If Val(TxHumedad.Text) > 14 And Val(TxHumedad.Text) <= 18 Then
-            Dim RH As Double = 0
-            RH = CDbl(TxHumedad.Text) - 14
-            'Dim cmd As New SqlCommand("Sp_CalculoHumedad", cnn)
-            'cmd.CommandType = CommandType.StoredProcedure
-            'cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxHumedad.Text))
-            'Dim da As New SqlClient.SqlDataAdapter(cmd)
-            'Dim dt As New DataTable
-            'da.Fill(dt)
-            'Dim row As DataRow = dt.Rows(0)
-            'deduccionHumedad = row("deduccion")
-            calculoHumedad = (((RH / 0.1) * 1.16) * CDbl(TxNeto.Text)) / 1000
-            'calculoHumedad = (CDbl(TxNeto.Text) / 1000) * deduccionHumedad
-            ' ElseIf Val(TxHumedad.Text) > 15.0 Then
+        If Val(TxHumedad.Text) > 14 And Val(TxHumedad.Text) <= 15 Then
+            'Dim RH As Double = 0
+            'RH = CDbl(TxHumedad.Text) - 14
+            Dim cmd As New SqlCommand("Sp_CalculoHumedad", cnn)
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxHumedad.Text))
+            Dim da As New SqlClient.SqlDataAdapter(cmd)
+            Dim dt As New DataTable
+            da.Fill(dt)
+            Dim row As DataRow = dt.Rows(0)
+            deduccionHumedad = row("deduccion")
+            'calculoHumedad = (((RH / 0.1) * 1.16) * CDbl(TxNeto.Text)) / 1000
+            calculoHumedad = (CDbl(TxNeto.Text) / 1000) * deduccionHumedad
+        ElseIf Val(TxHumedad.Text) > 15.0 Then
 
         Else
             calculoHumedad = 0

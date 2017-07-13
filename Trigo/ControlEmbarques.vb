@@ -197,14 +197,17 @@ Public Class ControlEmbarques
 
         End If
     End Sub
+
     Private Sub calculos()
+
         deduccionGrandan = 0
         deduccionHumedad = 0
         deduccionImpurezas = 0
         deduccionGranQ = 0
         deduccionPesoEsp = 0
-        deduccionPanzaB = 0
         deducciongranoContraste = 0
+        deduccionGrandan = 0
+        deduccionPanzaB = 0
         deduccionpuntaNegra = 0
 
         calculaImpureza = 0
@@ -212,88 +215,166 @@ Public Class ControlEmbarques
         calculoHumedad = 0
         calculoGranQ = 0
         calculoPesoE = 0
-        calculoPuntaNegra = 0
-        calculoPanzaB = 0
         calculogranoContraste = 0
+        calculoPanzaB = 0
+        calculoPuntaNegra = 0
 
         TxImpurezas.Text = FormatNumber(TxImpurezas.Text, 2)
         TxGranoDan.Text = FormatNumber(TxGranoDan.Text, 2)
         TxHumedad.Text = FormatNumber(TxHumedad.Text, 2)
         TxGranoQuebrado.Text = FormatNumber(TxGranoQuebrado.Text, 2)
         TxPesoEsp.Text = FormatNumber(TxPesoEsp.Text, 2)
+        TxGranoContraste.Text = FormatNumber(TxGranoContraste.Text, 2)
         TxPuntaNegra.Text = FormatNumber(TxPuntaNegra.Text, 2)
         TxPorcentajePB.Text = FormatNumber(TxPorcentajePB.Text, 2)
-        TxGranoContraste.Text = FormatNumber(TxGranoContraste.Text, 2)
 
-        If Val(TxImpurezas.Text) > 2 And Val(TxImpurezas.Text) <= 8 Then
-            Dim RI As Double = 0
-            RI = TxImpurezas.Text - 2
-            calculaImpureza = (((RI / 0.1) * 1) * TxNeto.Text) / 1000
-        Else
-            calculaImpureza = 0
-        End If
-
-        If Val(TxGranoDan.Text) > 5 And Val(TxGranoDan.Text) <= 10 Then
-            Dim RG As Double = 0
-            RG = TxGranoDan.Text - 5
-            calculaGranoDan = (((RG / 0.1) * 1) * TxNeto.Text) / 1000
-        Else
-            calculaGranoDan = 0
-        End If
-
-        If Val(TxHumedad.Text) > 14 And Val(TxHumedad.Text) <= 18 Then
-            Dim RH As Double = 0
-            RH = TxHumedad.Text - 14
-            calculoHumedad = (((RH / 0.1) * 1.16) * TxNeto.Text) / 1000
-        Else
-            calculoHumedad = 0
-        End If
-
-        If Val(TxGranoQuebrado.Text) > 3.5 And Val(TxGranoQuebrado.Text) <= 10 Then
-            Dim RG As Double = 0
-            RG = TxGranoQuebrado.Text - 3.5
-            calculoGranQ = (((RG / 0.1) * 1) * TxNeto.Text) / 1000
-        Else
-            calculoGranQ = 0
-        End If
-        If Val(TxPuntaNegra.Text) > 2 And Val(TxPuntaNegra.Text) <= 8 Then
-            Dim RI As Double = 0
-            RI = TxPuntaNegra.Text - 2
-            calculoPuntaNegra = (((RI / 0.1) * 1) * TxNeto.Text) / 1000
-        Else
-            calculoPuntaNegra = 0
-        End If
-        If Val(TxPorcentajePB.Text) > 2 And Val(TxPorcentajePB.Text) <= 8 Then
-            Dim RI As Double = 0
-            RI = TxPorcentajePB.Text - 2
-            calculoPanzaB = (((RI / 0.1) * 1) * TxNeto.Text) / 1000
-        Else
-            calculoPanzaB = 0
-        End If
-        If Val(TxGranoContraste.Text) > 2 And Val(TxGranoContraste.Text) <= 8 Then
-            Dim RI As Double = 0
-            RI = TxGranoContraste.Text - 2
-            calculogranoContraste = (((RI / 0.1) * 1) * TxNeto.Text) / 1000
-        Else
-            calculogranoContraste = 0
-        End If
-        If Val(TxPesoEsp.Text) > 70 Then
-            Dim cmd As New SqlCommand("Sp_CalculoPesoEsp", cnn)
+        If Val(TxImpurezas.Text) > 2 And Val(TxImpurezas.Text) <= 5 Then
+            'Dim RI As Double = 0
+            'RI = CDbl(TxImpurezas.Text) - 2
+            Dim cmd As New SqlCommand("Sp_CalculoImpureza", cnn)
             cmd.CommandType = CommandType.StoredProcedure
-            cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxPesoEsp.Text))
+            cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxImpurezas.Text))
             Dim da As New SqlClient.SqlDataAdapter(cmd)
             Dim dt As New DataTable
             da.Fill(dt)
             Dim row As DataRow = dt.Rows(0)
-            deduccionPesoEsp = row("deduccion")
-            calculoPesoE = (TxNeto.Text / 1000) * deduccionPesoEsp
+            deduccionImpurezas = row("deduccion")
+            'calculaImpureza = (((RI / 0.1) * 1) * CDbl(TxNeto.Text)) / 1000
+            calculaImpureza = (CDbl(TxNeto.Text) / 1000) * deduccionImpurezas
+        ElseIf Val(TxImpurezas.Text) > 5 Then
+
+        Else
+            calculaImpureza = 0
+        End If
+        If Val(TxPuntaNegra.Text) > 2 And Val(TxPuntaNegra.Text) <= 8 Then
+            Dim RI As Double = 0
+            RI = CDbl(TxPuntaNegra.Text) - 2
+            'Dim cmd As New SqlCommand("Sp_CalculoImpureza", cnn)
+            'cmd.CommandType = CommandType.StoredProcedure
+            'cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxImpurezas.Text))
+            'Dim da As New SqlClient.SqlDataAdapter(cmd)
+            'Dim dt As New DataTable
+            'da.Fill(dt)
+            'Dim row As DataRow = dt.Rows(0)
+            'deduccionImpurezas = row("deduccion")
+            calculoPuntaNegra = (((RI / 0.1) * 1) * CDbl(TxNeto.Text)) / 1000
+            'calculaImpureza = (CDbl(TxNeto.Text) / 1000) * deduccionImpurezas
+            ' ElseIf Val(TxImpurezas.Text) > 5 Then
+
+        Else
+            calculoPuntaNegra = 0
+        End If
+        If Val(TxGranoContraste.Text) > 2 And Val(TxGranoContraste.Text) <= 8 Then
+            Dim RI As Double = 0
+            RI = CDbl(TxGranoContraste.Text) - 2
+            'Dim cmd As New SqlCommand("Sp_CalculoImpureza", cnn)
+            'cmd.CommandType = CommandType.StoredProcedure
+            'cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxImpurezas.Text))
+            'Dim da As New SqlClient.SqlDataAdapter(cmd)
+            'Dim dt As New DataTable
+            'da.Fill(dt)
+            'Dim row As DataRow = dt.Rows(0)
+            'deduccionImpurezas = row("deduccion")
+            calculogranoContraste = (((RI / 0.1) * 1) * CDbl(TxNeto.Text)) / 1000
+            'calculaImpureza = (CDbl(TxNeto.Text) / 1000) * deduccionImpurezas
+            ' ElseIf Val(TxImpurezas.Text) > 5 Then
+
+        Else
+            calculogranoContraste = 0
+        End If
+        If Val(TxPorcentajePB.Text) > 22 And Val(TxPorcentajePB.Text) <= 99.9 Then
+            'Dim RI As Double = 0
+            'RI = CDbl(TxPorcentajePB.Text) - 2
+            Dim cmd As New SqlCommand("Sp_CalculoPanzaBlanca", cnn)
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxPorcentajePB.Text))
+            Dim da As New SqlClient.SqlDataAdapter(cmd)
+            Dim dt As New DataTable
+            da.Fill(dt)
+            Dim row As DataRow = dt.Rows(0)
+            deduccionPanzaB = row("deduccion")
+            'calculoPanzaB = (((RI / 0.1) * 1) * CDbl(TxNeto.Text)) / 1000
+            calculoPanzaB = (CDbl(TxNeto.Text) / 1000) * deduccionPanzaB
+        ElseIf Val(TxPorcentajePB.Text) > 99.9 Then
+
+        Else
+            calculoPanzaB = 0
+        End If
+        If Val(TxGranoDan.Text) > 1.5 And Val(TxGranoDan.Text) <= 3 Then
+            'Dim RG As Double = 0
+            'RG = CDbl(TxGranoDan.Text) - 5
+            Dim cmd As New SqlCommand("Sp_CalculoGranDan", cnn)
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxGranoDan.Text))
+            Dim da As New SqlClient.SqlDataAdapter(cmd)
+            Dim dt As New DataTable
+            da.Fill(dt)
+            Dim row As DataRow = dt.Rows(0)
+            deduccionGrandan = row("deduccion")
+            calculaGranoDan = (CDbl(TxNeto.Text) / 1000) * deduccionGrandan
+            'calculaGranoDan = (((RG / 0.1) * 1) * CDbl(TxNeto.Text)) / 1000
+        ElseIf Val(TxGranoDan.Text) > 3.0 Then
+
+        Else
+            calculaGranoDan = 0
+        End If
+        If Val(TxHumedad.Text) > 14 And Val(TxHumedad.Text) <= 15 Then
+            'Dim RH As Double = 0
+            'RH = CDbl(TxHumedad.Text) - 14
+            Dim cmd As New SqlCommand("Sp_CalculoHumedad", cnn)
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxHumedad.Text))
+            Dim da As New SqlClient.SqlDataAdapter(cmd)
+            Dim dt As New DataTable
+            da.Fill(dt)
+            Dim row As DataRow = dt.Rows(0)
+            deduccionHumedad = row("deduccion")
+            'calculoHumedad = (((RH / 0.1) * 1.16) * CDbl(TxNeto.Text)) / 1000
+            calculoHumedad = (CDbl(TxNeto.Text) / 1000) * deduccionHumedad
+        ElseIf Val(TxHumedad.Text) > 15.0 Then
+
+        Else
+            calculoHumedad = 0
+        End If
+        If Val(TxGranoQuebrado.Text) > 3.5 And Val(TxGranoQuebrado.Text) <= 10 Then
+            Dim RG As Double = 0
+            RG = CDbl(TxGranoQuebrado.Text) - 3.5
+            'Dim cmd As New SqlCommand("Sp_CalculoGranoQueb", cnn)
+            'cmd.CommandType = CommandType.StoredProcedure
+            'cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxGranoQuebrado.Text))
+            'Dim da As New SqlClient.SqlDataAdapter(cmd)
+            'Dim dt As New DataTable
+            'da.Fill(dt)
+            'Dim row As DataRow = dt.Rows(0)
+            'deduccionGranQ = row("deduccion")
+            calculoGranQ = (((RG / 0.1) * 1) * CDbl(TxNeto.Text)) / 1000
+
+            ' ElseIf Val(TxGranoQuebrado.Text) > 3 Then
+
+        Else
+            calculoGranQ = 0
+        End If
+        If Val(TxPesoEsp.Text) > 70 Then
+            'Dim cmd As New SqlCommand("Sp_CalculoPesoEsp", cnn)
+            'cmd.CommandType = CommandType.StoredProcedure
+            'cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxPesoEsp.Text))
+            'Dim da As New SqlClient.SqlDataAdapter(cmd)
+            'Dim dt As New DataTable
+            'da.Fill(dt)
+            'Dim row As DataRow = dt.Rows(0)
+            'deduccionPesoEsp = row("deduccion")
+            'calculoPesoE = (CDbl(TxNeto.Text) / 1000) * deduccionPesoEsp
+            calculoPesoE = 0
+            ' ElseIf Val(TxGranoQuebrado.Text) > 3 Then
+
         Else
             calculoPesoE = 0
         End If
 
-        TxDeducciones.Text = calculaGranoDan + calculoHumedad + calculaImpureza + calculoGranQ + calculoPesoE + calculoPuntaNegra + calculoPanzaB + calculogranoContraste
+        TxDeducciones.Text = calculaGranoDan + calculoHumedad + calculaImpureza + calculoGranQ + calculoPesoE + calculogranoContraste + calculoPuntaNegra + calculoPanzaB
         TxDeducciones.Text = FormatNumber(TxDeducciones.Text, 2)
-        TxTotal.Text = FormatNumber(Val(TxNeto.Text - TxDeducciones.Text), 2)
+        TxTotal.Text = Val(TxNeto.Text - TxDeducciones.Text)
+        TxTotal.Text = FormatNumber(TxTotal.Text, 2)
     End Sub
     Private Sub SoloNumerosTxCalidad(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TxBruto.KeyPress, TxTara.KeyPress, TxNeto.KeyPress, TxHumedad.KeyPress, TxImpurezas.KeyPress, TxGranoDan.KeyPress, TxPuntaNegra.KeyPress, TxGranoContraste.KeyPress, TxPesoEsp.KeyPress, TxPorcentajePB.KeyPress, TxGranoQuebrado.KeyPress, TxIdBoleta.KeyPress
         If InStr(1, "0123456789." & Chr(8), e.KeyChar) = 0 Then
