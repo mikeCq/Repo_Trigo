@@ -37,8 +37,8 @@ Public Class ReporteLiquidacionesXprod
             Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
             ' Asigno el reporte 
             CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
-            'CrReport.Load(Application.StartupPath & "\RPT\RptEntradas.rpt")
-            CrReport.Load("C:\Users\MSISTEMAS\Desktop\Desarrollo\Respositorio_Trigo\Trigo\RPT\RptLiquidacionesXproductor.rpt")
+            CrReport.Load(Application.StartupPath & "\RPT\RptLiquidacionesXproductor.rpt")
+            'CrReport.Load("C:\Users\MSISTEMAS\Desktop\Desarrollo\Respositorio_Trigo\Trigo\RPT\RptLiquidacionesXproductor.rpt")
             CrReport.SetDataSource(ds)
 
             CrLiquidacionProd.ReportSource = CrReport

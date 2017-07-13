@@ -39,8 +39,8 @@ Public Class ReporteEstatusContrato
                 Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
                 ' Asigno el reporte 
                 CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
-                'CrReport.Load(Application.StartupPath & "\RPT\RptEntradas.rpt")
-                CrReport.Load("C:\Users\MSISTEMAS\Desktop\Desarrollo\Respositorio_Trigo\Trigo\RPT\RptEstatusContrato.rpt")
+                CrReport.Load(Application.StartupPath & "\RPT\RptEstatusContrato.rpt")
+                'CrReport.Load("C:\Users\MSISTEMAS\Desktop\Desarrollo\Respositorio_Trigo\Trigo\RPT\RptEstatusContrato.rpt")
                 CrReport.SetDataSource(ds)
 
                 CREstatusContrato.ReportSource = CrReport

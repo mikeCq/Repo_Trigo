@@ -82,8 +82,8 @@ Public Class ReportesSalidas
                 Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
                 ' Asigno el reporte 
                 CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
-                'CrReport.Load(Application.StartupPath & "\RPT\RptEntradas.rpt")
-                CrReport.Load("C:\Users\MSISTEMAS\Desktop\Desarrollo\Respositorio_Trigo\Trigo\RPT\RptSalidas.rpt")
+                CrReport.Load(Application.StartupPath & "\RPT\RptSalidas.rpt")
+                'CrReport.Load("C:\Users\MSISTEMAS\Desktop\Desarrollo\Respositorio_Trigo\Trigo\RPT\RptSalidas.rpt")
                 CrReport.SetDataSource(ds)
 
                 CRsalidas.ReportSource = CrReport
@@ -136,8 +136,8 @@ Public Class ReportesSalidas
                         Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
                         ' Asigno el reporte 
                         CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
-                        'CrReport.Load(Application.StartupPath & "\RPT\RptEntradas.rpt")
-                        CrReport.Load("C:\Users\MSISTEMAS\Desktop\Desarrollo\Respositorio_Trigo\Trigo\RPT\RptSalidas.rpt")
+                        CrReport.Load(Application.StartupPath & "\RPT\RptSalidas.rpt")
+                        'CrReport.Load("C:\Users\MSISTEMAS\Desktop\Desarrollo\Respositorio_Trigo\Trigo\RPT\RptSalidas.rpt")
                         CrReport.SetDataSource(ds)
 
                         CRsalidas.ReportSource = CrReport
