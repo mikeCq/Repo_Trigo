@@ -6,7 +6,6 @@ Public Class CrearBaseDatos
     End Sub
 
     Private Sub BtAceptar_Click(sender As Object, e As EventArgs) Handles BtAceptar.Click
-<<<<<<< HEAD
         If TbNombre.Text = "" Then
             MsgBox("Ingresa un nombre para la base de datos", 1, "Aviso")
         Else
@@ -20,8 +19,6 @@ Public Class CrearBaseDatos
             CrearTablas.CadenaConexion(ConexionPrincipal, TbNombre.Text)
             Close()
         End If
-=======
-
         MsgBox("CREATE DATABASE '" & "TRIGO" & Year(Now) & "'")
         'Try
         '    consulta = New SqlCommand("CREATE DATABASE'" & "TRIGO" & Year(Now) & "'", cnn)
@@ -45,7 +42,6 @@ Public Class CrearBaseDatos
         '    cerrarMaster()
         '    abrirPrincipal()
         'End If
->>>>>>> origin/master
     End Sub
 
     Private Sub BtCancelar_Click(sender As Object, e As EventArgs) Handles BtCancelar.Click
