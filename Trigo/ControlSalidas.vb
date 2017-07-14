@@ -278,17 +278,16 @@ Public Class ControlSalidas
             calculoGranQ = 0
         End If
         If Val(TxPesoEsp.Text) > 70 Then
-            'Dim cmd As New SqlCommand("Sp_CalculoPesoEsp", cnn)
-            'cmd.CommandType = CommandType.StoredProcedure
-            'cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxPesoEsp.Text))
-            'Dim da As New SqlClient.SqlDataAdapter(cmd)
-            'Dim dt As New DataTable
-            'da.Fill(dt)
-            'Dim row As DataRow = dt.Rows(0)
-            'deduccionPesoEsp = row("deduccion")
-            'calculoPesoE = (CDbl(TxNeto.Text) / 1000) * deduccionPesoEsp
-            calculoPesoE = 0
-            ' ElseIf Val(TxGranoQuebrado.Text) > 3 Then
+            Dim cmd As New SqlCommand("Sp_CalculoPesoEsp", cnn)
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.Parameters.Add(New SqlClient.SqlParameter("@Porcentaje", TxPesoEsp.Text))
+            Dim da As New SqlClient.SqlDataAdapter(cmd)
+            Dim dt As New DataTable
+            da.Fill(dt)
+            Dim row As DataRow = dt.Rows(0)
+            deduccionPesoEsp = row("deduccion")
+            calculoPesoE = (CDbl(TxNeto.Text) / 1000) * deduccionPesoEsp
+        ElseIf Val(TxGranoQuebrado.Text) > 3 Then
 
         Else
             calculoPesoE = 0
@@ -309,7 +308,7 @@ Public Class ControlSalidas
         _codigoSalida = TxFolio.Text
         ReporteBoletasSalidas.Show()
     End Sub
-    Private Sub SoloNumerosTx(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TxTara.KeyPress, TxNeto.KeyPress, TxBruto.KeyPress, TxPuntaNegra.KeyPress, TxImpurezas.KeyPress, TxGranoDan.KeyPress, TxHumedad.KeyPress, TxGranoQuebrado.KeyPress, TxPesoEsp.KeyPress, TxPorcentajePB.KeyPress, TxGranoContraste.KeyPress, TxIdBoleta.KeyPress
+    Private Sub SoloNumerosTx(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TxTara.KeyPress, TxNeto.KeyPress, TxBruto.KeyPress, TxImpurezas.KeyPress, TxGranoDan.KeyPress, TxHumedad.KeyPress, TxPesoEsp.KeyPress, TxPorcentajePB.KeyPress, TxGranoContraste.KeyPress, TxIdBoleta.KeyPress
         If InStr(1, "0123456789." & Chr(8), e.KeyChar) = 0 Then
             e.Handled = True
             e.KeyChar = ""
