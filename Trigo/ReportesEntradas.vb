@@ -39,6 +39,7 @@ Public Class ReportesEntradas
         Try
             Dim RptEntradas As New ReporteEntradas
             If DTInicio.Value <= DTFinal.Value And DTFinal.Value >= DTInicio.Value Then
+                Dim Ruta As String = Replace(My.Computer.FileSystem.CurrentDirectory, "bin\Debug", "")
                 'RptEntradas.SetDatabaseLogon(VarGlob1.UserDB, VarGlob1.PasswordDB, VarGlob1.ServerDB, VarGlob1.DataBase)
                 'RptEntradas.SetParameterValue("@numboleta", TxNumBoleta.Text)
                 'RptEntradas.SetParameterValue("@productor", IIf(CbProductor.SelectedValue = Nothing, "", CbProductor.SelectedValue))
@@ -82,6 +83,7 @@ Public Class ReportesEntradas
                     Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
                     ' Asigno el reporte 
                     CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
+                    'CrReport.Load(Ruta & "RPT\RptEntradas.rpt")
                     CrReport.Load(Application.StartupPath & "\RPT\RptEntradas.rpt")
                     'CrReport.Load("C:\Users\MSISTEMAS\Desktop\Desarrollo\Respositorio_Trigo\Trigo\RPT\RptEntradas.rpt")
                     CrReport.SetDataSource(ds)
