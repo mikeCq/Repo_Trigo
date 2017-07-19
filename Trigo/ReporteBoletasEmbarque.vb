@@ -19,6 +19,7 @@ Public Class ReporteBoletasEmbarque
 
         Try
             Dim da As New SqlCommand("sp_ReporteBoletaEmbarque1", cnn)
+            Dim Ruta As String = "\\192.168.10.30\trigo_docs\RPT\RptEntradas.rpt\RptBoletaEmbarque.rpt"
             da.CommandType = CommandType.StoredProcedure
             Dim NombreCampo As New SqlClient.SqlParameter()
             NombreCampo.ParameterName = "@idembarque"
@@ -33,7 +34,7 @@ Public Class ReporteBoletasEmbarque
             Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
             ' Asigno el reporte 
             CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
-            CrReport.Load(Application.StartupPath & "\RPT\RptBoletaEmbarque.rpt")
+            CrReport.Load(Ruta)
             CrReport.SetDataSource(ds)
 
             CrBoletaEmbarque.ReportSource = CrReport

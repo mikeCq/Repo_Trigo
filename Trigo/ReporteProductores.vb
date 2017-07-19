@@ -46,6 +46,7 @@ Public Class ReporteProductores
                 'CRentradas.ReportSource = RptEntradas
                 Try
                     Dim da As New SqlCommand("SP_REPORTEENTRADAS", cnn)
+                    Dim Ruta As String = "\\192.168.10.30\trigo_docs\RPT\RptEntradas.rpt"
                     da.CommandType = CommandType.StoredProcedure
                     Dim NumBoleta As New SqlClient.SqlParameter()
                     Dim idProductor As New SqlClient.SqlParameter()
@@ -80,7 +81,7 @@ Public Class ReporteProductores
                     Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
                     ' Asigno el reporte 
                     CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
-                    CrReport.Load(Application.StartupPath & "\RPT\RptEntradas.rpt")
+                    CrReport.Load(Ruta)
                     'CrReport.Load("C:\Users\MSISTEMAS\Desktop\Desarrollo\Respositorio_Trigo\Trigo\RPT\RptEntradas.rpt")
                     CrReport.SetDataSource(ds)
 
@@ -109,6 +110,7 @@ Public Class ReporteProductores
 
                     Try
                         Dim da As New SqlCommand("SP_REPORTEENTRADAS", cnn)
+                        Dim ruta As String = "\\192.168.10.30\trigo_docs\RPT\\RptEntradas.rpt"
                         da.CommandType = CommandType.StoredProcedure
                         Dim NumBoleta As New SqlClient.SqlParameter()
                         Dim idProductor As New SqlClient.SqlParameter()
@@ -143,7 +145,7 @@ Public Class ReporteProductores
                         Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
                         ' Asigno el reporte 
                         CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
-                        CrReport.Load(Application.StartupPath & "\RPT\RptEntradas.rpt")
+                        CrReport.Load(ruta)
                         'CrReport.Load("C:\Users\MSISTEMAS\Desktop\Desarrollo\Respositorio_Trigo\Trigo\RPT\RptEntradas.rpt")
                         CrReport.SetDataSource(ds)
 

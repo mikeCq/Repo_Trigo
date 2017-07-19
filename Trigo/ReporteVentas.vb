@@ -13,6 +13,7 @@ Public Class ReporteVentas
 
         Try
             Dim da As New SqlCommand("sp_reporteVentaLiquidacion", cnn)
+            Dim ruta As String = "\\192.168.10.30\trigo_docs\RPT\RptVentaXcomprador.rpt"
             da.CommandType = CommandType.StoredProcedure
             Dim IdLiquidacionVenta As New SqlClient.SqlParameter()
 
@@ -37,7 +38,7 @@ Public Class ReporteVentas
             Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
             ' Asigno el reporte 
             CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
-            CrReport.Load(Application.StartupPath & "\RPT\RptVentaXcomprador.rpt")
+            CrReport.Load(ruta)
             'CrReport.Load("C:\Users\MSISTEMAS\Desktop\Desarrollo\Respositorio_Trigo\Trigo\RPT\RptVentaXcomprador.rpt")
             CrReport.SetDataSource(ds)
 

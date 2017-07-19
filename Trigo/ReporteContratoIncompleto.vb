@@ -17,6 +17,7 @@ Public Class ReporteEstatusContrato
 
             Try
                 Dim da As New SqlCommand("sp_ReporteEstatusContrato", cnn)
+                Dim Ruta As String = "\\192.168.10.30\trigo_docs\RPT\RptEstatusContrato.rpt"
                 da.CommandType = CommandType.StoredProcedure
                 Dim Estatus As New SqlClient.SqlParameter()
 
@@ -39,7 +40,7 @@ Public Class ReporteEstatusContrato
                 Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
                 ' Asigno el reporte 
                 CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
-                CrReport.Load(Application.StartupPath & "\RPT\RptEstatusContrato.rpt")
+                CrReport.Load(Ruta)
                 'CrReport.Load("C:\Users\MSISTEMAS\Desktop\Desarrollo\Respositorio_Trigo\Trigo\RPT\RptEstatusContrato.rpt")
                 CrReport.SetDataSource(ds)
 

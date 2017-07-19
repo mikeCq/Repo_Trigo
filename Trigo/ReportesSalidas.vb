@@ -48,6 +48,7 @@ Public Class ReportesSalidas
 
             Try
                 Dim da As New SqlCommand("sp_reporteSalidas", cnn)
+                Dim Ruta As String = "\\192.168.10.30\trigo_docs\RPT\RptSalidas.rpt"
                 da.CommandType = CommandType.StoredProcedure
                 Dim NumBoleta As New SqlClient.SqlParameter()
                 Dim idProductor As New SqlClient.SqlParameter()
@@ -82,7 +83,7 @@ Public Class ReportesSalidas
                 Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
                 ' Asigno el reporte 
                 CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
-                CrReport.Load(Application.StartupPath & "\RPT\RptSalidas.rpt")
+                CrReport.Load(Ruta)
                 'CrReport.Load("C:\Users\MSISTEMAS\Desktop\Desarrollo\Respositorio_Trigo\Trigo\RPT\RptSalidas.rpt")
                 CrReport.SetDataSource(ds)
 
@@ -102,6 +103,7 @@ Public Class ReportesSalidas
                 If DTInicio.Value <= DTFinal.Value And DTFinal.Value >= DTInicio.Value Then
                     Try
                         Dim da As New SqlCommand("sp_reporteSalidas", cnn)
+                        Dim Ruta As String = "\\192.168.10.30\trigo_docs\RPT\RptSalidas.rpt"
                         da.CommandType = CommandType.StoredProcedure
                         Dim NumBoleta As New SqlClient.SqlParameter()
                         Dim idProductor As New SqlClient.SqlParameter()
@@ -136,7 +138,7 @@ Public Class ReportesSalidas
                         Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
                         ' Asigno el reporte 
                         CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
-                        CrReport.Load(Application.StartupPath & "\RPT\RptSalidas.rpt")
+                        CrReport.Load(Ruta)
                         'CrReport.Load("C:\Users\MSISTEMAS\Desktop\Desarrollo\Respositorio_Trigo\Trigo\RPT\RptSalidas.rpt")
                         CrReport.SetDataSource(ds)
 

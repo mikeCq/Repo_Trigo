@@ -53,6 +53,7 @@ Public Class ReporteEntradasGlobalXprod
 
                 Try
                     Dim da As New SqlCommand("sp_reporteEntradasGlobalXprod", cnn)
+                    Dim Ruta As String = "\\192.168.10.30\trigo_docs\RPT\RptEntradaGlobalXprod.rpt"
                     da.CommandType = CommandType.StoredProcedure
                     Dim NumBoleta As New SqlClient.SqlParameter()
                     Dim idProductor As New SqlClient.SqlParameter()
@@ -87,7 +88,7 @@ Public Class ReporteEntradasGlobalXprod
                     Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
                     ' Asigno el reporte 
                     CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
-                    CrReport.Load(Application.StartupPath & "\RPT\RptEntradaGlobalXprod.rpt")
+                    CrReport.Load(Ruta)
                     'CrReport.Load("C:\Users\MSISTEMAS\Desktop\Desarrollo\Respositorio_Trigo\Trigo\RPT\RptEntradaGlobalXprod.rpt")
                     CrReport.SetDataSource(ds)
 
@@ -122,6 +123,7 @@ Public Class ReporteEntradasGlobalXprod
 
                     Try
                         Dim da As New SqlCommand("sp_reporteEntradasGlobalXprod", cnn)
+                        Dim Ruta As String = "\\192.168.10.30\trigo_docs\RPT\RptEntradaGlobalXprod.rpt"
                         da.CommandType = CommandType.StoredProcedure
                         Dim NumBoleta As New SqlClient.SqlParameter()
                         Dim idProductor As New SqlClient.SqlParameter()
@@ -156,7 +158,7 @@ Public Class ReporteEntradasGlobalXprod
                         Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
                         ' Asigno el reporte 
                         CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
-                        CrReport.Load(Application.StartupPath & "\RPT\RptEntradaGlobalXprod.rpt")
+                        CrReport.Load(Ruta)
                         'CrReport.Load("C:\Users\MSISTEMAS\Desktop\Desarrollo\Respositorio_Trigo\Trigo\RPT\RptEntradaGlobalXprod.rpt")
                         CrReport.SetDataSource(ds)
 

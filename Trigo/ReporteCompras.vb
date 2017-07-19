@@ -48,6 +48,7 @@ Public Class ReporteCompras
 
                 Try
                     Dim da As New SqlCommand("sp_ReporteCompras", cnn)
+                    Dim Ruta As String = "\\192.168.10.30\trigo_docs\RPT\RptComprasXproductor.rpt"
                     da.CommandType = CommandType.StoredProcedure
                     Dim TipoContrato As New SqlClient.SqlParameter()
                     Dim idProductor As New SqlClient.SqlParameter()
@@ -82,7 +83,7 @@ Public Class ReporteCompras
                     Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
                     ' Asigno el reporte 
                     CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
-                    CrReport.Load(Application.StartupPath & "\RPT\RptComprasXproductor.rpt")
+                    CrReport.Load(Ruta)
                     'CrReport.Load("C:\Users\MSISTEMAS\Desktop\Desarrollo\Respositorio_Trigo\Trigo\RPT\RptComprasXproductor.rpt")
                     CrReport.SetDataSource(ds)
 
@@ -114,6 +115,7 @@ Public Class ReporteCompras
 
                     Try
                         Dim da As New SqlCommand("sp_ReporteCompras", cnn)
+                        Dim Ruta As String = "\\192.168.10.30\trigo_docs\RPT\RptComprasXproductor.rpt"
                         da.CommandType = CommandType.StoredProcedure
                         Dim TipoContrato As New SqlClient.SqlParameter()
                         Dim idProductor As New SqlClient.SqlParameter()
@@ -149,7 +151,7 @@ Public Class ReporteCompras
                         ' Asigno el reporte 
                         CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
                         'CrReport.Load(Application.StartupPath & "\RPT\RptEntradas.rpt")
-                        CrReport.Load("C:\Users\MSISTEMAS\Desktop\Desarrollo\Respositorio_Trigo\Trigo\RPT\RptComprasXproductor.rpt")
+                        CrReport.Load(Ruta)
                         CrReport.SetDataSource(ds)
 
                         CrComprasXproductor.ReportSource = CrReport
