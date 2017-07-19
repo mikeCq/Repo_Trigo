@@ -143,7 +143,7 @@ Module CrearTablas
             Dim comando34 As New SqlCommand(Query34, conexion)
             comando34.ExecuteNonQuery()
             'Tabla Tipo_Usuario---
-            Dim Query35 As String = "CREATE TABLE [dbo].[Tipo_Usuario]([Id_TipoUsuario] [int] NOT NULL,[Nombre_tipoUsuario] [varchar](15) NULL,PRIMARY KEY CLUSTERED ([Id_TipoUsuario] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]"
+            Dim Query35 As String = "CREATE TABLE [dbo].[Tipo_Usuario]([Id_TipoUsuario] int] NOT NULL,[Nombre_tipoUsuario] [varchar](15) NULL,PRIMARY KEY CLUSTERED ([Id_TipoUsuario] ASC)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]) ON [PRIMARY]"
             Dim comando35 As New SqlCommand(Query35, conexion)
             comando35.ExecuteNonQuery()
             'Tabla TipoLiquidacion---

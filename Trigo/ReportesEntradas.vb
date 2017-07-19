@@ -46,7 +46,6 @@ Public Class ReportesEntradas
                 'RptEntradas.SetParameterValue("@fechaini", DTInicio.Value)
                 'RptEntradas.SetParameterValue("@fechafin", DTFinal.Value)
                 'CRentradas.ReportSource = RptEntradas
-
                 Try
                     Dim da As New SqlCommand("sp_reporteEntradas", cnn)
                     da.CommandType = CommandType.StoredProcedure
@@ -83,16 +82,12 @@ Public Class ReportesEntradas
                     Dim CrReport As New CrystalDecisions.CrystalReports.Engine.ReportDocument
                     ' Asigno el reporte 
                     CrReport = New CrystalDecisions.CrystalReports.Engine.ReportDocument()
-                    'CrReport.Load(Ruta & "RPT\RptEntradas.rpt")
-                    CrReport.Load(Application.StartupPath & "\RPT\RptEntradas.rpt")
-                    'CrReport.Load("C:\Users\MSISTEMAS\Desktop\Desarrollo\Respositorio_Trigo\Trigo\RPT\RptEntradas.rpt")
+                    CrReport.Load(Ruta & "RPT\RptEntradas.rpt")
                     CrReport.SetDataSource(ds)
-
                     CRentradas.ReportSource = CrReport
                 Catch ex As Exception
                     MessageBox.Show("excepcion: " & ex.Message, "Mostrando Reporte")
                 End Try
-
             Else
                 MessageBox.Show("La fecha inicial no puede ser mayor que la fecha final, ni la fecha final, menor que la fecha inicial.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 limpiarCampos()
@@ -112,8 +107,6 @@ Public Class ReportesEntradas
                     'RptEntradas.SetParameterValue("@fechaini", DTInicio.Value)
                     'RptEntradas.SetParameterValue("@fechafin", DTFinal.Value)
                     'CRentradas.ReportSource = RptEntradas
-
-
                     Try
                         Dim da As New SqlCommand("sp_reporteEntradas", cnn)
                         da.CommandType = CommandType.StoredProcedure
