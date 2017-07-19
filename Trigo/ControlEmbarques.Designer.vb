@@ -45,6 +45,12 @@ Partial Class ControlEmbarques
         Me.GbCalidad = New System.Windows.Forms.GroupBox()
         Me.TxPorcentajePB = New System.Windows.Forms.TextBox()
         Me.Label30 = New System.Windows.Forms.Label()
+        Me.TxPuntaNegra = New System.Windows.Forms.TextBox()
+        Me.Label28 = New System.Windows.Forms.Label()
+        Me.TxGranoQuebrado = New System.Windows.Forms.TextBox()
+        Me.Label29 = New System.Windows.Forms.Label()
+        Me.TxGranoContraste = New System.Windows.Forms.TextBox()
+        Me.Label24 = New System.Windows.Forms.Label()
         Me.TxPesoEsp = New System.Windows.Forms.TextBox()
         Me.Label18 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
@@ -80,12 +86,6 @@ Partial Class ControlEmbarques
         Me.TxDomicilio = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.BtImprimir = New System.Windows.Forms.Button()
-        Me.TxPuntaNegra = New System.Windows.Forms.TextBox()
-        Me.Label28 = New System.Windows.Forms.Label()
-        Me.TxGranoQuebrado = New System.Windows.Forms.TextBox()
-        Me.Label29 = New System.Windows.Forms.Label()
-        Me.TxGranoContraste = New System.Windows.Forms.TextBox()
-        Me.Label24 = New System.Windows.Forms.Label()
         Me.GroupBox5.SuspendLayout()
         CType(Me.DgBoletaEmbarque, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GbDatoEntrada.SuspendLayout()
@@ -324,14 +324,14 @@ Partial Class ControlEmbarques
         '
         'GbCalidad
         '
+        Me.GbCalidad.Controls.Add(Me.TxPorcentajePB)
+        Me.GbCalidad.Controls.Add(Me.Label30)
+        Me.GbCalidad.Controls.Add(Me.TxPuntaNegra)
+        Me.GbCalidad.Controls.Add(Me.Label28)
         Me.GbCalidad.Controls.Add(Me.TxGranoQuebrado)
         Me.GbCalidad.Controls.Add(Me.Label29)
         Me.GbCalidad.Controls.Add(Me.TxGranoContraste)
         Me.GbCalidad.Controls.Add(Me.Label24)
-        Me.GbCalidad.Controls.Add(Me.TxPuntaNegra)
-        Me.GbCalidad.Controls.Add(Me.Label28)
-        Me.GbCalidad.Controls.Add(Me.TxPorcentajePB)
-        Me.GbCalidad.Controls.Add(Me.Label30)
         Me.GbCalidad.Controls.Add(Me.TxPesoEsp)
         Me.GbCalidad.Controls.Add(Me.Label18)
         Me.GbCalidad.Controls.Add(Me.Label14)
@@ -353,7 +353,7 @@ Partial Class ControlEmbarques
         '
         'TxPorcentajePB
         '
-        Me.TxPorcentajePB.Location = New System.Drawing.Point(158, 108)
+        Me.TxPorcentajePB.Location = New System.Drawing.Point(229, 121)
         Me.TxPorcentajePB.MaxLength = 6
         Me.TxPorcentajePB.Name = "TxPorcentajePB"
         Me.TxPorcentajePB.Size = New System.Drawing.Size(122, 22)
@@ -363,15 +363,69 @@ Partial Class ControlEmbarques
         'Label30
         '
         Me.Label30.AutoSize = True
-        Me.Label30.Location = New System.Drawing.Point(43, 110)
+        Me.Label30.Location = New System.Drawing.Point(114, 123)
         Me.Label30.Name = "Label30"
         Me.Label30.Size = New System.Drawing.Size(109, 16)
         Me.Label30.TabIndex = 92
         Me.Label30.Text = "% Panza Blanca:"
         '
+        'TxPuntaNegra
+        '
+        Me.TxPuntaNegra.Location = New System.Drawing.Point(229, 11)
+        Me.TxPuntaNegra.MaxLength = 6
+        Me.TxPuntaNegra.Name = "TxPuntaNegra"
+        Me.TxPuntaNegra.Size = New System.Drawing.Size(122, 22)
+        Me.TxPuntaNegra.TabIndex = 11
+        Me.TxPuntaNegra.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.Location = New System.Drawing.Point(137, 13)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(86, 16)
+        Me.Label28.TabIndex = 90
+        Me.Label28.Text = "Punta Negra:"
+        '
+        'TxGranoQuebrado
+        '
+        Me.TxGranoQuebrado.Location = New System.Drawing.Point(229, 149)
+        Me.TxGranoQuebrado.MaxLength = 6
+        Me.TxGranoQuebrado.Name = "TxGranoQuebrado"
+        Me.TxGranoQuebrado.Size = New System.Drawing.Size(122, 22)
+        Me.TxGranoQuebrado.TabIndex = 16
+        Me.TxGranoQuebrado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.Location = New System.Drawing.Point(111, 151)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(112, 16)
+        Me.Label29.TabIndex = 88
+        Me.Label29.Text = "Grano Quebrado:"
+        '
+        'TxGranoContraste
+        '
+        Me.TxGranoContraste.Location = New System.Drawing.Point(229, 177)
+        Me.TxGranoContraste.MaxLength = 6
+        Me.TxGranoContraste.Name = "TxGranoContraste"
+        Me.TxGranoContraste.Size = New System.Drawing.Size(122, 22)
+        Me.TxGranoContraste.TabIndex = 17
+        Me.TxGranoContraste.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label24
+        '
+        Me.Label24.AutoSize = True
+        Me.Label24.Location = New System.Drawing.Point(115, 179)
+        Me.Label24.Name = "Label24"
+        Me.Label24.Size = New System.Drawing.Size(108, 16)
+        Me.Label24.TabIndex = 86
+        Me.Label24.Text = "Grano Contraste:"
+        '
         'TxPesoEsp
         '
-        Me.TxPesoEsp.Location = New System.Drawing.Point(158, 80)
+        Me.TxPesoEsp.Location = New System.Drawing.Point(229, 93)
         Me.TxPesoEsp.MaxLength = 6
         Me.TxPesoEsp.Name = "TxPesoEsp"
         Me.TxPesoEsp.Size = New System.Drawing.Size(122, 22)
@@ -382,7 +436,7 @@ Partial Class ControlEmbarques
         '
         Me.Label18.AutoSize = True
         Me.Label18.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!)
-        Me.Label18.Location = New System.Drawing.Point(43, 81)
+        Me.Label18.Location = New System.Drawing.Point(114, 94)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(109, 16)
         Me.Label18.TabIndex = 84
@@ -392,7 +446,7 @@ Partial Class ControlEmbarques
         '
         Me.Label14.AutoSize = True
         Me.Label14.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!)
-        Me.Label14.Location = New System.Drawing.Point(81, 139)
+        Me.Label14.Location = New System.Drawing.Point(152, 208)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(71, 16)
         Me.Label14.TabIndex = 82
@@ -421,7 +475,7 @@ Partial Class ControlEmbarques
         'TxGranoDan
         '
         Me.TxGranoDan.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!)
-        Me.TxGranoDan.Location = New System.Drawing.Point(158, 52)
+        Me.TxGranoDan.Location = New System.Drawing.Point(229, 65)
         Me.TxGranoDan.MaxLength = 6
         Me.TxGranoDan.Name = "TxGranoDan"
         Me.TxGranoDan.Size = New System.Drawing.Size(122, 22)
@@ -431,7 +485,7 @@ Partial Class ControlEmbarques
         'TxHumedad
         '
         Me.TxHumedad.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!)
-        Me.TxHumedad.Location = New System.Drawing.Point(158, 136)
+        Me.TxHumedad.Location = New System.Drawing.Point(229, 205)
         Me.TxHumedad.MaxLength = 6
         Me.TxHumedad.Name = "TxHumedad"
         Me.TxHumedad.Size = New System.Drawing.Size(122, 22)
@@ -442,7 +496,7 @@ Partial Class ControlEmbarques
         '
         Me.Label16.AutoSize = True
         Me.Label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!)
-        Me.Label16.Location = New System.Drawing.Point(38, 55)
+        Me.Label16.Location = New System.Drawing.Point(109, 68)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(114, 16)
         Me.Label16.TabIndex = 68
@@ -463,7 +517,7 @@ Partial Class ControlEmbarques
         '
         Me.Label15.AutoSize = True
         Me.Label15.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!)
-        Me.Label15.Location = New System.Drawing.Point(79, 29)
+        Me.Label15.Location = New System.Drawing.Point(150, 42)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(73, 16)
         Me.Label15.TabIndex = 67
@@ -484,7 +538,7 @@ Partial Class ControlEmbarques
         'TxImpurezas
         '
         Me.TxImpurezas.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!)
-        Me.TxImpurezas.Location = New System.Drawing.Point(158, 26)
+        Me.TxImpurezas.Location = New System.Drawing.Point(229, 39)
         Me.TxImpurezas.MaxLength = 6
         Me.TxImpurezas.Name = "TxImpurezas"
         Me.TxImpurezas.Size = New System.Drawing.Size(122, 22)
@@ -716,66 +770,6 @@ Partial Class ControlEmbarques
         Me.BtImprimir.Text = "Imprimir"
         Me.BtImprimir.UseVisualStyleBackColor = True
         '
-        'TxPuntaNegra
-        '
-        Me.TxPuntaNegra.Location = New System.Drawing.Point(158, 164)
-        Me.TxPuntaNegra.MaxLength = 6
-        Me.TxPuntaNegra.Name = "TxPuntaNegra"
-        Me.TxPuntaNegra.Size = New System.Drawing.Size(122, 22)
-        Me.TxPuntaNegra.TabIndex = 93
-        Me.TxPuntaNegra.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TxPuntaNegra.Visible = False
-        '
-        'Label28
-        '
-        Me.Label28.AutoSize = True
-        Me.Label28.Location = New System.Drawing.Point(66, 166)
-        Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(86, 16)
-        Me.Label28.TabIndex = 94
-        Me.Label28.Text = "Punta Negra:"
-        Me.Label28.Visible = False
-        '
-        'TxGranoQuebrado
-        '
-        Me.TxGranoQuebrado.Location = New System.Drawing.Point(158, 192)
-        Me.TxGranoQuebrado.MaxLength = 6
-        Me.TxGranoQuebrado.Name = "TxGranoQuebrado"
-        Me.TxGranoQuebrado.Size = New System.Drawing.Size(122, 22)
-        Me.TxGranoQuebrado.TabIndex = 95
-        Me.TxGranoQuebrado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TxGranoQuebrado.Visible = False
-        '
-        'Label29
-        '
-        Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(40, 194)
-        Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(112, 16)
-        Me.Label29.TabIndex = 98
-        Me.Label29.Text = "Grano Quebrado:"
-        Me.Label29.Visible = False
-        '
-        'TxGranoContraste
-        '
-        Me.TxGranoContraste.Location = New System.Drawing.Point(158, 220)
-        Me.TxGranoContraste.MaxLength = 6
-        Me.TxGranoContraste.Name = "TxGranoContraste"
-        Me.TxGranoContraste.Size = New System.Drawing.Size(122, 22)
-        Me.TxGranoContraste.TabIndex = 96
-        Me.TxGranoContraste.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TxGranoContraste.Visible = False
-        '
-        'Label24
-        '
-        Me.Label24.AutoSize = True
-        Me.Label24.Location = New System.Drawing.Point(44, 222)
-        Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(108, 16)
-        Me.Label24.TabIndex = 97
-        Me.Label24.Text = "Grano Contraste:"
-        Me.Label24.Visible = False
-        '
         'ControlEmbarques
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -868,12 +862,12 @@ Partial Class ControlEmbarques
     Friend WithEvents CbLugarExp As ComboBox
     Friend WithEvents TxTara As TextBox
     Friend WithEvents Label12 As Label
-    Friend WithEvents TxPorcentajePB As TextBox
-    Friend WithEvents Label30 As Label
-    Friend WithEvents TxGranoQuebrado As TextBox
-    Friend WithEvents Label29 As Label
     Friend WithEvents TxGranoContraste As TextBox
     Friend WithEvents Label24 As Label
+    Friend WithEvents TxGranoQuebrado As TextBox
+    Friend WithEvents Label29 As Label
     Friend WithEvents TxPuntaNegra As TextBox
     Friend WithEvents Label28 As Label
+    Friend WithEvents TxPorcentajePB As TextBox
+    Friend WithEvents Label30 As Label
 End Class

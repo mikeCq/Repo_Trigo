@@ -49,13 +49,15 @@ Partial Class ControlSalidas
         Me.CBAnalista = New System.Windows.Forms.ComboBox()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.GbCalidad = New System.Windows.Forms.GroupBox()
-        Me.NUDTotal = New System.Windows.Forms.NumericUpDown()
-        Me.NUDDeducciones = New System.Windows.Forms.NumericUpDown()
+        Me.TxPuntaNegra = New System.Windows.Forms.TextBox()
+        Me.Label17 = New System.Windows.Forms.Label()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.TxHumedad = New System.Windows.Forms.TextBox()
         Me.TxGranoContraste = New System.Windows.Forms.TextBox()
         Me.TxPorcentajePB = New System.Windows.Forms.TextBox()
+        Me.TxGranoQuebrado = New System.Windows.Forms.TextBox()
         Me.Label24 = New System.Windows.Forms.Label()
+        Me.Label29 = New System.Windows.Forms.Label()
         Me.Label30 = New System.Windows.Forms.Label()
         Me.TxPesoEsp = New System.Windows.Forms.TextBox()
         Me.Label18 = New System.Windows.Forms.Label()
@@ -88,18 +90,16 @@ Partial Class ControlSalidas
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.BtImprimir = New System.Windows.Forms.Button()
-        Me.TxPuntaNegra = New System.Windows.Forms.TextBox()
-        Me.Label17 = New System.Windows.Forms.Label()
-        Me.TxGranoQuebrado = New System.Windows.Forms.TextBox()
-        Me.Label29 = New System.Windows.Forms.Label()
+        Me.NUDDeducciones = New System.Windows.Forms.NumericUpDown()
+        Me.NUDTotal = New System.Windows.Forms.NumericUpDown()
         Me.GbBoletasSalidas.SuspendLayout()
         CType(Me.DgBoletaSalidas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GbDatoEntrada.SuspendLayout()
         Me.GbGrupoGrano.SuspendLayout()
         Me.GbCalidad.SuspendLayout()
-        CType(Me.NUDTotal, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NUDDeducciones, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox3.SuspendLayout()
+        CType(Me.NUDDeducciones, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.NUDTotal, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BtnSalir
@@ -397,17 +397,17 @@ Partial Class ControlSalidas
         '
         'GbCalidad
         '
-        Me.GbCalidad.Controls.Add(Me.TxGranoQuebrado)
-        Me.GbCalidad.Controls.Add(Me.Label29)
-        Me.GbCalidad.Controls.Add(Me.TxPuntaNegra)
-        Me.GbCalidad.Controls.Add(Me.Label17)
         Me.GbCalidad.Controls.Add(Me.NUDTotal)
         Me.GbCalidad.Controls.Add(Me.NUDDeducciones)
+        Me.GbCalidad.Controls.Add(Me.TxPuntaNegra)
+        Me.GbCalidad.Controls.Add(Me.Label17)
         Me.GbCalidad.Controls.Add(Me.Label14)
         Me.GbCalidad.Controls.Add(Me.TxHumedad)
         Me.GbCalidad.Controls.Add(Me.TxGranoContraste)
         Me.GbCalidad.Controls.Add(Me.TxPorcentajePB)
+        Me.GbCalidad.Controls.Add(Me.TxGranoQuebrado)
         Me.GbCalidad.Controls.Add(Me.Label24)
+        Me.GbCalidad.Controls.Add(Me.Label29)
         Me.GbCalidad.Controls.Add(Me.Label30)
         Me.GbCalidad.Controls.Add(Me.TxPesoEsp)
         Me.GbCalidad.Controls.Add(Me.Label18)
@@ -424,31 +424,28 @@ Partial Class ControlSalidas
         Me.GbCalidad.TabStop = False
         Me.GbCalidad.Text = "Certificado de Calidad"
         '
-        'NUDTotal
+        'TxPuntaNegra
         '
-        Me.NUDTotal.DecimalPlaces = 2
-        Me.NUDTotal.Enabled = False
-        Me.NUDTotal.Location = New System.Drawing.Point(220, 289)
-        Me.NUDTotal.Maximum = New Decimal(New Integer() {9999999, 0, 0, 0})
-        Me.NUDTotal.Name = "NUDTotal"
-        Me.NUDTotal.Size = New System.Drawing.Size(131, 22)
-        Me.NUDTotal.TabIndex = 60
+        Me.TxPuntaNegra.Location = New System.Drawing.Point(233, 21)
+        Me.TxPuntaNegra.MaxLength = 6
+        Me.TxPuntaNegra.Name = "TxPuntaNegra"
+        Me.TxPuntaNegra.Size = New System.Drawing.Size(122, 22)
+        Me.TxPuntaNegra.TabIndex = 41
+        Me.TxPuntaNegra.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
-        'NUDDeducciones
+        'Label17
         '
-        Me.NUDDeducciones.DecimalPlaces = 2
-        Me.NUDDeducciones.Enabled = False
-        Me.NUDDeducciones.Location = New System.Drawing.Point(220, 261)
-        Me.NUDDeducciones.Maximum = New Decimal(New Integer() {9999999, 0, 0, 0})
-        Me.NUDDeducciones.Name = "NUDDeducciones"
-        Me.NUDDeducciones.Size = New System.Drawing.Size(131, 22)
-        Me.NUDDeducciones.TabIndex = 59
-        Me.NUDDeducciones.TabStop = False
+        Me.Label17.AutoSize = True
+        Me.Label17.Location = New System.Drawing.Point(141, 21)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(84, 16)
+        Me.Label17.TabIndex = 42
+        Me.Label17.Text = "Punta Negra:"
         '
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(58, 80)
+        Me.Label14.Location = New System.Drawing.Point(160, 96)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(67, 16)
         Me.Label14.TabIndex = 57
@@ -456,7 +453,7 @@ Partial Class ControlSalidas
         '
         'TxHumedad
         '
-        Me.TxHumedad.Location = New System.Drawing.Point(132, 80)
+        Me.TxHumedad.Location = New System.Drawing.Point(233, 96)
         Me.TxHumedad.MaxLength = 6
         Me.TxHumedad.Name = "TxHumedad"
         Me.TxHumedad.Size = New System.Drawing.Size(122, 22)
@@ -465,37 +462,53 @@ Partial Class ControlSalidas
         '
         'TxGranoContraste
         '
-        Me.TxGranoContraste.Location = New System.Drawing.Point(132, 155)
+        Me.TxGranoContraste.Location = New System.Drawing.Point(233, 197)
         Me.TxGranoContraste.MaxLength = 6
         Me.TxGranoContraste.Name = "TxGranoContraste"
         Me.TxGranoContraste.Size = New System.Drawing.Size(122, 22)
         Me.TxGranoContraste.TabIndex = 55
         Me.TxGranoContraste.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TxGranoContraste.Visible = False
         '
         'TxPorcentajePB
         '
-        Me.TxPorcentajePB.Location = New System.Drawing.Point(132, 130)
+        Me.TxPorcentajePB.Location = New System.Drawing.Point(233, 173)
         Me.TxPorcentajePB.MaxLength = 6
         Me.TxPorcentajePB.Name = "TxPorcentajePB"
         Me.TxPorcentajePB.Size = New System.Drawing.Size(122, 22)
         Me.TxPorcentajePB.TabIndex = 51
         Me.TxPorcentajePB.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
+        'TxGranoQuebrado
+        '
+        Me.TxGranoQuebrado.Location = New System.Drawing.Point(233, 121)
+        Me.TxGranoQuebrado.MaxLength = 6
+        Me.TxGranoQuebrado.Name = "TxGranoQuebrado"
+        Me.TxGranoQuebrado.Size = New System.Drawing.Size(122, 22)
+        Me.TxGranoQuebrado.TabIndex = 53
+        Me.TxGranoQuebrado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
         'Label24
         '
         Me.Label24.AutoSize = True
-        Me.Label24.Location = New System.Drawing.Point(18, 155)
+        Me.Label24.Location = New System.Drawing.Point(119, 197)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(107, 16)
         Me.Label24.TabIndex = 56
         Me.Label24.Text = "Grano Contraste:"
-        Me.Label24.Visible = False
+        '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.Location = New System.Drawing.Point(120, 124)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(107, 16)
+        Me.Label29.TabIndex = 54
+        Me.Label29.Text = "Grano Quebrado:"
         '
         'Label30
         '
         Me.Label30.AutoSize = True
-        Me.Label30.Location = New System.Drawing.Point(16, 131)
+        Me.Label30.Location = New System.Drawing.Point(117, 173)
         Me.Label30.Name = "Label30"
         Me.Label30.Size = New System.Drawing.Size(109, 16)
         Me.Label30.TabIndex = 52
@@ -503,7 +516,7 @@ Partial Class ControlSalidas
         '
         'TxPesoEsp
         '
-        Me.TxPesoEsp.Location = New System.Drawing.Point(132, 105)
+        Me.TxPesoEsp.Location = New System.Drawing.Point(232, 148)
         Me.TxPesoEsp.MaxLength = 6
         Me.TxPesoEsp.Name = "TxPesoEsp"
         Me.TxPesoEsp.Size = New System.Drawing.Size(122, 22)
@@ -513,7 +526,7 @@ Partial Class ControlSalidas
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(19, 106)
+        Me.Label18.Location = New System.Drawing.Point(120, 148)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(106, 16)
         Me.Label18.TabIndex = 50
@@ -541,7 +554,7 @@ Partial Class ControlSalidas
         '
         'TxGranoDan
         '
-        Me.TxGranoDan.Location = New System.Drawing.Point(132, 55)
+        Me.TxGranoDan.Location = New System.Drawing.Point(233, 71)
         Me.TxGranoDan.MaxLength = 6
         Me.TxGranoDan.Name = "TxGranoDan"
         Me.TxGranoDan.Size = New System.Drawing.Size(122, 22)
@@ -551,7 +564,7 @@ Partial Class ControlSalidas
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(16, 55)
+        Me.Label16.Location = New System.Drawing.Point(118, 71)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(109, 16)
         Me.Label16.TabIndex = 0
@@ -560,7 +573,7 @@ Partial Class ControlSalidas
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(53, 30)
+        Me.Label15.Location = New System.Drawing.Point(155, 46)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(72, 16)
         Me.Label15.TabIndex = 0
@@ -568,7 +581,7 @@ Partial Class ControlSalidas
         '
         'TxImpurezas
         '
-        Me.TxImpurezas.Location = New System.Drawing.Point(132, 30)
+        Me.TxImpurezas.Location = New System.Drawing.Point(233, 46)
         Me.TxImpurezas.MaxLength = 6
         Me.TxImpurezas.Name = "TxImpurezas"
         Me.TxImpurezas.Size = New System.Drawing.Size(122, 22)
@@ -796,45 +809,26 @@ Partial Class ControlSalidas
         Me.BtImprimir.Text = "Imprimir"
         Me.BtImprimir.UseVisualStyleBackColor = True
         '
-        'TxPuntaNegra
+        'NUDDeducciones
         '
-        Me.TxPuntaNegra.Location = New System.Drawing.Point(132, 180)
-        Me.TxPuntaNegra.MaxLength = 6
-        Me.TxPuntaNegra.Name = "TxPuntaNegra"
-        Me.TxPuntaNegra.Size = New System.Drawing.Size(122, 22)
-        Me.TxPuntaNegra.TabIndex = 61
-        Me.TxPuntaNegra.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TxPuntaNegra.Visible = False
+        Me.NUDDeducciones.DecimalPlaces = 2
+        Me.NUDDeducciones.Enabled = False
+        Me.NUDDeducciones.Location = New System.Drawing.Point(220, 261)
+        Me.NUDDeducciones.Maximum = New Decimal(New Integer() {9999999, 0, 0, 0})
+        Me.NUDDeducciones.Name = "NUDDeducciones"
+        Me.NUDDeducciones.Size = New System.Drawing.Size(131, 22)
+        Me.NUDDeducciones.TabIndex = 59
+        Me.NUDDeducciones.TabStop = False
         '
-        'Label17
+        'NUDTotal
         '
-        Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(40, 181)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(84, 16)
-        Me.Label17.TabIndex = 62
-        Me.Label17.Text = "Punta Negra:"
-        Me.Label17.Visible = False
-        '
-        'TxGranoQuebrado
-        '
-        Me.TxGranoQuebrado.Location = New System.Drawing.Point(132, 204)
-        Me.TxGranoQuebrado.MaxLength = 6
-        Me.TxGranoQuebrado.Name = "TxGranoQuebrado"
-        Me.TxGranoQuebrado.Size = New System.Drawing.Size(122, 22)
-        Me.TxGranoQuebrado.TabIndex = 63
-        Me.TxGranoQuebrado.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
-        Me.TxGranoQuebrado.Visible = False
-        '
-        'Label29
-        '
-        Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(18, 210)
-        Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(107, 16)
-        Me.Label29.TabIndex = 64
-        Me.Label29.Text = "Grano Quebrado:"
-        Me.Label29.Visible = False
+        Me.NUDTotal.DecimalPlaces = 2
+        Me.NUDTotal.Enabled = False
+        Me.NUDTotal.Location = New System.Drawing.Point(220, 289)
+        Me.NUDTotal.Maximum = New Decimal(New Integer() {9999999, 0, 0, 0})
+        Me.NUDTotal.Name = "NUDTotal"
+        Me.NUDTotal.Size = New System.Drawing.Size(131, 22)
+        Me.NUDTotal.TabIndex = 60
         '
         'ControlSalidas
         '
@@ -865,10 +859,10 @@ Partial Class ControlSalidas
         Me.GbGrupoGrano.PerformLayout()
         Me.GbCalidad.ResumeLayout(False)
         Me.GbCalidad.PerformLayout()
-        CType(Me.NUDTotal, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NUDDeducciones, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
+        CType(Me.NUDDeducciones, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.NUDTotal, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -935,12 +929,12 @@ Partial Class ControlSalidas
     Friend WithEvents TxHumedad As TextBox
     Friend WithEvents TxGranoContraste As TextBox
     Friend WithEvents TxPorcentajePB As TextBox
-    Friend WithEvents Label24 As Label
-    Friend WithEvents Label30 As Label
-    Friend WithEvents NUDTotal As NumericUpDown
-    Friend WithEvents NUDDeducciones As NumericUpDown
     Friend WithEvents TxGranoQuebrado As TextBox
+    Friend WithEvents Label24 As Label
     Friend WithEvents Label29 As Label
+    Friend WithEvents Label30 As Label
     Friend WithEvents TxPuntaNegra As TextBox
     Friend WithEvents Label17 As Label
+    Friend WithEvents NUDTotal As NumericUpDown
+    Friend WithEvents NUDDeducciones As NumericUpDown
 End Class
